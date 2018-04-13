@@ -1,0 +1,41 @@
+<span ng-hide="usuario.Login!==true">
+  <div class="profile-card">
+    <!--<img src="img/user-1.jpg" alt="user" class="profile-photo" />-->
+    <img ng-click="verPerfil(usuario)" ng-src="{{usuario.DataContenidoMM}}" alt="post-image" class="profile-photo">
+    <h5><a ng-click="verPerfil(usuario)" class="text-white">{{usuario.Nombre}}</a></h5>
+
+    <div class="row" style="width: 100%;">
+
+      <div class="col-4 text-center px-1"  >
+        <a  ng-click="verPerfilPag(usuario, 1)">
+          <small class="text-center d-flex" style="line-height: 13px;">{{usuario.NumPublicaciones}} <br>  {{lang.min_publica}}
+            
+          </small>
+        </a>
+
+        </div>
+      <div class="col-4 text-center  px-1">
+        <a class="text-white "  ng-click="verPerfilPag(usuario, 3)" ><small class="text-center d-flex " style="line-height: 13px;">{{usuario.Seguidores}}<br>
+        {{lang.seguidores}} 
+        </small></a>
+      </div>
+
+
+     <!--  <div class="col-md-2" ng-click="verPerfilPag(usuario, 3)">
+        {{usuario.Seguidores}}
+      </div> -->
+        <div class="col-4 text-center  px-3">
+        <a ng-click="verPerfilPag(usuario, 4)">
+           <small class="d-flex text-center" style="line-height: 13px;">{{usuario.Siguiendo}}<br> {{lang.siguiendo}}</small>
+        </a>
+
+        </div>
+
+    </div>
+
+  </div>
+  <!--profile card ends-->
+  
+
+
+</span>

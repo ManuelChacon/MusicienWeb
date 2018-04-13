@@ -1,0 +1,86 @@
+
+<div class="suggestions" id="sticky-sidebar">
+
+  <div class="col-md-12">
+    <h4 class="grey"> <i class="ion ion-funnel"></i> Búsqueda avanzada </h4>
+  <div class="">
+    <div class="form-group">
+      <input type="text" placeholder="Escribe una palabra para buscar algo.." class="form-control form-control-sm" ng-model="filtros.Cadena">
+    </div>
+    <div class="row">
+     <div class="col-12">
+
+         <strong>
+           Busca por un rango de Fechas
+         </strong>
+
+
+      </div>
+      <div class="col-6">
+        <label><small>Desde</small></label>
+       <input type="date" class="form-control form-control-sm" name="" value="" ng-model="filtros.FechaDesdeHTML">
+
+
+      </div>
+      <div class="col-6">
+      <label><small>Hasta</small></label>
+        <input type="date" class="form-control form-control-sm" name="" value="" ng-model="filtros.FechaHastaHTML">
+      </div>
+
+    </div>
+
+
+
+     <div class="form-group mt-3">
+      <div class="line-divider"></div>
+       <label for=""> <strong>Ordenar por:</strong></label>
+
+       <select class="form-control form-control-sm" name="" ng-model="filtros.Orden">
+        <option value="F">Fecha</option>
+        <option value="O">Más Vistos</option>
+        <option value="V">Mejor Valorados</option>
+        <option value="L">Con más "Me gustas"</option>
+      </select>
+
+            <div class="line-divider"></div>
+       <label for=""> <strong>Cambiar el orden:</strong></label>
+      <div class="form-check form-check-inline ">
+        <label class="form-check-label">
+          <i class="fa fa-sort-amount-asc" aria-hidden="true"></i> <input type="checkbox" name="" value="" ng-model="filtros.Asc">
+        </label>
+      </div>
+     </div>
+      <div class="row">
+        <div class="col-md-6">
+            <div class="form-group ">
+               <div class="line-divider"></div>
+               <label for=""> <strong>Mostrar solo:</strong></label>
+               <br>
+              <div class="form-check form-check-inline" ng-repeat="tipo in filtros.TipoPubli">
+                <label class="form-check-label">
+                 <input type="checkbox" name="" value="" ng-model="tipo.Checked" class="form-check-input">{{tipo.NombreTipo}}
+                </label>
+              </div>
+             </div>
+        </div>
+        <div class="col-md-6">
+           <div class="form-group ">
+       <div class="line-divider"></div>
+       <label for=""> <strong>Mostrar solo:</strong></label>
+       <br>
+      <div class="form-check form-check-inline" ng-repeat="categoria in filtros.Categorias">
+        <label class="form-check-label">
+         <input type="checkbox" name="" value="" ng-model="categoria.Checked" class="form-check-input">{{categoria.Descripcion}}
+        </label>
+      </div>
+     </div>
+        </div>
+      </div>
+     
+    
+     <button type="submit" class="form-control btn-filtro" ng-click="FiltrarPublicaciones()"><i class="fa fa-check-square-o" aria-hidden="true"></i> Aplicar Filtros</button>
+  </div>
+  </div>
+
+
+</div>

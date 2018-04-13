@@ -1,0 +1,22 @@
+
+<div class="reaction">
+<div class="row">
+	<div class="col-auto">
+	<a class="btn text-gris" ng-click="valorar( 1, 'L')"><i class="icon ion-thumbsup" style="{{changeColor(publicacion.Liked,'green')}}"></i> {{publicacion.Likes}}</a>
+  <a class="btn text-red" ng-click="valorar( 1, 'X')"><i class="fa fa-thumbs-down" style="{{changeColor(publicacion.NoLiked,'red')}}"></i> {{publicacion.NoLikes}}</a>
+  <a class="btn text-gris"><i class="fa fa-eye"></i> {{publicacion.Visualizaciones}}</a>
+  <a class="btn text-gris" ng-click="LeerComentariosPublicacion(publicacion)"><i class="fa fa-comments"></i> {{publicacion.NumComentarios}}</a>
+	<a class="btn text-gris" ng-click="reMusiquear(publicacion)"><i class="fa fa-retweet" style="{{changeColor(publicacion.IDMiRePublicacion,'green')}}"></i> {{publicacion.NumRemusiqueos}}</a>
+  <valoracion-media ng-init="init(publicacion.Valoracion)">
+  </valoracion-media>
+
+	</div>
+	<div class="col text-right">
+
+	</div>
+</div>
+
+  <!--<a class="btn text-gris"><i class="fa fa-thumbs-down"></i> <img src="img/start_1.png" /><img src="img/start_2.png" /><img src="img/start_3.png" />--></a>
+
+
+</div>

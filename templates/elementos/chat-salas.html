@@ -1,0 +1,150 @@
+  <!-- CHATS -->
+  <div class="row justify-content-end">
+    <div class="col-3" ng-repeat="chat in getConversaciones()  | filter:seMuestra">
+      <div class="chat-salas mx-1 " >
+      <div class="container">
+              <div class="row head-user-chat " ng-if="esUnGrupo(chat)">
+                <div class="col "  style="height: 31px;overflow: hidden;">
+                  <div class="row justify-content-between">
+                    <div class="col-3 ">
+                       <i class="fa fa-users" aria-hidden="true"></i>
+                      <small></small>
+                    </div>
+                    <div class="col-auto text-right ">
+
+                          <div class=" dropdown">
+                             <button class="dropdown-toggle btn-sm btn-opciones " id="navbarDropdownOp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <i class="fa fa-address-book" aria-hidden="true"></i>
+                            </button>
+                              <ul class="dropdown-menu menu-op-chat" aria-labelledby="navbarDropdownOp" role="menu">
+                                <li class="dropdown-item row m-0 py-0" ng-repeat="chatuser in chat.Users  | filter:nosoyyo" >
+                                  <i class="ion-record" style="color:{{comprobarEstado(chatuser)}}; font-size: 10px;"></i>
+                                  <small> {{chatuser.UserName}}</small>
+                                </li>
+                            </ul>
+                        </div>
+                      </div>
+
+                    <div class="col-auto text-right ">
+
+                          <div class=" dropdown">
+                             <button class="dropdown-toggle btn-sm btn-opciones " id="navbarDropdownOp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <i class="fa fa-cog btn-prefe-chat" aria-hidden="true"></i>
+                            </button>
+                              <div class="dropdown-menu menu-op-chat" aria-labelledby="navbarDropdownOp">
+
+                                <a class="dropdown-item" ng-click="salirConversacion(chat)">{{lang.salir_conversa}}</a>
+                               <!--  <a class="dropdown-item" href="#"><i class="ion-person-add mr-1"></i>  Crear nuevo perfil</a> -->
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item"  ng-click="asignarGrupoParaAnadir(conversacion)">{{lang.anadir_usuario}}</a>
+                              </div>
+                        </div>
+                      </div>
+                      <div class="col-2 text-right">
+                         <button type="submit" name="" value="X"  ng-click="mostrarChat(chat, false)" class="btn btn-sm chat-cerrar-btn"> <i class="fa fa-times-circle" aria-hidden="true"></i> </button>
+                      </div>
+                   </div>
+                  </div>
+              </div>
+             <!--  cabecera no es un grupo -->
+              <div class="row head-user-chat " ng-if="!esUnGrupo(chat)" >
+                <div class="col">
+                  <div ng-repeat="chatuser in chat.Users  | filter:nosoyyo" class="row">
+                    <div class="col-5 " style="height: 31px;overflow: hidden;">
+                       <img ng-src="{{obtenerImagenUsuario(chatuser)}}" alt="" class="profile-photo-sm" style="width: 15px; height:15px;">
+                      <i class="ion-record" style="color:{{comprobarEstado(chatuser)}}; font-size: 10px;"></i>
+                      <small>{{chatuser.UserName}}</small>
+                    </div>
+
+                    <div class="col-5 text-right ">
+
+                          <div class=" dropdown">
+                             <button class="dropdown-toggle btn-sm btn-opciones " id="navbarDropdownOp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <i class="fa fa-cog btn-prefe-chat" aria-hidden="true"></i>
+                            </button>
+                              <div class="dropdown-menu menu-op-chat" aria-labelledby="navbarDropdownOp">
+
+                                <a class="dropdown-item" ng-click="salirConversacion(chat)">{{lang.salir_conversa}}</a>
+                               <!--  <a class="dropdown-item" href="#"><i class="ion-person-add mr-1"></i>  Crear nuevo perfil</a> -->
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item"  ng-click="asignarGrupoParaAnadir(conversacion)">{{lang.anadir_usuario}}</a>
+                              </div>
+                        </div>
+                      </div>
+                      <div class="col-2 text-right">
+                         <button type="submit" name="" value="X"  ng-click="mostrarChat(chat, false)" class="btn btn-sm chat-cerrar-btn"> <i class="fa fa-times-circle" aria-hidden="true"></i> </button>
+                      </div>
+                   </div>
+                  </div>
+
+              </div>
+             <!--  Fin cabecera no es un grupo -->
+              </div>
+              <div class="container">
+                <div class="row" style="margin-top: 31px;
+    margin-bottom: 31px;">
+
+                <!-- grupo -->
+                  <div class="col-12 text-center"  ng-if="esUnGrupo(chat)">
+                    <div class="row justify-content-md-center">
+                      <div class="col-12">
+                         <small>{{lang.miembros_grupo}} </small>
+                      </div>
+                      <div class="col-auto"  class="row text-center mx-auto">
+                        <img ng-src="{{obtenerImagenUsuario(chatuser)}}" alt="" class="profile-photo-sm" style="width: 25px; height:25px;" ng-repeat="chatuser in chat.Users  | filter:nosoyyo">
+                      </div>
+                    </div>
+                  </div>
+                 <!--  fin grupo -->
+                <!-- indivudual -->
+                  <div class="col-12 text-center" ng-if="!esUnGrupo(chat)">
+                  <small>{{lang.ahora_puedes_chat}}</small>
+                    <div ng-repeat="chatuser in chat.Users  | filter:nosoyyo" class="row text-center">
+                    <img ng-src="{{obtenerImagenUsuario(chatuser)}}" alt="" class="profile-photo-sm d-block mx-auto " style="width: 25px; height:25px;">
+
+                    </div>
+                  </div>
+
+                  <div class="col-12 mt-2 ">
+                    <div class="row">
+                        <input type="submit" name="" value="Leer más" ng-click="leerMasConver(chat)">
+                      <div ng-repeat="mensaje in chat.Messages | orderBy: reverse:true" class="{{mensaje.Clase}}  d-block col-12" style="display: block;">
+                        <img ng-src="{{obtenerImagenUsuario(mensaje.Usuario)}}" alt="" class="profile-photo-sm" style="width: 15px; height: 15px;">
+                        <span id="user-chat">
+                          {{mensaje.UserName}}:
+                        </span>
+                         <p class="mb-0">
+                           {{mensaje.Message}}
+                         </p>
+                   <!--  {{mensaje.IDUsuario}} -->
+                       </div>
+
+                    </div>
+
+                  </div>
+                  <div class="col-12 mt-3 p-0 align-self-end" style="background-color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 250px;">
+                 <!--     <input type="text" name="" ng-model="chat.newMsj" ng-enter="enviarMensaje(chat)"> -->
+                      <div class="input-group">
+                        <input type="text" class="form-control form-control-sm" placeholder="" ng-model="chat.newMsj" ng-enter="enviarMensaje(chat)" id="msj-chat">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default btn-sm" type="button" ng-click="enviarMensaje(chat)">{{lang.enviar}}</button>
+                        </span>
+                      </div>
+                  </div>
+
+
+
+                </div>
+
+              </div>
+
+
+
+
+          </div>
+      </div>
+    </div>
+   <!--  FIN CHATS -->

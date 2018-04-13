@@ -1,0 +1,26 @@
+Texto:
+<input type="text" name="" value="" class="form-control" ng-model="cupon.Texto">
+Clave:
+<input type="text" name="" value="" class="form-control" ng-model="cupon.Clave">
+
+Fecha Desde: <input type="date" name="" value="" ng-model="cupon.FechaDesde">
+Fecha Hasta: <input type="date" name="" value="" ng-model="cupon.FechaHasta">
+
+<span ng-repeat="periodicidad in periodicidades | filter:esPeriodicidadSeleccionada">
+  {{periodicidad.NombrePeriodicidad}}
+</span>
+<select class="" name="" ng-model="idperiodicidad" ng-change="cambioPeriodicidad(this)">
+  <option value="{{periodicidad.IDPeriodicidad}}" ng-repeat="periodicidad in periodicidades">{{periodicidad.NombrePeriodicidad}}</option>
+</select>
+
+<select class="" name="" ng-model="newplanopromo" ng-change="cambioplanpromo(this)">
+  <option value="{{plan}}" ng-repeat="plan in planes | filter:noEnPlanes">{{plan.NombrePlan}}</option>
+  <option value="{{promo}}"  ng-repeat="promo in promociones | filter:noEnPromos">{{promo.NombrePromocion}}</option>
+
+</select>
+<ul>
+  <li ng-repeat="plan in cupon.Planes">{{plan.NombrePlan}} <button type="button" name="button" ng-click="eliminarCuponPlan($index)"> <i class="glyphicon glyphicon-remove"></i></button></li>
+  <li ng-repeat="promo in cupon.Promociones">{{promo.NombrePromocion}}<button type="button" name="button" ng-click="eliminarCuponPromocion($index)"> <i class="glyphicon glyphicon-remove"></i></button></li>
+</ul>
+
+<input type="submit" class="form-control" name="" value="Guardar Cambios" ng-click="guardarCambios()">

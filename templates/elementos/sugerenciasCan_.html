@@ -1,0 +1,98 @@
+<span ng-hide="usuario.Login!==true">
+	<div class="row" ng-if="!canOcultada">
+		<div class="col ">
+			<div id="sugerencias" class="col-derecha pt-3 text-center">
+				
+					<div class="row justify-content-end">
+					<div class="col-auto text-center">
+						<div class="title mx-4 "><h6 class="grey"><i class="ion-information-circled"></i> Sugerencias Musicien</h6></div>
+					</div>
+					<div class="col text-right align-self-start">
+						<div class=" dropdown">
+                             <button class="dropdown-toggle btn-sm btn-opciones " id="navbarDropdownOp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                            </button>
+                              <div class="dropdown-menu menu-op-chat" aria-labelledby="navbarDropdownOp">
+                                
+                                <a class="dropdown-item" ng-click="ocultarCan()">Ocultar Panel</a>
+                               <!--  <a class="dropdown-item" href="#"><i class="ion-person-add mr-1"></i>  Crear nuevo perfil</a> -->
+                                <!-- <div class="dropdown-divider"></div> -->
+                               <!--  <a class="dropdown-item"  ng-click="asignarGrupoParaAnadir(conversacion)">Añadir usuarios</a> -->
+                              </div>
+                        </div> 
+					</div>
+				</div>
+				
+				
+				
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							
+							 <slide-wrapper>
+							    	<ul class="slide text-center">
+							    		<li class="px-5">
+							    			<h5> Crea perfiles profesionales</h5>
+							    			<div class="row">
+							    				<div class="col mb-1"><img src="img/cantante-suge.png" class="img-fluid" alt=""></div>
+							    				<div class="col-12"><p class="text-justify">Añade tipos de perfil como <strong>solista, músico, agrupación..</strong> e incluye en él información más precisa acerca de ti.</p></div>
+							    			</div>
+							    			
+							    			
+							    			<button ng-click="iraPerfiles()" class="btn btn-primary">Crear tipos de Perfil</button>
+							    		</li>
+							    		<li class="px-5">
+							    			<h5> Activa las Notificaciones</h5>
+							    			<div class="row">
+							    				<div class="col mb-1"><img src="img/notificacion.png" class="img-fluid" alt=""></div>
+							    				<div class="col-12"><p class="text-justify">Activa las notificaciones y <strong>no te pierdas nada de Musicen</strong> </p></div>
+							    			</div>
+							    			
+							    			
+							    			<button ng-click="RegistrarUsuario()" class="btn btn-primary">Activar Notificaciones</button>
+							    		</li>
+							    		<li class="px-5">
+							    			<h5> Sube una foto </h5>
+							    			<div class="row">
+							    				<div class="col mb-1"><img src="img/defaultprofile.png" class="img-fluid" alt="" style="width: 129px"></div>
+							    				<div class="col-12"><p class="text-justify"> <a ng-click="verPerfil(usuario)">Tus seguidores quieren conocerte, sube una imagen a tu perfil.</a> </p></div>
+							    			</div>
+							    			
+							    			
+							    			<button  ng-click="preferencias()" class="btn btn-primary">Subir Imagen </button>
+							    		</li>
+							    		<li class="px-5">
+							    			<h5> Personaliza tu Página </h5>
+							    			<div class="row">
+							    				<div class="col mb-1"><img src="img/imagen.png" class="img-fluid" alt="" style="width: 129px"></div>
+							    				<div class="col-12"><p class="text-justify"><strong><a ng-click="verPerfil(usuario)">Personaliza tú página de perfil</a></strong> y sube una imagen de portada.  </p></div>
+							    			</div>
+							    			
+							    			
+							    			<button  ng-click="preferencias()" class="btn btn-primary">Subir Imagen </button>
+							    		</li>
+							    	</ul>	
+							    </slide-wrapper>
+							<!-- <section class="row">
+								<h1>This is an awesome carousel 
+							    <slide-wrapper>
+							    	<ul class="slide">
+							    		<li class="green"><p>Slide 1</p></li>
+							    		<li class="blue"><p>Slide 2</p></li>
+							    		<li class="yellow"><p>Slide 3</p></li>
+							    		<li class="red"><p>Slide 4</p></li>
+							    	</ul>	
+							    </slide-wrapper>
+							</section> -->
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			
+		</div>
+
+		
+	</div>
+</span>

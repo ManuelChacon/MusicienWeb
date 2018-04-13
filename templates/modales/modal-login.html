@@ -1,0 +1,61 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">{{lang.inicio_sesion}}</h5>
+    <button type="button" class="close"  ng-click="cancel()">
+      <span >&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="social-box">
+        <div class="row mb-1">
+               <div  ng-click="CerrarParaSocial('facebook')" class="col-md-12">
+                  <a class="btn facebook btn-block">
+                    <i class="fab fa-facebook-square"></i> {{lang.inicia_face}}
+                  </a>
+        </div>
+        </div>
+        <div class="row mb-1">
+          <div ng-click="CerrarParaSocial('twitter')" class="col-md-12">
+                    <a class="btn twitter btn-block" >
+                      <i class="fab fa-twitter"></i> {{lang.inicia_twi}}
+                    </a>
+                </div>
+            </div>
+          <div class="row mb-1">
+          <div ng-click="CerrarParaSocial('instagram')" class="col-md-12">
+                    <a class="btn btn-instagram  instagram btn-block"  ng-click="close()">
+                     <i class="fab fa-instagram"></i> {{lang.inicia_inta}}
+                    </a>
+                </div>
+            </div>
+             <div class="row mb-1">
+          <!--<div class="col-md-12">
+                    <a class="btn btn-danger btn-block" >
+                      <i class="fa fa-google-plus g-signin2"  data-onsuccess="onSignInGPlus"></i> Regístrate con  Google+
+                    </a>
+                </div>-->
+            </div>
+      </div>
+      <div class="main">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h5>{{lang.o_inicia_email}}</h5>
+        </div>
+      </div>
+      
+       <div class="col-12 mb-2">
+          <input type="text " class="form-control" placeholder="Email" autofocus ng-model="oldusuario.Email" ng-enter="iniciarSesUsuario()">
+        </div>
+        <div class="col-12">
+           <input type="password" class="form-control" placeholder="Password" ng-model="oldusuario.Contrasena" ng-enter="iniciarSesUsuario()">
+        </div>
+
+
+      <div class="col-xs-6 col-md-6 pull-right mt-4">
+          <button type="submit" class="btn btn-large btn-aqua pull-right" ng-click="iniciarSesUsuario()">{{lang.enviar}}</button>
+      </div>
+
+      <span class="clearfix"></span>
+          </div>
+      </div>
+</div>

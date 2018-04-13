@@ -1,0 +1,180 @@
+<div id="page-contents">
+  <div class="container-fluid">
+    <div class="row">
+       <div  class="col-md-12 post-content ">
+          <div class="text-center mb-5">
+          <h1 class="mt-3">{{lang.contrata_nuestros}}</h1>
+          <p style="font-weight: 600;">{{lang.echa_vistazo_aprocecha}} </p>
+          </div>
+           <form ng-controller="TabsDemoCtrl" name="outerForm" class="tab-form-demo">
+               <uib-tabset active="activeB" justified="true">
+                <uib-tab index="$index" ng-repeat="plan in planes track by $index" ng-click="verInfoPlan(plan, $index)">
+                <span infinite-scroll="cargarMultimediaPlan(plan, $index)" infinite-scroll-disabled="plan.MultimediaCargada"></span>
+                  <uib-tab-heading>
+                   <h3>{{plan.NombrePlan}}</h3>
+                   <span ng-if="plan.CuponDisponible>0">{{lang.cupon_disponible}}</span>
+                  </uib-tab-heading>
+                   <div class="container-fluid" style="border-bottom: 2px solid #f3f3f3;">
+                    <div class="row mx-5 align-items-center">
+                      <div class="col-12  col-md-3 col-lg-3 ">
+                        <img ng-src="{{plan.DataContenidoMM}}" alt="" class="img-fluid mx-auto d-block">
+                      </div>
+                      <div class="col-12  col-md-3 col-lg-3 text-center " style="border-left: 1px dotted #f19103;">
+                       <img ng-src="{{plan.DataImagen1}}" alt="" class="img-fluid d-block mx-auto">
+                        <h6 class="mt-4"><strong>{{plan.Titulo1}}</strong></h6>
+                        <p><strong>{{plan.Descripcion1}}</strong></p>
+                      </div>
+                      <div class="col-12  col-md-3 col-lg-3 text-center" style="border-left: 1px dotted #f19103;">
+                        <img ng-src="{{plan.DataImagen2}}" alt="" class="img-fluid d-block mx-auto">
+                        <h6 class="mt-4"><strong>{{plan.Titulo2}}</strong></h6>
+                        <p><strong>{{plan.Descripcion2}}</strong></p>
+                      </div>
+                      <div class="col-12  col-md-3 col-lg-3 text-center" style="border-left: 1px dotted #f19103;">
+                        <img ng-src="{{plan.DataImagen3}}" alt="" class="img-fluid d-block mx-auto">
+                        <h6 class="mt-4"><strong>{{plan.Titulo3}}</strong></h6>
+                         <p><strong>{{plan.Descripcion3}}</strong></p>
+                      </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                <div class="col-12 text-center my-2">
+
+                  <h2>{{lang.tarifa_precios}} {{plan.NombrePlan}}</h2>
+
+                  <small><strong>Selecciona una de las tarifas y contrata en un sólo CLICK</strong></small>
+                </div>
+                <div class="container mb-3" ng-repeat="tarifa in plan.Tarifas track by $index">
+                  <div class="row justify-content-center align-items-center" >
+                   <div class="col text-center">
+                    <div class="arrow_box p-5">
+                     <strong>{{plan.NombrePlan}}</strong>  <h6 style="color:black;"><strong> {{tarifa.NombrePeriodicidad}}</strong></h6>
+                    </div>
+
+                   </div>
+                   <div class="col text-center" style=" border-right: 1px dotted #666;">
+                        {{tarifa.Texto}}
+                        {{tarifa.TextoCupon}}
+
+                   </div>
+                   <div class="col text-center" style=" border-right: 1px dotted #666;" ng-click="anadirPlanCarrito(plan, $index)">
+                     <div class="capa-precios"> <span class="n-precio"  >{{tarifa.Precio}}</span> <span class="n-moneda">€ </span> <span class="n-periodo">{{tarifa.NombrePeriodicidad}}es</span></div>
+
+                   </div>
+                   <div class="col text-center">
+                   <div class="row">
+                     <div class="col mb-3">
+                       <button type="" class="btn btn-primary btn-lg" ng-click="anadirPlanCarrito(plan, $index)"> {{lang.anadir}} <i class="fa fa-shopping-cart" aria-hidden="true"></i>  </button>
+                      
+                       <button ng-if="tarifa.IDCupon>0" type="" class="btn btn-primary btn-lg mt-3" ng-click="aprovecharCuponPlan(plan,tarifa.IDCupon, tarifa.IDTarifaPlan)"> {{lang.tengo_cupon}} <i class="fas fa-gift fa-lg" aria-hidden="true"></i>  </button>
+                     </div>
+                   </div>
+
+
+                   </div>
+
+                 </div>
+                </div>
+
+
+
+              </div>
+
+                </uib-tab>
+               </uib-tabset>
+           </form>
+           <hr>
+                     <div class="text-center mb-5">
+
+          <h1 class="mt-3" style="text-transform: uppercase;">{{lang.promociones}} MUSICIEN</h1>
+          <hr class='separador_post'/>
+          <p style="font-weight: 600;">{{lang.aprovecha_nuestras_promo}} </p>
+          </div>
+           <form  ng-controller="TabsDemoCtrl" name="outerForm" class="tab-form-demo">
+               <uib-tabset active="activeC" justified="true">
+                <uib-tab index="$index" ng-repeat="promo in promociones track by $index" ng-click="verInfoPromo(promo, $index)">
+                <span infinite-scroll="cargarMultimediaPlan(promo, $index)" infinite-scroll-disabled="promo.MultimediaCargada"></span>
+                  <uib-tab-heading>
+                   <h3>{{promo.NombrePromocion}}</h3>
+                   <span ng-if="promo.CuponDisponible>0">{{lang.cupon_disponible}}</span>
+                  </uib-tab-heading>
+                   <div class="container-fluid" style="border-bottom: 2px solid #f3f3f3;">
+                    <div class="row mx-5 align-items-center">
+                      <div class="col-12  col-md-3 col-lg-3">
+                        <img ng-src="{{promo.DataContenidoMM}}" alt="" class="img-fluid mx-auto d-block">
+                      </div>
+                      <div class="col-12  col-md-3 col-lg-3 text-center " style="border-left: 1px dotted #f19103;">
+                       <img ng-src="{{promo.DataImagen1}}" alt="" class="img-fluid d-block mx-auto">
+                        <h6 class="mt-4"><strong>{{promo.Titulo1}}</strong></h6>
+                        <p><strong>{{promo.Descripcion1}}</strong></p>
+                      </div>
+                      <div class="col-12  col-md-3 col-lg-3 text-center" style="border-left: 1px dotted #f19103;">
+                        <img ng-src="{{promo.DataImagen2}}" alt="" class="img-fluid d-block mx-auto">
+                        <h6 class="mt-4"><strong>{{promo.Titulo2}}</strong></h6>
+                        <p><strong>{{promo.Descripcion2}}</strong></p>
+                      </div>
+                      <div class="col-12  col-md-3 col-lg-3 text-center" style="border-left: 1px dotted #f19103;">
+                        <img ng-src="{{promo.DataImagen3}}" alt="" class="img-fluid d-block mx-auto">
+                        <h6 class="mt-4"><strong>{{promo.Titulo3}}</strong></h6>
+                         <p><strong>{{promo.Descripcion3}}</strong></p>
+                      </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                <div class="col-12 text-center mb-2">
+                  <h2 style="text-transform: uppercase;">{{lang.precios}}</h2>
+                  <small><strong>{{lang.selecciona_tarifa}}</strong></small>
+                </div>
+                <div class="container mb-3" ng-repeat="tarifa in promo.Tarifas track by $index">
+                  <div class="row justify-content-center align-items-center" >
+                   <div class="col-6 col-md-6 col-lg-3 col-xl-3 text-center">
+                    <div class="arrow_box p-5">
+                     <strong>{{promo.NombrePromocion}}</strong>  <h6 style="color:black;"><strong> {{tarifa.NombrePeriodicidad}}</strong></h6>
+                    </div>
+
+                   </div>
+
+                      <div class="col-6 col-md-6 col-lg-3 col-xl-3 text-center" style=" border-right: 1px dotted #666;">
+                        {{tarifa.Texto}}
+                        {{tarifa.TextoCupon}}
+
+                   </div>
+
+
+                   <div class="col text-center" style=" border-right: 1px dotted #666;">
+                     <div class="capa-precios"> <span class="n-precio" ng-click="anadirPromocionCarrito(promo, $index)">{{tarifa.Precio}}</span> <span class="n-moneda">€ </span> <span class="n-periodo">{{tarifa.NombrePeriodicidad}}es</span></div>
+
+                   </div>
+                   <div class="col text-center" style=" border-right: 1px dotted #666;">
+
+                        <ul ng-repeat="plan in promo.Planes | limitTo:5">
+                               <li> {{plan.NombrePlan}}</li>
+                        </ul>
+
+                   </div>
+                   <div class="col text-center">
+                     <button type="" class="btn btn-primary btn-lg" ng-click="anadirPromocionCarrito(promo, $index)">{{lang.anadir}} <i class="fa fa-shopping-cart" aria-hidden="true"></i> </button>
+                     <button ng-if="tarifa.IDCupon>0" type="" class="btn btn-primary btn-lg mt-3" ng-click="aprovecharCuponPromo(promo, tarifa.IDCupon, tarifa.IDTarifaPromocion)"> {{lang.tengo_cupon}} <i class="fas fa-gift fa-lg" aria-hidden="true"></i>  </button>
+                   </div>
+
+                 </div>
+                </div>
+
+
+
+              </div>
+
+                </uib-tab>
+               </uib-tabset>
+           </form>
+
+       </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- __________________________________________________________________________________________________________________________________________ -->

@@ -1,0 +1,143 @@
+<div class="create-post pt-0 " ng-hide="usuario.Login!==true" style="background-color: #fff; border-radius:4px;">
+    <errores-publicacion>
+    </errores-publicacion>
+
+    <div class="row">
+      <div class="col-md-12">
+      <!-- <div class="mb-3">
+         <input type="text" name="" value="" class="form-control form-publi" ng-model="publicacion.Titulo" placeholder="Titulo de la publicación">
+         text input
+      </div>
+      <div class="">
+          <textarea name="texts" id="exampleTextarea" cols="30" rows="3" class="form-control form-publi" placeholder="Comparte algo" ng-model="publicacion.Descripcion"></textarea>
+      </div> -->
+
+       <div class="row">
+         <div class="col-md-12">
+         <div class="text-center" ><h5 class="comparte-titulo">Comparte algo en Musicien</h5></div>
+          <div class="container">
+            <ul class="row justify-content-around px-0">
+
+              <li class="mx-1 btn-publi" style="" ng-click="selecttipopubli(tipopubli)" ng-repeat="tipopubli in TiposPublicacion"> <!-- TiposPublicacion.slice(0,5) .slice(6,TiposPublicacion.length) -->
+                <img class="img-responsive d-block center-block mx-auto p-1 activa{{tipopubli.Checked}}" style=" display: block; max-width: 30px;" ng-src="{{obtenerImagenPublicacion(tipopubli)}}" alt="image" />
+                  <small>{{tipopubli.NombreTipo}}</small>
+              </li>
+
+
+            </ul>
+          </div>
+            <!-- <div class="tools">
+              <ul class="tools-public text-center mx-auto d-block">
+                <li ng-click="selecttipopubli(tipopubli)" ng-repeat="tipopubli in TiposPublicacion">
+                  <img class="img-responsive center-block" style=" display: block;" ng-src="{{obtenerImagenPublicacion(tipopubli)}}" alt="image" />
+                  {{tipopubli.NombreTipo}}
+                </li>
+              </ul>
+
+            </div> -->
+
+         </div>
+       </div>
+       <div class="row" ng-hide="!selectedTipo">
+
+
+       <div class="col-12 text-center ">
+       <span ng-if="publicacion.TipoPubli.Privado>0">
+ <!--  {{publicacion.TipoPubli.Privado}} -->
+ <form  class="form-horizontal">
+ <div class="row pb-3">
+  
+  <h3 class="text-center">Indica fecha de inicio y fin de la campaña de publicidad</h3>
+  <div class="col-md-6 col-md-offset-3">
+    <label class="control-label ">Fecha de Inicio:</label>
+    <input class="form-control" type="date" name="" value="" ng-model="publicacion.FechaDesde">  
+  </div>
+  <div class="col-md-6 col-md-offset-3"> 
+    <label class="control-label">Fecha Fin:</label> 
+    <input class="form-control" type="date" name="" value="" ng-model="publicacion.FechaHasta"> </div>
+    <div class="col-md-6 col-md-offset-3">
+      <label class="control-label">Indica una posición</label>
+      <select class="form-control" name="" ng-model="selectedPosition" ng-change="posicionCambiada(this)">
+            <option ng-repeat="posicion in posiPubli" value="{{posicion}}" >{{posicion.NombrePosicion}}</option>
+        </select>
+  
+    </div>  
+ </div>
+ </form>
+  
+</span>
+       <div class="container" style="padding: 20px">
+         <div class=" row ">
+                 <div class="col-md-12" style="padding: 10px;">
+                  
+                      
+                     <input type="text" name="" value="" class="form-control" ng-model="publicacion.Titulo" placeholder="Titulo de la publicación">
+                 
+                   <div class="p-3" ng-repeat="propiedad in publicacion.TipoPubli.Propiedades">
+                     <campo-propiedad>
+                     </campo-propiedad>
+                  </div>
+                  <span ng-if="guardando">
+                    <img src="img/loader.gif" alt="" style="width:50%">
+                  </span>
+                 </div>
+          </div>
+       </div>
+
+       </div>
+       <div class="row">
+          <div ng-hide="nohaytipo()" class="col-md-12" style="padding: 0px 49px;">
+            <small class="d-block"><strong>Publicar como:</strong></small>
+            <label class="custom-control custom-radio" ng-model="publicacion.IDUsuarioCategoria" ng-repeat="categoria in usuario.Categorias" >
+              <input ng-model="publicacion.IDUsuarioCategoria" id="radio1" name="radio" type="radio" class="custom-control-input" value="{{categoria.IDUsuarioCategoria}}">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">{{categoria.Descripcion}}</span>
+            </label>
+        </div>
+       </div>
+        
+         <div ng-hide="nohaytipo()" class="col-12 mb-3">
+
+          <div ng-controller="ModalPrevisualiza" class="modal-demo">
+            <div class="col-md-6 col-md-offset-3">
+               <button type="submit" name="" value="Previsualiza tu publicación" class="btn btn-default btn-lg btn-block" ng-click="open()"> <i class="ion-eye"></i> Previsualiza tu publicación</button>
+            </div>
+          </div>
+
+       </div>
+
+        <div ng-hide="nohaytipo()" class="col-md-12 text-center">
+         <button class="btn-cerrar btn-default " ng-click="quitarTipo()" style="border-radius: 3px;
+    color: #fff;
+    background-color: #2a3f54;
+    border-color: #2e6da4;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    margin-right: 5px;"><i class="fa fa-times-circle" aria-hidden="true"></i> Cerrar </button>
+          <button class="btn btn-primary " ng-click="guardarPublicacion()"><i class="fa fa-upload" aria-hidden="true"></i> Publicar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->

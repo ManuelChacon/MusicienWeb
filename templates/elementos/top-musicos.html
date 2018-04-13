@@ -1,0 +1,21 @@
+
+  <!-- <span class="sidebar" sticky> -->
+<div class="col">
+    <div class="suggestions col-derecha px-4 " >
+
+  <h4 class="grey"><img src="img/top_star.png" class="img-fluid"> Musicien</h4>
+  <div class="follow-user" ng-repeat="musico in TopMusicos">
+    <span infinite-scroll="cargarMusico(musico)" infinite-scroll-disabled="musico.Cargada"></span>
+    <img ng-src="{{musico.DataContenidoMM}}" alt="" class="profile-photo-sm pull-left" />
+    <div>
+      <h5 class="nombre-top"><a ng-click="verPerfil(musico)">{{musico.Nombre}}</a></h5>
+       <valoraciones-usuario ng-init="init(musico)">
+       </valoraciones-usuario>
+    </div>
+  </div>
+</div>
+  </div>
+
+
+
+<!-- </span> -->

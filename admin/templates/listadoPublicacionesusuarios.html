@@ -1,0 +1,55 @@
+<div class="x_panel">
+  <div class="x_content">
+    <div class="row">
+      <div class="col-md-6">
+        <h1>
+          <i class="glyphicon glyphicon-list "></i> Publicaciones Usuarios
+        </h1>
+      </div>
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <tr>
+            <th>Titulo</th>
+            <th>Tipo</th>
+            <th>Usuario</th>
+            <th>Fecha</th>
+          </tr>
+          <tr ng-repeat="publicacion in publis[pagina]">
+            <td>{{publicacion.Titulo}}</td>
+            <td>{{publicacion.TipoPubli.NombreTipo}}</td>
+            <td ng-click="verUsuario(publicacion.Usuario.IDUsuario)">{{publicacion.Usuario.Nombre}}</td>
+            <td>{{transformarFecha(publicacion.Creacion).Fecha}}</td>
+            <td ng-click="eliminarPublicacion(publicacion, $index)"><i class="glyphicon glyphicon-remove"></i></td>
+          </tr>
+        </table>
+        <div>
+          <input class="btn btn-primary" type="submit" name="" value="< Anterior" ng-click="paginaAnterior()">
+          <input class="btn btn-primary" type="submit" name="" value="Siguiente  >" ng-click="paginaSiguiente()">
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+<!-- <table>
+  <tr>
+    <th>Titulo</th>
+    <th>Tipo</th>
+    <th>Usuario</th>
+    <th>Fecha</th>
+  </tr>
+  <tr ng-repeat="publicacion in publis[pagina]">
+    <td>{{publicacion.Titulo}}</td>
+    <td>{{publicacion.TipoPubli.NombreTipo}}</td>
+    <td ng-click="verUsuario(publicacion.Usuario.IDUsuario)">{{publicacion.Usuario.Nombre}}</td>
+    <td>{{transformarFecha(publicacion.Creacion).Fecha}}</td>
+    <td ng-click="eliminarPublicacion(publicacion, $index)"><i class="glyphicon glyphicon-remove"></i></td>
+  </tr>
+</table>
+<div>
+  <input type="submit" name="" value="<" ng-click="paginaAnterior()">
+  <input type="submit" name="" value=">" ng-click="paginaSiguiente()">
+</div>
+ -->

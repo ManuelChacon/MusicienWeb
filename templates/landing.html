@@ -1,0 +1,338 @@
+<ul class="slide text-center pt-5"  ng-controller="modalesRegistroLogin" id="slide-xs" style="margin-top: -109px;">
+        <li class="" style="background-image: url('img/slider-02.jpg');background-size: cover; width: 100%;padding-bottom: 81px; background-attachment: fixed;">
+        <div class="row align-items-center" style="height: 100vh;" >
+          <div class="col-12 mt-5">
+          <img class="d-block mx-auto pb-5" src="img/logo.png">
+            <img class="d-block mx-auto" src="img/musicien_slogan.png">
+            <div class="col-12">
+               <button type="" class="btn btn-primary mt-5 p-3" ng-click="inicio()"><span style="text-transform: uppercase;">{{lang.ir_a_musicien}} MUSICIEN</span> </button>
+            </div>
+            <div class="col-12">
+               <button type="" class="btn btn-primary mt-5 p-3" ng-click="openModalInicioSesion()"><span style="text-transform: uppercase;">{{lang.inicio_sesion}}</span> </button>
+            </div>
+            <div class="col-12">
+             <h5>------ o ------</h5> 
+            </div>
+            <div class="col-12">
+              <button type="button" class="btn btn-primary  p-3" ng-click="openModalRegistro()"> <span style="text-transform: uppercase;">{{lang.registrarse}}</span> </button>      
+            </div>
+          </diV>
+          
+        </div>
+        
+        </li>
+              
+      </ul> 
+
+<slide-wrapper id="slide-landing" style="margin-top: -81px;">
+    <ul class="slide text-center pt-5" style="" ng-controller="modalesRegistroLogin">
+        <li class="" style="background-image: url('img/slider-02.jpg');background-size: cover; width: 100%;padding-bottom: 81px; background-attachment: fixed;">
+        <div class="row align-items-center" style="height: 100vh;" >
+          <div class="col-12 mt-5">
+            <img class="d-block mx-auto" src="img/musicien_slogan.png">
+            <button type="" class="btn btn-primary mt-5 p-3" ng-click="openModalInicioSesion()"><i class="ion-person"></i> {{lang.inicia_sesion_en}} MUSICIEN</button>      
+          </diV>
+          
+        </div>
+        
+        </li>
+        <li class=""  style="background-image: url('img/slider-01.jpg');background-size: cover; width: 100%;padding-bottom: 81px;background-attachment: fixed;">
+        <div class="row align-items-center" style="height: 100vh;" >
+        <div class="col main-slider mt-5">
+           
+           <h2>{{lang.bienvenido_a_musicien}}<span class="text-colorN">MUSICIEN</span></h2>
+           <h3 class="text-colorB">{{lang.que_hacer}}</h3>
+            <button type="" class="btn btn-primary mt-5 p-3" ng-click="inicio()"><i class="fa fa-eye fa-lg" aria-hidden="true"></i> {{lang.echa_un_vistazo}} MUSICIEN</button>    
+        </div>
+          
+        </div>
+           
+        </li>          
+      </ul> 
+</slide-wrapper>
+
+<!-- Que puedo hacer aqui
+    ================================================== -->
+<section class="quehacer-sec" id="quehacer">
+  <div class="container">
+  <div class="row">
+    <div class="col text-center pb-3">
+      <h2>
+        ¡ {{lang.suscribete_para}} !
+
+      </h2>
+    </div>
+  </div>
+    <div class="row text-center">
+      <div class="col-12   col-md-4 col-lg-4 ">
+        <div class="row">
+          <div class="col-12 mb-2 mr-2">
+            <img class=" img-fluid" src="img/conecta@2x.png" alt="">
+          </div>
+          <div class="col-12 text-colorB">
+            <h4 style="color:white;">{{lang.conecta}}</h4>
+            <hr>
+            <p class="text-center">{{lang.mantente_conectado}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12  col-md-4 col-lg-4">
+         <div class="row">
+          <div class="col-12 mb-2 mr-2">
+            <img class=" img-fluid" src="img/publica@2x.png" alt="">
+          </div>
+          <div class="col-12 text-colorB">
+            <h4 style="color:white;">{{lang.publica}}</h4>
+             <hr>
+            <p class="text-center">{{lang.promociona_musica}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 col-lg-4">
+         <div class="row">
+          <div class="col-12 mb-2">
+            <img class=" img-fluid" src="img/buscar@2x.png" alt="">
+          </div>
+          <div class="col-12 text-colorB">
+            <h4 style="color:white;">{{lang.encuentra}}</h4>
+             <hr>
+            <p class="text-center">{{lang.vocalistas}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- + DE MUSICIEN
+    ================================================== -->
+
+<section class="blog-sec" id="blog">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+    <div class="heading text-md-center text-xs-center">
+      <h2><small>{{lang.mucho_mas_que}}</small> {{lang.descubre_musicien}} MUSICIEN</h2>
+    </div>
+    </div>
+      <div class="col-12 ">
+        <div class="row">
+
+
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+          <div class="card-deck">
+
+            
+                <div class="card card-01">
+                <img class="card-img-top img-fluid" src="img/guitarra_compraventa.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <span class="badge-box"><i class="fa fa-check"></i></span>
+                  <h4 class="card-title">{{lang.compra_venta}}</h4>
+                  <p class="card-text">{{lang.des_compra_venta}}<br><br></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+          <div class="card-deck">
+
+
+            
+              <div class="card card-01">
+              <img class="card-img-top img-fluid" src="img/music-live.jpg" alt="Card image cap">
+              <div class="card-body">
+                <span class="badge-box"><i class="fa fa-check"></i></span>
+                <h4 class="card-title">{{lang.actuaciones}}</h4>
+                <p class="card-text">{{lang.desc_actuaciones}}<br><br></p>
+
+              </div>
+              </div>
+            </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+             <div class="card-deck">
+              
+                <div class="card card-01">
+                <img class="card-img-top img-fluid" src="img/pentagrama_musical660.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <span class="badge-box"><i class="fa fa-check"></i></span>
+                  <h4 class="card-title">{{lang.clases}}</h4>
+                  <p class="card-text">{{lang.desc_clases}}<br><br></p>
+
+                </div>
+                </div>
+              </div>
+              </div>
+         
+
+
+
+        </div>
+      </div>
+  </div>
+</section>
+
+
+<!-- TOP MUSICIEN
+    ================================================== -->
+<section class="top-sec parallax-section" id="top">
+  <div class="container">
+    <div class="row">
+       <div class="col-12 mt-5 pb-5" style="background-color: rgba(255, 255, 255, 0.33);">
+         <h2 class="text-colorN text-center"><small class="text-colorB" >  <i class="ion-arrow-up-c"></i> {{lang.top_de_semana}} </small>MUSICIEN<br>
+         </h2>
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6  p-3" ng-repeat="publicacion in TopPublicaciones | limitTo:2" >
+          <publicacion-landing></publicacion-landing>
+          </div>
+      </div>
+          
+    </div>
+
+    <!-- MUSICOS DESTACADO -->
+    <div class="col-12 mt-5 pb-5" style="background-color: rgba(255, 255, 255, 0.33);">
+    <h2 class="text-colorN text-center mb-5"><small class="text-colorB" >  <i class="ion-arrow-up-c"></i> {{lang.usuarios_de_semana}} </small>MUSICIEN<br>
+         </h2>
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3" ng-repeat="musico in TopMusicos | limitTo:4">
+        <a style="color:#fff;" ng-click="verPerfil(musico)">
+          <div class="img-dst">
+            <span infinite-scroll="cargarMusico(musico)" infinite-scroll-disabled="musico.Cargada"></span>
+          <img ng-src="{{musico.DataContenidoMM}}" alt="" class="img-fluid mx-auto d-block">
+          <div class="text-dst mx-auto text-center">
+          {{musico.Nombre}}
+          </div>
+
+          </div>
+          </a>
+        </div>
+        <!-- <div class="col-2">1</div>
+        <div class="col-2">1</div> -->
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACERCA DE MUSICIEN -->
+<section class="about-sec parallax-section" id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 mr-md-2">
+        <h2 class="text-colorN"><small class="text-colorB" >{{lang.si_eres_musico}}</small>MUSICIEN<br>
+         </h2>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+        <p> </p>
+
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+      MUSICIEN {{lang.que_es_musicien}} <br><br>
+       <p><a class="btn btn-transparent-white btn-capsul" ng-click="inicio()">{{lang.echale_vistazo}}</a></p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMOCION APP -->
+<section>
+  <div class="container" >
+    <div class="row">
+      <div class="col-12">
+        <h2 class="text-center text-colorN">
+          <small class="text-colorBlack">{{lang.descarga_gratis}}</small> APP
+        </h2>
+      </div>
+      <div class="col">
+        <img class="d-block mx-auto img-fluid" src="img/elmundodelamusica.png" alt="">
+      </div>
+      <div class="  col-12  ">
+        <img class="img-fluid mx-auto d-block" src="img/iphone_x.png" alt="">
+      </div>
+
+        <!-- <div class="col-12 text-left">
+          <p>Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't, become nothing. She starred in one of the ones that became nothing</p>
+        </div> -->
+        <div class="col-12 text-center">
+          <p class="text-center mb-0"><small>{{lang.proximamente_en}}</small></p>
+            <img src="img/app_google.png" alt="">
+            <img src="img/app_store.png" alt="">
+        </div>
+
+
+    </div>
+  </div>
+
+</section>
+
+<!-- CONTACTO -->
+<form action="enviar.php" method="post" >
+<section class="contact-sec parallax-section" id="contact">
+  <div class="container">
+    <h2>{{lang.contacto}} <small>{{lang.envia_sugerencia}}</small> </h2>
+    <div class="row">
+    
+      <div class="col-12">
+        <div class="form-group">
+          <label for="exampleName">{{lang.nombre}}</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="emailHelp">
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group">
+          <label for="examplePhone">{{lang.telefono}}</label>
+          <input type="text" class="form-control" id="telefono" name="telefono" aria-describedby="emailHelp">
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group">
+          <label for="exampleInputEmail1">{{lang.email}}</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+          <small id="emailHelp" class="form-text text-muted text-colorB" style="color:orange !important;">{{lang.nunca_daremos}}</small> </div>
+      </div>
+      <div class="col-md-12">
+        <label for="exampleTextarea">{{lang.tu_mensaje}}</label>
+        <textarea class="form-control" name="mensaje" id="mensaje" rows="3"></textarea>
+      </div>
+      <div class="col-md-12 text-xs-center action-block">  <button type="submit" class="btn btn-primary" >{{lang.enviar}}</button> </div>
+     
+    </div>
+  </div>
+</section>
+</form>
+<!-- REDES SOCIALES MOVIL -->
+ <section class="social-footer-movil hidden-sm-down ">
+   <h2 class="text-center">{{lang.redes_sociales}} <small>{{lang.comparte_tu}}</small> </h2>
+            <div class="spacer"></div>
+            <div class="row">
+              <div class="col-md-12 text-center">
+                    <ul class="social-network social-circle">
+                        <li><a style="    color: white; padding-top: 11px;" href="https://www.facebook.com/musicien.es/" class="icoFacebook" title="Facebook" target="blank"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a style="    color: white; padding-top: 11px;" href="https://twitter.com/Musicien_es" class="icoTwitter" title="Twitter" target="blank"><i class="fab fa-twitter"></i></a></li>
+                        <li><a style="    color: white; padding-top: 11px;" href="https://www.youtube.com/channel/UCwxyYbdC8qpVbzUpQHg4qRQ?view_as=subscriber" class="icoGoogle" title="Google +"  target="blank"><i class="fab fa-youtube-square"></i></a></li>
+                        <li><a style="    color: white; padding-top: 11px;" href="https://www.instagram.com/musicien.es/" class="icoVimeo" title="insta" target="blank"><i class="fab fa-instagram"></i></a></li>
+                       <li><a style="    color: white; padding-top: 11px;" href="https://plus.google.com/u/0/112514787241977627722" target="_blank" class="icoLinkedin" title="linll" target="blank"><i class="fab fa-google-plus-g"></i></a></li> 
+                      
+                    </ul>       
+            </div>
+            </div>
+            <div class="clear"></div>
+</section> 
+
+<!--  REDES SOCIALES -->
+<section class="social-footer hidden-sm-down ">
+   <h2 class="text-center">{{lang.redes_sociales}} <small>{{lang.comparte_tu}}</small> </h2>
+            <div class="spacer"></div>
+            <div class="footer-container">
+                <a href="https://www.facebook.com/musicien.es/" target="blank">  <div class="social-ico s-facebook"></div></a>
+                <a href="https://www.youtube.com/channel/UCwxyYbdC8qpVbzUpQHg4qRQ?view_as=subscriber" target="blank"><div class="social-ico s-youtube">  </div></a> 
+                 <a href="https://www.instagram.com/musicien.es/" target="blank"><div class="social-ico s-instagram" style=""></div></a>
+               <!--  <div class="social-ico s-plus"></div> -->
+                 <a class="f-twitter" href="https://twitter.com/Musicien_es" target="blank"><div class="social-ico s-twitter" style="    margin-left: 140px;
+    margin-top: -30px;"></div> </a>
+                <div class="social-ico s-soundcloud"><a href=""></a> </div> 
+               <!--  <div class="social-ico s-instagram"></div> -->
+            </div>
+            <div class="clear"></div>
+</section>

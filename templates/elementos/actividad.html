@@ -1,0 +1,13 @@
+<div class="post-content p-2">
+	<div id="sticky-sidebar ">
+	  <h4 class="grey">{{lang.ultimas_acciones}}</h4>
+		<span ng-if="perfilUsuario.Acciones.length<1">
+				 <div class="post-content p-3"><h5 class="text-center py-5">{{lang.no_actividad}}</h5> </div></span>
+	  <div class="feed-item" ng-repeat="accion in perfilUsuario.Acciones">
+	    <div class="live-activity ">
+	      <p ng-click="clickAccion(accion)"><a class="profile-link">{{perfilUsuario.Nombre}}</a> {{accion.Texto}}</p>
+	      <p class="text-muted"> {{calcularTiempo(accion)}}</p>
+	    </div>
+	  </div>
+	</div>
+</div>

@@ -1,0 +1,25 @@
+<div>
+  <div class="login_wrapper panel-body">
+    <table border="0"  class="table table-hover">
+      <tr>
+        <th>
+          Nombre Promoción
+        </th>
+        <th>
+          Modificar
+        </th>
+        <th>
+          Eliminar
+        </th>
+      </tr>
+      <tr ng-repeat="promocion in Promociones track by $index">
+        <td>
+          {{promocion.NombrePromocion}}
+        </td>
+        <td><button type="button" name="button" ng-click="modificarPromocion(promocion)"><i  class="glyphicon glyphicon-pencil"></i></button> </td>
+        <td><button type="button" name="button" ng-click="eliminarPromocion(promocion, $index)"> <i class="glyphicon glyphicon-remove"></i></button> </button></td>
+      </tr>
+    </table>
+    <input type="submit" name="" value="Crear Promocion" class="btn btn-primary" ng-click="crearPromocion()">
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="row">
+              <div class="col-md-12" >
+                <div class="x_panel">
+                  <div class="x_title">
+                    <div class="col-md-4"> <h2>Perfiles <small> Listado de Usuarios Creados desde Administración</small></h2></div>
+                    <div class="col-md-4 col-md-offset-4 text-right"><input type="submit" name="" value="Crear Perfil" class="btn btn-primary" ng-click="crearUsuario()"></div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <div class="row">
+
+                      <p></p>
+
+                      <div class="col-md-55" ng-repeat="user in usuarios track by $index">
+                        <div class="thumbnail">
+                          <div class="image view view-first" >
+                            <img class="img-responsive center-block" style=" display: block;" ng-src="{{obtenerImagenUsuario(user)}}" alt="image" />
+                            <div class="mask">
+                              <p >Editar {{user.Nombre}}</p>
+                              <div class="tools tools-bottom">
+                                <a ng-click="modificarUsuario(user)" style="cursor: pointer"><i class="fa fa-pencil cursor"></i></a>
+                                <a ng-click="eliminarUsuario(user, $index)"  style="cursor: pointer"><i class="fa fa-times"></i></a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="caption">
+                            <p class="text-center"><strong>{{user.Nombre}}</strong></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>

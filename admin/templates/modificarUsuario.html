@@ -1,0 +1,8 @@
+<input type="text" name="" value="" class="form-control" ng-model="user.Nombre">
+
+<img ng-src="{{user.DataContenidoMM}}" alt="post-image" class="profile-photo-md pull-left m-1">
+<input type="file" name="" value="" onchange="cambioInput(this)">
+<img ng-src="{{user.DataContenidoMMBanner}}" alt="post-image" class="profile-photo-md pull-left m-1">
+<input type="file" name="" value="" onchange="cambioInputFondo(this)">
+<input type="color" name="" value="" ng-model="user.Color"> {{user.Color}}
+<input type="submit" name="" value="Guardar Cambios" class="form-control" ng-click="GuardarCambios()">

@@ -1,0 +1,21 @@
+<div class="post-comment row p-1">
+  <span infinite-scroll="cargarMultimediaComentario(comentario)" infinite-scroll-disabled="comentario.Cargada"></span>
+  <div class="">
+    <img ng-src="{{comentario.Usuario.DataContenidoMM}}" alt="" class="profile-photo-sm" />
+  </div>
+  <div class="col">
+    <p class="mb-0"><a href="" class="profile-link">{{comentario.Usuario.Nombre}} </a> </p>
+    <p class="mb-0">{{comentario.Descripcion}}</p> 
+    <div class="row">
+        <div class="col">
+            <formulario-comentario ng-init="init(comentario.IDComentario)"></formulario-comentario>
+        </div>
+    </div>
+    
+     
+    
+    <comentario ng-repeat="comentario in publicacion.Comentarios | filter:esComentarioHijoDe(comentario)">
+    </comentario>
+
+  </div>
+</div>

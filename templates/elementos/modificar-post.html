@@ -1,0 +1,61 @@
+<div class="create-post pt-0 " ng-hide="usuario.Login!==true" style="background-color: #fff; border-radius:4px;">
+    <errores-publicacion>
+    </errores-publicacion>
+
+    <div class="row">
+      <div class="col-12">
+      <!-- <div class="mb-3">
+         <input type="text" name="" value="" class="form-control form-publi" ng-model="publicacion.Titulo" placeholder="Titulo de la publicación">
+         text input
+      </div>
+      <div class="">
+          <textarea name="texts" id="exampleTextarea" cols="30" rows="3" class="form-control form-publi" placeholder="Comparte algo" ng-model="publicacion.Descripcion"></textarea>
+      </div> -->
+       <div class="row" ng-hide="!selectedTipo">
+
+
+       <div class="col-12 text-center ">
+       <div>
+         <div class=" row  m-3">
+                 <div class="col-12">
+                   <div class="mb-3">
+
+                     <input type="text" name="" value="" class="form-control form-publi" ng-model="publicacion.Titulo" placeholder="Titulo de la publicación">
+                  </div>
+                   <div class="mb-3" ng-repeat="propiedad in publicacion.TipoPubli.Propiedades">
+                     <campo-propiedad>
+                     </campo-propiedad>
+                  </div>
+                  <span ng-if="guardando">
+                    <img src="img/loader.gif" alt="" style="width:50%">
+                  </span>
+                 </div>
+          </div>
+       </div>
+
+       </div>
+         <div ng-hide="nohaytipo()" class="col-12">
+            <small class="d-block"><strong>{{lang.publicar_como}}</strong></small>
+            <label class="custom-control custom-radio" ng-model="publicacion.IDUsuarioCategoria" ng-repeat="categoria in usuario.Categorias" >
+              <input ng-model="publicacion.IDUsuarioCategoria" id="radio1" name="radio" type="radio" class="custom-control-input" value="{{categoria.IDUsuarioCategoria}}">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">{{categoria.Descripcion}}</span>
+            </label>
+
+          <!--  <select class="custom-select" name="" ng-model="publicacion.IDUsuarioCategoria">
+            <option  selected >Puedes seleccionar un perfil para publicar</option>
+            <option value="{{categoria.IDUsuarioCategoria}}" ng-repeat="categoria in usuario.Categorias" >{{categoria.Descripcion}} </option>
+          </select> -->
+        </div>
+
+        <div ng-hide="nohaytipo()" class="col-12 mb-4">
+         <button class="btn-cerrar pull-right ml-2"  ng-click="dejarDeEditar()"><i class="fa fa-times-circle" aria-hidden="true"></i> {{lang.cerrar_no_guarda}} </button>
+          <button class="btn btn-primary pull-right" ng-click="guardarPublicacion()"><i class="fa fa-upload" aria-hidden="true"></i> {{lang.guarda_cambios}}</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->

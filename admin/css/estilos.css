@@ -1,0 +1,28 @@
+.resetmargin {
+  margin: 0px 0px 0px 0px !important;
+}
+.container {
+  margin-left: 0px !important;
+}
+.bordetabla {
+  width: 100% !important;
+}
+.tablarevision {
+  width: 200% !important;
+}
+.cursor{
+	cursor: pointer;
+}
+
+
+.nav-pills>li.tab-usuarios{
+	display: none !important ;
+}
+
+.profile-photo-md{
+	width: 20px;
+}
+input.instrumentos_tag{
+	background-color: transparent !important;
+	border:none;
+}

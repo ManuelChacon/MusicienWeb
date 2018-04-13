@@ -1,0 +1,235 @@
+
+<cabecera-perfil-usuario>
+</cabecera-perfil-usuario>
+<div class="container-fluid">
+  <div class="row">
+
+
+    <div class="col-md-2 {{clasecolumna()}} static mt-5 d-none d-sm-block" ><!--  COLUMNA PERFILES -->
+      <div  class="nav-news-feed post-content mt-5">
+
+
+          <div class="col-12 text-left px-3 py-3"> <strong> {{lang.ha_tenido}} <i class="fa fa-eye"></i> {{perfilUsuario.Visualizaciones}} {{lang.visualizacion}}</strong></div>
+
+        <div class="col-12 text-left px-3 py-3"> <span ng-if="perfilUsuario">
+
+          <valoraciones-perfilusuario ng-init="init(perfilUsuario)">
+          </valoraciones-perfilusuario>
+        </span></div>
+
+
+
+      </div>
+      <ul class="nav-news-feed post-content mt-3">
+      <li>
+        <h4 class="grey">{{lang.perfiles_de}} {{perfilUsuario.Nombre}}</h4>
+      </li>
+
+        <li ng-repeat="categoria in perfilUsuario.Categorias track by $index">
+
+          <img class="icon-menu img-fluid d-block mx-auto ico-perfil" ng-src="{{categoria.DataContenidoMM}}" alt=""><div><a ng-click="abrirPestana($index+5, categoria, $index)">{{categoria.Descripcion}}</a></div>
+        </li>
+
+      </ul>
+    </div><!-- FIN COLUMNA PERFILES -->
+    <div class="col-md-6"><!--  COLUMNA CONTENIDOS -->
+
+
+    <uib-tabset active="active" type="pills">
+      <uib-tab index="1">
+        <span ng-if="perfilUsuario.BloqueoUsuario<1">
+          <span ng-if="perfilUsuario.Publicaciones.length<1">
+               <div class="post-content p-3"><h5 class="text-center py-5">{{lang.no_hay_publi}}</h5> </div></span>
+          <div ng-repeat="publicacion in perfilUsuario.Publicaciones">
+            <div class="post-content">
+              <publicacion>
+              </publicacion>
+
+            <div>
+              <comentario-norespuesta ng-repeat="comentario in publicacion.Comentarios | filter:esComentarioBase | limitTo:3">
+
+              </comentario-norespuesta>
+              <input ng-click="verComentariosPublicacion(publicacion)" ng-if="publicacion.ConComentarios" class="form-control" type="submit" name="" value="Ver más comentarios">
+            </div>
+          </div>
+
+          </div>
+        </span>
+        <span ng-if="perfilUsuario.BloqueoUsuario>0">
+          <span ng-if="perfilUsuario.Publicaciones.length<1">
+               <div class="post-content p-3"><h5 class="text-center py-5">{{lang.no_hay_publi}}</h5> </div></span>
+        </span>
+
+        <input type="submit" name="" value="Ver más" class="form-control" ng-click="LeerMasPublicaciones()">
+      </uib-tab>
+      <uib-tab index="2" class="about-content-block ">
+      <div class="post-content p-5">
+        <div class="about-content-block ">
+            <hr />
+          <h4 class="grey"><i class="ion-ios-information-outline icon-in-title"></i>{{lang.informacion_personal}}</h4>
+          <p>{{perfilUsuario.Descripcion}}</p>
+        </div>
+        <div class="about-content-block">
+          <h4 class="grey"><!-- <i class="ion-ios-briefcase-outline icon-in-title"></i>Contacto</h4> -->
+          <div class="organization">
+
+              <!-- <p>email: {{perfilUsuario.Email}}</p> -->
+
+          </div>
+          <div class="organization">
+
+             <!--  <p>Teléfono: {{perfilUsuario.Telefono}}</p> -->
+          </div>
+
+        </div>
+         <div class="about-content-block">
+          <h4 class="grey"><i class="ion-ios-location-outline icon-in-title"></i>{{lang.localizacion}}</h4>
+          <p>{{perfilUsuario.Localizacion}}</p>
+
+        </div>
+        <div class="about-content-block">
+          <h4 class="grey"><i class="ion-ios-world-outline icon-in-title"></i>Web</h4>
+          <p>{{perfilUsuario.Web}}</p>
+
+        </div>
+
+      </div>
+
+
+
+      </uib-tab>
+      <uib-tab index="3">
+        <div class="row post-content mt-3 pt-5">
+
+          <div class="col-12 text-center" ng-if="perfilUsuario.Seguidos.length<1">
+               <div class="post-content p-3"><h5 class="text-center py-5">{{lang.usuario_no_seguidores}} </h5> </div>
+          </div>
+          <div class="col-12 col-md-6" ng-repeat="usuario in perfilUsuario.Seguidos">
+            <mini-perfil-follows  >
+
+        </mini-perfil-follows>
+          </div>
+
+        </div>
+
+
+
+      </uib-tab>
+      <uib-tab index="4">
+      <div class="row  mt-3 pt-5">
+        <div class="col-12 " ng-if="perfilUsuario.Seguidoress.length<1">
+          <div class="post-content p-3">
+            <h5 class="text-center py-5">{{lang.usuario_no_sigue}}</h5>
+        </div>
+        </div>
+      <div class="col-12 col-md-6" ng-repeat="usuario in perfilUsuario.Seguidoress">
+
+           <mini-perfil-follows >
+
+        </mini-perfil-follows>
+        </div>
+      </div>
+
+      </uib-tab>
+      <uib-tab index="$index + 5" ng-repeat="categoria in perfilUsuario.Categorias track by $index">
+        <div class="row post-content mt-3 pt-5">
+            <div class="container">
+               <div class="row">
+                <div class="col-6 text-center">
+                  <img class="icon-menu img-fluid d-block mx-auto ico-perfil" ng-src="{{categoria.DataContenidoMM}}"/>
+                  <h3>{{categoria.Descripcion}}</h3>
+                </div>
+                <div class="col-6">
+                   <div class="row">
+                    <div class="col-12" ng-repeat="propiedad in categoria.Propiedades">
+                    {{propiedad.NombrePropiedad}}
+                    <contenedor-propiedades>
+                    </contenedor-propiedades>
+                  </div>
+                  </div>
+                </div>
+                <div class="col-12">
+
+                  <hr>
+                </div>
+                <div class="col-12">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-6" ng-repeat="tipoObjeto in categoria.Objetos">
+                        <div class="row">
+                          <div class="co-12">
+                            <h4>{{tipoObjeto.NombreTipoObjeto}}</h4>
+                            {{tipoObjeto.DescripcionEnPerfil}}
+                             <objeto-perfil-etiqueta ng-hide="!esTipoObjeto('T',tipoObjeto)">
+
+                              </objeto-perfil-etiqueta>
+
+                              <objeto-perfil-complejo ng-hide="!esTipoObjeto('P',tipoObjeto)">
+
+                              </objeto-perfil-complejo>
+                          </div>
+                          <div class="col-12 p-5">
+                            <hr>
+                          </div>
+                        </div>
+
+
+
+
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </uib-tab>
+    </uib-tabset>
+    <div class="about-profile">
+
+
+
+    </div>
+  </div> <!-- FIN COLUMNA CONTENIDOS -->
+   <div class="col-md-2 {{clasecolumna()}} static mt-5 d-block d-sm-none" ><!--  COLUMNA PERFILES -->
+      <div  class="nav-news-feed post-content mt-5">
+
+
+          <div class="col-12 text-left px-3 py-3"> <strong> {{lang.ha_tenido}} <i class="fa fa-eye"></i> {{perfilUsuario.Visualizaciones}} {{lang.visualizacion}}</strong></div>
+
+        <div class="col-12 text-left px-3 py-3"> <span ng-if="perfilUsuario">
+
+          <valoraciones-perfilusuario ng-init="init(perfilUsuario)">
+          </valoraciones-perfilusuario>
+        </span></div>
+
+
+
+      </div>
+      <ul class="nav-news-feed post-content mt-3">
+      <li>
+        <h4 class="grey">{{lang.perfiles_de}} {{perfilUsuario.Nombre}}</h4>
+      </li>
+
+        <li ng-repeat="categoria in perfilUsuario.Categorias track by $index">
+
+          <img class="icon-menu img-fluid d-block mx-auto ico-perfil" ng-src="{{categoria.DataContenidoMM}}" alt=""><div><a ng-click="abrirPestana($index+5, categoria, $index)">{{categoria.Descripcion}}</a></div>
+        </li>
+
+      </ul>
+    </div><!-- FIN COLUMNA PERFILES -->
+
+
+
+
+
+  <actividad class="col-md-2 static mt-3"> <!-- COLUMNA ACTIVIDAD -->
+
+  </actividad>
+
+
+
+
+
+  </div>
+</div>

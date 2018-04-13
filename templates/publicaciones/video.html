@@ -1,0 +1,64 @@
+
+  <div class="row p-2">
+    <div class="col-12">
+      <img ng-src="{{publicacion.Usuario.DataContenidoMM}}" alt="user" class="profile-photo-md pull-left" ng-click="verPerfil(publicacion.Usuario)" />
+      <div class="row">
+        <div class="col-auto">
+         
+          <a class="profile-link" ng-click="verPerfil(publicacion.Usuario)">{{publicacion.Usuario.Nombre}}</a>
+          <span class="following " ng-hide="condicionesSeguir(publicacion.Usuario)">
+                  
+                     <input type="submit" ng-click="SeguirDejarSeguirUsuario(publicacion.Usuario)"  class="{{claseSeguirMini(publicacion.Usuario)}}" value="{{valorSeguir(publicacion.Usuario)}}"/>
+                  
+                  
+            </span>
+          <small class="d-block" style="margin-top:-10px; ">{{lang.subio_video}} {{calcularTiempo(publicacion)}}</small> 
+           <h3 ng-click="verPublicacion(publicacion)"  class="profile-link" style="font-size: 16px;">{{publicacion.Titulo}}</h3>
+        </div>
+        <div class="col text-right">
+             <div class=" dropdown " ng-if="siEsMio(publicacion.Usuario.IDUsuario)">
+                             <button class="dropdown-toggle btn-sm btn-opciones " id="navbarDropdownOp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                            </button>
+                              <div class="dropdown-menu menu-op-chat dropdown-menu-right" aria-labelledby="navbarDropdownOp">
+                                
+                                <a class="dropdown-item" ng-click=""><i class="fa fa-pencil" aria-hidden="true"></i> {{lang.editar}} </a> 
+                                <div class="dropdown-divider"></div> 
+                                <a class="dropdown-item"  ng-click=""><i class="fa fa-trash-o" aria-hidden="true"></i>  {{lang.eliminar}} </a> 
+                               <!--  <a class="dropdown-item" href="#"><i class="ion-person-add mr-1"></i>  Crear nuevo perfil</a> -->
+                               
+                               <!--  <a class="dropdown-item"  ng-click="asignarGrupoParaAnadir(conversacion)">Añadir usuarios</a> -->
+                              </div>
+                        </div> 
+           <p style="color:#6d6e71; font-size: 12px"> <i class="ion-ios-videocam" ng-class="tipoPubli('V')"></i></i> {{lang.video}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="post-container">
+    <div class="row">
+      <div class="col-12">
+        <span infinite-scroll="cargarAltDe(publicacion)" infinite-scroll-disabled="publicacion.AltCargado"></span>
+          <img ng-if="!publicacion.AltCargado" ng-hide="publicacion.url>0" ng-click="cargarAltDe(publicacion)" ng-src="{{publicacion.DataContenidoMM}}" class="img-responsive post-image">
+          <video ng-if="publicacion.AltCargado" class="post-video" controls> <source ng-src="{{publicacion.DataContenidoMMAlt}}" type="video/mp4"> </video>
+     {{publicacion.url}} 
+          <video ng-if="publicacion.url>0" class="post-video" controls> <source ng-src="{{publicacion.DataContenidoMMAlt}}" type="video/mp4"> </video>
+      </div>
+    </div>
+    <div class="row">
+    <div class="col-12">
+       <div  ng-click="verPublicacion(publicacion)" class="post-text">
+        <p class="coment-post"><strong>{{publicacion.Descripcion}}</strong></p>
+    </div>
+    </div>
+  </div>
+  <div class="row">
+        <div class="col-12"> 
+        <div class="line-divider"></div>
+          <valoraciones-publicacion>
+          </valoraciones-publicacion>
+        </div>
+  </div>
+  
+
+  </div>

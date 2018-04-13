@@ -1,0 +1,87 @@
+<div id="page-contents">
+    <div class="container-fluid ">
+      <!--<cabecera-perfil-usuario>
+      </cabecera-perfil-usuario>-->
+      <div class="row" >
+
+        <!-- Newsfeed Common Side Bar Left
+        ================================================= -->
+
+        <div class="col-md-3  "  >
+
+
+          <mini-perfil></mini-perfil>
+
+          <sugerencias-can></sugerencias-can>
+
+          <top-semanal ></top-semanal>
+
+          <top-musicos ></top-musicos>
+
+
+
+
+
+
+        </div>
+
+        <div class="col-md-6">
+
+             <div >
+               <div class="p-2  col-derecha  " >
+                  <div class="col-derecha p-2 text-center " >
+                         <small>{{lang.contrata_nuestros}}</small>
+                         <h4 class="grey"> <img src="img/planes.png" class="img-fluid"> {{lang.planes_musicien}} Musicien</h4>
+                         <div class="col-12" ng-repeat="plan in planes">
+                           <img ng-src="{{cargarImgPlan(plan)}}" alt="" class="img-fluid img-thumbnail">
+                           <h6>{{plan.NombrePlan}}</h6>
+                           <button ng-hide="plan.Cargado" type="" class="btn btn-primary" ng-click="verInfoPlan(plan, $index)">{{lang.mas_informacion}}</button>
+                           <div class="" ng-repeat="tarifa in plan.Tarifas">
+                             {{tarifa.NombrePeriodicidad}}
+                             {{tarifa.Precio}}
+                             <button type="" class="btn btn-primary" ng-click="">{{lang.contratar}}</button>
+                           </div>
+                         </div>
+                         <hr>
+                          <h4 class="grey"> <img src="img/victoria.png" class="img-fluid"> {{lang.promos}}</h4>
+
+                           <div class="col-12" ng-repeat="promo in promociones">
+                             <span>
+                               <img ng-src="{{cargarImgPlan(promo)}}" alt="" class="img-fluid img-thumbnail">
+                               <h6 class="mb-0">{{promo.NombrePromocion}}</h6>
+                               <small class="text-muted">{{promo.DescripcionPromocion}}</small><br>
+                             </span>
+
+                           <button type="" ng-hide="promo.Cargado" class="btn btn-primary" ng-click="verInfoPromo(promo, $index)">{{lang.mas_informacion}}</button>
+                           <span ng-hide="!promo.Cargado">
+                             <div class="" ng-repeat="tarifa in promo.Tarifas">
+                               {{tarifa.NombrePeriodicidad}}
+                               {{tarifa.Precio}}
+                               <button type="" class="btn btn-primary" ng-click="">{{lang.contratar}}</button>
+                             </div>
+                             {{lang.puedes_elegir}} {{promo.MaxPlanes}} {{lang.siguientes_planes}}
+                             <ul ng-repeat="plan in promo.Planes">
+                               <li> {{plan.NombrePlan}}</li>
+                             </ul>
+                           </span>
+                         </div>
+                     </div>
+               </div>
+
+             </div>
+
+             <!-- __________________________________________________________________________ -->
+
+      
+
+
+        </div>
+
+        <!-- Newsfeed Common Side Bar Right
+        ================================================= -->
+        <top-musicos class="col-md-3 ">
+
+        </top-musicos>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html ng-app="musicien">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Musicien | Admin</title>
+
+    <!-- Bootstrap -->
+    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+   <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="../css/style.css"> -->
+    <!-- Custom Theme Style -->
+    <link href="build/css/custom.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+
+
+    <script type="text/javascript" src="../js/dx.all.js">
+
+    </script>
+    <link rel="stylesheet" href="../css/dx.common.css">
+    <link rel="stylesheet" href="../css/dx.contrast.css">
+    <link rel="stylesheet" href="../css/dx.light.css">
+
+
+    <script type="text/javascript" src="../js/angular-route.min.js">
+
+    </script>
+
+    <script type="text/javascript" src="js/columnas.js">
+
+    </script>
+    <script type="text/javascript" src="apps/app.js">
+
+    </script>
+    <script type="text/javascript" src="controllers/adminController.js">
+
+    </script>
+    <script type="text/javascript" src="../apps/llamadashttp.js">
+
+    </script>
+    <script type="text/javascript" src="../controllers/previsualizadorController.js">
+
+    </script>
+    <script type="text/javascript" src="../apps/configuracionGlobal.js">
+
+    </script>
+    <script type="text/javascript" src="../apps/funciones.js">
+
+    </script>
+    <script type="text/javascript" src="controllers/inicioController.js">
+
+    </script>
+    <script type="text/javascript" src="controllers/usuariosperfilesController.js">
+
+    </script>
+    <script type="text/javascript" src="apps/routeProvider.js">
+
+    </script>
+    <script type="text/javascript" src="controllers/homeController.js">
+
+    </script>
+    <script type="text/javascript" src="controllers/perfilesController.js">
+
+    </script>
+    <script type="text/javascript" src="controllers/tiposObjetoController.js">
+
+    </script>
+    <script type="text/javascript" src="controllers/planesController.js">
+
+    </script>
+    <script type="text/javascript" src="controllers/publicacionesController.js">
+
+    </script>
+    <script type="text/javascript" src="controllers/listadopublicacionesController.js">
+
+    </script>
+    <script type="text/javascript" src="controllers/playListController.js">
+
+    </script>
+    <script type="text/javascript" src="controllers/filtrosController.js">
+
+    </script>
+    <script type="text/javascript" src="../js/infinite-scroll.js">
+
+    </script>
+    <script type="text/javascript" src="../controllers/crearpostController.js">
+
+    </script>
+    <script type="text/javascript" src="controllers/usuariosController.js">
+
+    </script>
+    <script type="text/javascript" src="controllers/cuponesController.js">
+
+    </script>
+
+
+
+    <link rel="stylesheet" href="css/estilos.css">
+  </head>
+
+  <body class="nav-md"  ng-controller="admin">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col" id="menuleft">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a ng-click="irAHome()" class="site_title"><img src="../img/logo_footer.png" class="m-0 p-0" height="30"> <span>Musicien Admin</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="nav-item dropdown" >
+                   <a class="nav-link dropdown-toggle pages" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <!--<i class="fas fa-flag ico-carrito" aria-hidden="true" style="margin-top: 3px;"></i>-->
+                    <img ng-src="{{flagidiomaactivo}}" class="img-fluid ico-carrito" style="margin-top: 3px;width:20px;" />
+                      <!--<span class="notif-n">
+                         {{idiomaactivo}}
+                      </span>-->
+
+                  </a>
+                  <!-- <div class="" ng-click="verCarrito()">
+                    Carrito: {{cantidadArticulosCarrito()}}
+                  </div>
+ -->
+                  <div class="dropdown-menu user" aria-labelledby="navbarDropdown">
+                    <span ng-repeat="idioma in idiomas track by $index">
+                      <a class="dropdown-item"> <span  ng-click="cambiarIdioma(idioma)"><img class="img-fluid" ng-click="cambiarIdioma(idioma)" ng-src="{{iconode(idioma.Icono)}}"> {{idioma.NombreIdioma}}</span></a>
+                      <div class="dropdown-divider"></div>
+                    </span>
+                  </div>
+                </div>
+              <mini-perfil>
+              </mini-perfil>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu" ng-hide="!checkLoginStatus()">
+              <div class="menu_section">
+                <h3>PRINCIPAL</h3>
+                <ul class="nav side-menu">
+                  <li><a ng-click="irAHome()"><i class="fa fa-home" aria-hidden="true"></i> Inicio </a></li>
+                </ul>
+                <h3>ADMIN. DE PERFILES</h3>
+                <ul class="nav side-menu">
+                  <!--<li><a><i class="fa fa-home" ng-click="verUsuarioGenerico()"></i> Usuario GenĂŠrico <span class="fa"></span></a>
+                  </li>-->
+                  <!--<li ng-click="verPerfiles()"><a><i class="fa fa-home"></i> Perfiles <span class="fa"></span></a>
+                  </li>-->
+                  <li><a ng-click="cargarCategorias()"><i class="fa fa-male" aria-hidden="true"></i> Perfiles <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li ng-click="verPerfiles()"><a>Ver todos</a></li>
+                      <li ng-repeat="categoria in MenuCategorias | limitTo:5" ng-click="modificarCategoria(categoria)"><a>{{categoria.Descripcion}}</a></li>
+                    </ul>
+                  </li>
+                  <li><a ng-click="cargarTiposObjeto()"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Elementos de Perfil <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li ng-click="verTiposObjeto()"><a>Ver todos</a></li>
+                      <li ng-repeat="tipoObjeto in MenuTiposObjeto | limitTo:5" ng-click="modificarTipoObjeto(tipoObjeto)"><a>{{tipoObjeto.NombreTipoObjeto}}</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="menu_section">
+                <h3>ADMIN. PLANES MUSICIEN</h3>
+                <ul class="nav side-menu">
+                  <li><a ng-click="cargarPlanesYPromos()"><i class="fa fa-shopping-basket" aria-hidden="true"></i> Planes <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li ng-click="verPlanes()"><a>Ver todos</a></li>
+                      <li ng-repeat="plan in MenuPlanes | limitTo:5" ng-click="modificarPlan(plan)"><a>{{plan.NombrePlan}}</a></li>
+                    </ul>
+                  </li>
+                  <li><a ng-click="cargarPlanesYPromos()"><i class="fa fa-bug"></i> Promociones <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li ng-click="verPromociones()"><a>Ver todos</a></li>
+                      <li ng-repeat="promocion in MenuPromociones | limitTo:5" ng-click="modificarPromocion(promocion)"><a>{{promocion.NombrePromocion}}</a></li>
+                    </ul>
+                  </li>
+                  <li><a ng-click="verCupones()"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Cupones</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="menu_section">
+                <h3>ADMIN. PUBLICACIONES</h3>
+                <ul class="nav side-menu">
+                  <li><a ng-click="crearPublicacion()"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i> Publicar en Musicien <span class="fa fa-chevron-down"></span></a></li>
+                  <li><a ng-click="verPublicaciones()"><i class="glyphicon glyphicon-list "></i> Ver Publicaciones Musicien <span class="fa fa-chevron-down"></span></a></li>
+                  <li><a ng-click="verPublicacionesUsuarios()"><i class="glyphicon glyphicon-list "></i> Ver Publicaciones Usuarios <span class="fa fa-chevron-down"></span></a></li>
+                  <li><a ng-click="cargarTiposPublicacion()"><i class="fa fa-shopping-basket" aria-hidden="true"></i> Crear tipo de Publicación <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li ng-click="verTiposPublicacion()"><a>Ver todos</a></li>
+                      <li ng-repeat="tpublicacion in MenuTiposPublicacion | limitTo:5" ng-click="modificarTipoPublicacion(tpublicacion)"><a>{{tpublicacion.NombreTipo}}</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="menu_section">
+                <h3>ADMIN. PLAYLIST COMPARTIDAS</h3>
+                <ul class="nav side-menu">
+                  <li><a ng-click="verPlaylists()"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Modificar Listas</a></li>
+                </ul>
+              </div>
+              <div class="menu_section">
+                <h3>ADMIN. FILTROS INICIALES</h3>
+                <ul class="nav side-menu">
+                  <li><a ng-click="verFiltros()"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Modificar Filtros</a></li>
+                </ul>
+              </div>
+              <div class="menu_section">
+                <h3>ADMIN. USUARIOS</h3>
+                <ul class="nav side-menu">
+                  <!--<li><a ng-click="verUsuarios()"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Modificar Usuarios</a></li>-->
+                </ul>
+              </div>
+
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings" ng-click="verUsuarios()">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <!-- <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div> -->
+
+              <ul class="nav navbar-nav navbar-right" ng-if="checkLoginStatus()">
+                <li class="">
+                  <a  class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="../images/img.jpg" alt="">{{usuario.Nombre}}
+                    <!-- <span class=" fa fa-angle-down"></span> -->
+                  </a>
+                  <!-- <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="javascript:;"> Profile</a></li>
+                    <li>
+                      <a href="javascript:;">
+                        <span class="badge bg-red pull-right">50%</span>
+                        <span>Settings</span>
+                      </a>
+                    </li>
+                    <li><a href="javascript:;">Help</a></li>
+                    <li><a><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  </ul> -->
+                </li>
+
+               <!--  <li role="presentation" class="dropdown">
+                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-envelope-o"></i>
+                    <span class="badge bg-green"></span>
+                  </a>
+                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                    <li>
+                      <a
+                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span>
+                          <span>Asunto</span>
+                          <span class="time">Fecha</span>
+                        </span>
+                        <span class="message">
+                          Texto
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="text-center">
+                        <a>
+                          <strong>See All Alerts</strong>
+                          <i class="fa fa-angle-right"></i>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </li> -->
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col " id="" role="main" ng-view>
+
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            <!-- Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a> -->
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- jQuery Sparklines -->
+    <script src="vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <!-- Flot -->
+    <script src="vendors/Flot/jquery.flot.js"></script>
+    <script src="vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="vendors/Flot/jquery.flot.time.js"></script>
+    <script src="vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="vendors/DateJS/build/date.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="vendors/moment/min/moment.min.js"></script>
+    <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="build/js/custom.min.js"></script>
+
+  </body>
+</html>

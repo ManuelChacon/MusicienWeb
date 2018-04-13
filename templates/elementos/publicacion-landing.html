@@ -1,0 +1,21 @@
+<div class="post-content" style="height: 455px; max-height: 500px; min-height: 455px;">
+<div class="row p-0 m-0 cursor">
+  <div class="col-12">
+    <span infinite-scroll="cargarMultimedia(publicacion)" infinite-scroll-disabled="publicacion.Cargada"></span>
+    <div class="row">
+      <div class="col-12 text-center my-3">
+        <p ng-click="verPublicacion(publicacion)"  class=" text-center" style="font-size: 16px;font-weight: bold; color: orange; text-transform:  uppercase;  ">{{publicacion.Titulo}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container px-3 pt-0 pb-3" style="margin-top: -24px;">
+   <div class="row row align-items-center ">
+    <div class="col-12" ng-repeat="propiedad in publicacion.TipoPubli.Propiedades" >
+    
+      <contenedor-propiedades-top>
+      </contenedor-propiedades-top>
+    </div>
+  </div>
+</div>
+</div>

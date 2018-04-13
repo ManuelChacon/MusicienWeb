@@ -1,0 +1,11 @@
+<div class="row" ng-if="emptys.length>0">
+  <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <span>
+        {{lang.bebes_rellenar}}
+        <ul class="list-unstyled">
+          <li ng-repeat="obligatorio in emptys"> <strong>{{obligatorio}}</strong></li>
+        </ul>
+        </span>
+  </div>
+</div>

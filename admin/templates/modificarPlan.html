@@ -1,0 +1,226 @@
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <h1><i class="fa fa-shopping-basket" aria-hidden="true"></i> Modificar Plan</h1>
+  </div> 
+  <div class="col-md-6 col-sm-12 text-right">
+     <input type="submit" name="" value="Guardar Cambios" class="btn btn-primary" ng-click="guardarCambios()">
+  </div>
+</div>
+
+<div class="col-md-12 col-sm-12">
+  <div class="x_panel">
+    <form  class="form-horizontal">
+      <div class="form-group">
+         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre del Plan
+          </label>
+           <div class="col-md-9 col-sm-9 col-xs-12">
+            <input type="text"  name="" value="" class="form-control col-md-7 col-xs-12" ng-model="plan.NombrePlan">
+           </div>
+      </div>
+      <div class="form-group">
+         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripción del Plan
+          </label>
+           <div class="col-md-9 col-sm-9 col-xs-12">
+            <textarea class="form-control" ng-model="plan.DescripcionPlan" rows="3">
+            </textarea>
+           </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Imagen
+          </label>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <input type="file" class="form-control" name="" value="" onchange="cambioImagenPlan(this)" id="input-img-perfil">
+           </div>
+      </div>
+      <div class="col-md-12 text-center">
+         <img class="ico-perfil " style="width:100px" ng-src="{{plan.newContenidoMM}}" alt="">
+      </div>
+    </form>
+  </div>
+  <div class="x_panel">
+  <div class="col-md-12">
+    <h2>Contenido Página Planes</h2>
+  </div>
+       <table border="0" class="table table-striped">
+        <tr>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+        </tr>
+        <tr>
+          <td>
+            <img style="width:20px" ng-src="{{plan.newImagen1}}" alt="">
+            <input type="file" name="" value="" onchange="cambioImagenDesc(this,1)" id="input-img-perfil">
+          </td>
+          <td>
+            <input type="text" name="" value="" class="form-control" ng-model="plan.Titulo1"> 
+          </td>
+          <td>
+            <textarea name="name" rows="8" cols="80" ng-model="plan.Descripcion1" style="width: 400px;"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img style="width:20px" ng-src="{{plan.newImagen2}}" alt="">
+            <input type="file" name="" value="" onchange="cambioImagenDesc(this,2)" id="input-img-perfil">
+          </td>
+          <td>
+            <input type="text" name="" value="" class="form-control" ng-model="plan.Titulo2">
+          </td>
+          <td>
+             <textarea name="name" rows="8" cols="80" ng-model="plan.Descripcion2" style="width: 400px;""></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img style="width:20px" ng-src="{{plan.newImagen3}}" alt="">
+            <input type="file" name="" value="" onchange="cambioImagenDesc(this,3)" id="input-img-perfil">
+          </td>
+          <td>
+            <input type="text" name="" value="" class="form-control" ng-model="plan.Titulo3">
+          </td>
+          <td>
+             <textarea name="name" rows="8" cols="80" ng-model="plan.Descripcion3" style="width: 400px;"></textarea>
+          </td>
+        </tr>
+       </table>
+  </div>
+</div>
+
+
+<div class="col-md-12 col-sm-12">
+  <div class="x_panel">
+    <form  class="form-horizontal">
+      <div class="form-group">
+        <div class="col-md-12">
+          <h3>Tarifas</h3>
+        </div>
+        <div class="col-md-12">
+          <table border="0" class="table table-striped">
+            <tr>
+              <th>Periodicidad</th>
+              <th>Precio €</th>
+              <th>Descripción</th>
+            </tr>
+            <tr ng-repeat="tarifa in plan.Tarifas">
+              <td>{{tarifa.NombrePeriodicidad}}</td>
+              <td><input type="text" class="form-control" name="" value="" ng-model="tarifa.Precio"></td>
+              <td>
+                <textarea name="" class="form-control" id="" cols="30" rows="5" ng-model="tarifa.Texto"></textarea>
+            </tr>
+      </table>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="x_panel">
+
+    <div class="col-md-12">
+      <h2>Publicaciones permitidas en este Plan </h2>
+      <small>Selecciona los tipos de publicación que se habilitarán con este plan</small>
+    </div>
+    <div class="col-md-6">
+      <form action="" class="form-horizontal">
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Publicaciones Permitidas
+          </label>
+           <div class="col-md-9 col-sm-9 col-xs-12">
+           <select class="form-control" name="" ng-model="selectedPubli" ng-change="cambioPublicacion()">
+            <option value="{{publi}}" ng-repeat="publi in publicaciones | filter:noenpublis">{{publi.NombreTipo}}</option>
+          </select>
+           </div>
+        </div>
+    </form>
+    </div>
+    <div class="col-md-6">
+      <ul class="list-unstyled list-inline">
+        <li ng-repeat="publi in plan.Publicaciones"><span class="tag">{{publi.NombreTipo}} <a  ng-click="eliminarPublicacion($index)"> <i class="glyphicon glyphicon-remove"></i></a></span></li>
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="col-md-12 text-right">
+     <input type="submit" name="" value="Guardar Cambios" class="btn btn-primary" ng-click="guardarCambios()">
+  </div>
+</div>
+
+
+
+
+
+<!-- <div>
+  <div class="login_wrapper panel-body">
+
+    <h3>Nombre del Plan</h3>
+    <input type="text" name="" value="" class="form-control" ng-model="plan.NombrePlan">
+    <h3>Descripcion Plan</h3>
+    <input type="text" name="" value="" class="form-control" ng-model="plan.DescripcionPlan">
+
+    <h3>Imagen</h3>
+    <img style="width:20px" ng-src="{{plan.newContenidoMM}}" alt="">
+    <input type="file" name="" value="" onchange="cambioImagenPlan(this)" id="input-img-perfil">
+    <div class="">
+      <table>
+        <tr>
+          <td>
+            <img style="width:20px" ng-src="{{plan.newImagen1}}" alt="">
+            <input type="file" name="" value="" onchange="cambioImagenDesc(this,1)" id="input-img-perfil">
+          </td>
+          <td>
+            <img style="width:20px" ng-src="{{plan.newImagen2}}" alt="">
+            <input type="file" name="" value="" onchange="cambioImagenDesc(this,2)" id="input-img-perfil">
+          </td>
+          <td>
+            <img style="width:20px" ng-src="{{plan.newImagen3}}" alt="">
+            <input type="file" name="" value="" onchange="cambioImagenDesc(this,3)" id="input-img-perfil">
+          </td>
+        </tr>
+        <tr>
+          <td><input type="text" name="" value="" class="form-control" ng-model="plan.Titulo1"></td>
+          <td><input type="text" name="" value="" class="form-control" ng-model="plan.Titulo2"></td>
+          <td><input type="text" name="" value="" class="form-control" ng-model="plan.Titulo3"></td>
+        </tr>
+        <tr>
+          <td>
+            <textarea name="name" rows="8" cols="80" ng-model="plan.Descripcion1"></textarea>
+          </td>
+          <td>
+            <textarea name="name" rows="8" cols="80" ng-model="plan.Descripcion2"></textarea>
+          </td>
+          <td>
+            <textarea name="name" rows="8" cols="80" ng-model="plan.Descripcion3"></textarea>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="">
+      <h3>Tarifas</h3>
+      <table>
+        <tr>
+          <th>Periodicidad</th>
+          <th>Precio</th>
+        </tr>
+        <tr ng-repeat="tarifa in plan.Tarifas">
+          <td>{{tarifa.NombrePeriodicidad}}</td>
+          <td><input type="text" name="" value="" ng-model="tarifa.Precio"></td>
+          <td><input type="text" name="" value="" ng-model="tarifa.Texto"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="">
+      <h3>Publicaciones Permitidas</h3>
+      <h5>Selecciona los tipos de publicación que se habilitarán con este plan</h5>
+      <select class="" name="" ng-model="selectedPubli" ng-change="cambioPublicacion()">
+        <option value="{{publi}}" ng-repeat="publi in publicaciones | filter:noenpublis">{{publi.NombreTipo}}</option>
+      </select>
+      <ul>
+        <li ng-repeat="publi in plan.Publicaciones">{{publi.NombreTipo}} <button type="button" name="button" ng-click="eliminarPublicacion($index)"> <i class="glyphicon glyphicon-remove"></i></button></li>
+      </ul>
+    </div>
+    <input type="submit" name="" value="Guardar Cambios" class="btn btn-primary" ng-click="guardarCambios()">
+  </div>
+
+</div>
+ -->

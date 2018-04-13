@@ -1,0 +1,97 @@
+<!-- <div class="post-content p-2">
+	<div id="sticky-sidebar ">
+	  <h4 class="grey">Notificaciones</h4>
+	  <div class="feed-item" ng-repeat="accion in notificacionesPendientes.Notific">
+	    <div class="live-activity ">
+	      <p ng-click="clickAccion(accion)"><a class="profile-link">{{accion.NombreUsuario}}</a> {{accion.Texto}}</p>
+	      <p class="text-muted">hace {{calcularTiempo(accion)}}</p>
+	    </div>
+	  </div>
+	</div>	
+</div> -->
+
+
+<div id="page-contents" >
+    <div class="container-fluid ">
+      <!--<cabecera-perfil-usuario>
+      </cabecera-perfil-usuario>-->
+      <div class="row">
+
+        <!-- Newsfeed Common Side Bar Left
+        ================================================= -->
+
+        <div class="col-md-2 {{clasecolumna()}} "  >
+
+
+          <mini-perfil></mini-perfil>
+
+          <encuentra></encuentra>
+
+          <top-semanal ></top-semanal>
+
+          <top-musicos ></top-musicos>
+          <spotify-playlist></spotify-playlist>
+        </div>
+
+        <div class="col-md-5  ">
+          <!-- Post Create Box
+          ================================================= -->
+          <crear-post>
+          </crear-post>
+          <!-- Post Create Box End-->
+
+          <!-- Post Content
+          ================================================= -->
+          <div class="col-12 post-content p-1 text-center">
+     
+          
+				<div id="sticky-sidebar ">
+				  <h4 class="grey">{{lang.notificaciones}}</h4>
+				  <div class="feed-item" ng-repeat="accion in notificacionesPendientes.Notific">
+				    <div class="live-activity ">
+				      <p ng-click="clickAccion(accion)"><a class="profile-link">{{accion.NombreUsuario}}</a> {{accion.Texto}}</p>
+				      <p class="text-muted">{{lang.hace}} {{calcularTiempo(accion)}}</p>
+				    </div>
+				  </div>
+				</div>	
+			
+
+
+
+
+
+
+
+
+
+          </div>
+
+           <div style="background-color: #fff; border-radius: 4px;" class="mb-3">
+          <filtros-busqueda class="" ng-hide="!mostrarFiltros">
+        
+          </filtros-busqueda>
+          </div>
+          <!--  FIN PAGINA FILTROS -->
+
+          <!-- Post Content
+          ================================================= -->
+			
+	
+          <!-- Post Content
+          ================================================= -->
+        </div>
+
+        <!-- Newsfeed Common Side Bar Right
+        ================================================= -->
+       <div class="col-md-3">
+       
+           <planes></planes>
+          <sugerencias-can></sugerencias-can>
+        </div>
+        <div class="col-md-2" style="" >
+
+        </div>
+      </div>
+    </div>
+  </div>
+

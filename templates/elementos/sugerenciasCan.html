@@ -1,0 +1,102 @@
+<span ng-hide="usuario.Login!==true" >
+	<div class="row mt-5" ng-if="!canOcultada">
+		<div class="col "  sticky offset="60">
+			<div id="sugerencias" class="col-derecha pt-3 text-center"  >
+				
+					<div class="row justify-content-end">
+					<div class="col-auto text-center">
+						<div class="title mx-4 "><h6 class="grey"><i class="ion-information-circled"></i> {{lang.sugerencias_musicien}}</h6></div>
+					</div>
+					<div class="col text-right align-self-start">
+						<div class=" dropdown">
+                             <button class="dropdown-toggle btn-sm btn-opciones " id="navbarDropdownOp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                            </button>
+                              <div class="dropdown-menu menu-op-chat" aria-labelledby="navbarDropdownOp">
+                                
+                                <a class="dropdown-item" ng-click="ocultarCan()">{{lang.oculta_panel}}</a>
+                               <!--  <a class="dropdown-item" href="#"><i class="ion-person-add mr-1"></i>  Crear nuevo perfil</a> -->
+                                <!-- <div class="dropdown-divider"></div> -->
+                               <!--  <a class="dropdown-item"  ng-click="asignarGrupoParaAnadir(conversacion)">Añadir usuarios</a> -->
+                              </div>
+                        </div> 
+					</div>
+				</div>
+				
+				
+				
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							
+							 <slide-wrapper>
+							    	<ul class="slide text-center prueba">
+							    		<li class="px-5">
+							    			<h5> {{lang.crea_perfiles}}</h5>
+							    			<div class="row">
+							    				<div class="col mb-1"><img src="img/cantante-suge.png" class="img-fluid" alt=""></div>
+							    				<div class="col-12"><p class="text-justify">{{lang.crea_perfiles_desc}}</p></div>
+							    			</div>
+							    			
+							    			
+							    			<button ng-click="iraPerfiles()" class="btn btn-primary">{{lang.crea_perfiles_btn}}</button>
+							    		</li>
+							    		<li class="px-5">
+							    			<h5> {{lang.activa_notifi}}</h5>
+							    			<div class="row">
+							    				<div class="col mb-1"><img src="img/notificacion.png" class="img-fluid" alt=""></div>
+							    				<div class="col-12"><p class="text-justify">{{lang.activa_notifi_desc}}</p></div>
+							    			</div>
+							    			
+							    			
+							    			<button ng-click="RegistrarUsuario()" class="btn btn-primary">{{lang.activa_notiti_btn}}</button>
+							    		</li>
+							    		<li class="px-5">
+							    			<h5> {{lang.sube_foto}} </h5>
+							    			<div class="row">
+							    				<div class="col mb-1"><img src="img/defaultprofile.png" class="img-fluid" alt="" style="width: 129px"></div>
+							    				<div class="col-12"><p class="text-justify"> <a ng-click="verPerfil(usuario)">{{lang.sube_foto_desc}}</a> </p></div>
+							    			</div>
+							    			
+							    			
+							    			<button  ng-click="preferencias()" class="btn btn-primary">{{lang.subir_img}} </button>
+							    		</li>
+							    		<li class="px-5">
+							    			<h5> {{lang.personaliza_pagina}} </h5>
+							    			<div class="row">
+							    				<div class="col mb-1"><img src="img/imagen.png" class="img-fluid" alt="" style="width: 129px"></div>
+							    				<div class="col-12"><p class="text-justify"><strong><a ng-click="verPerfil(usuario)">{{lang.personaliza_pagina_desc}}</p></div>
+							    			</div>
+							    			
+							    			
+							    			<button  ng-click="preferencias()" class="btn btn-primary">{{lang.subir_img}} </button>
+							    		</li>
+							    	</ul>	
+							    </slide-wrapper>
+							
+						</div>
+						
+					</div>
+
+					
+				</div>
+				
+			</div>
+			<div class="col" ng-controller="modalesRegistroLogin">
+				<div class="col-derecha-avisos p-3 text-left">
+					<ul>
+						<li>
+							<a ng-click="openModalAviso('lg')">{{lang.aviso_legal}}</a>
+						</li>
+						<li>
+							<a ng-click="openModalPago('lg')">{{lang.pagos_cancelaciones}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+
+		
+	</div>
+</span>

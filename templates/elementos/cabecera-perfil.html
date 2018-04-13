@@ -1,0 +1,46 @@
+<div class="timeline" style="margin-top: -175px">
+  <div class="timeline-cover">
+    <div class="contenedor" id="time-lineR">
+      <img ng-src="{{perfilUsuario.DataContenidoMMBanner}}" alt="" class="img-fluid" style="position: absolute;
+    left: -100%;
+    right: -100%;
+    top: -100%;
+    bottom: -100%;
+    margin: auto;
+    min-height: 100%;
+    min-width: 100%;
+    object-fit: cover;">
+    </div>
+
+    <!--Timeline Menu for Large Screens-->
+    <div class="timeline-nav-bar hidden-sm hidden-xs">
+      <div class="row m-0">
+        <div class="col-md-3">
+          <div class="profile-info">
+            <img ng-src="{{perfilUsuario.DataContenidoMM}}" alt="" class="img-responsive profile-photo" />
+            <h3>{{perfilUsuario.Nombre}}</h3>
+            <p class="text-muted"></p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <ul class="list-inline profile-menu">
+            <li><a ng-click="changeTabNum(1)" class="{{estaActive(1)}}">{{lang.publicaciones}}</a></li>
+            <li><a ng-click="changeTabNum(2)" class="{{estaActive(2)}}">{{lang.informacion}}</a></li>
+            <li><a ng-click="changeTabNum(3)" class="{{estaActive(3)}}">{{lang.seguidores}}</a></li>
+            <li><a ng-click="changeTabNum(4)" class="{{estaActive(4)}}">{{lang.siguiendo}}</a></li>
+          </ul>
+
+        </div>
+        <div class="col-md-3">
+           <ul class="list-inline profile-menu">
+            <li style="color:white"><i class="ion ion-android-person-add"></i> {{perfilUsuario.Seguidores}} {{lang.seguidores}}</li>
+            <li ng-hide="condicionesSeguirCabeza(perfilUsuario)" class="pl-3">
+            <input ng-click="SeguirDejarSeguirUsuario(perfilUsuario)" type="submit" class="{{claseSeguir(perfilUsuario)}}" value="{{valorSeguir(perfilUsuario)}}" style="font-size: 14px; border-radius: 30px;" /></li>
+            <li class="pl-3" ng-hide="condicionesBloquear(perfilUsuario)">
+            <input ng-click="BloquearDesBloquearUsuario(perfilUsuario)" type="submit" class="{{claseBloquear(perfilUsuario)}}" value="{{valorBloquear(perfilUsuario)}}" style="font-size: 14px; border-radius: 30px;" /></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

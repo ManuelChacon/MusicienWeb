@@ -1,0 +1,107 @@
+<div id="page-contents">
+    <div class="container-fluid">
+      <!--<cabecera-perfil-usuario>
+      </cabecera-perfil-usuario>-->
+      <div class="row">
+
+        <!-- Newsfeed Common Side Bar Left
+        ================================================= -->
+        <div class="col-md-2 {{clasecolumna()}} d-none d-sm-block">
+           <mini-perfil></mini-perfil>
+
+          <encuentra></encuentra>
+
+          <top-semanal ></top-semanal>
+
+          <top-musicos ></top-musicos>
+          <spotify-playlist></spotify-playlist>
+        </div>
+
+        <div class="col-md-5">
+          <!--<crear-post>
+          </crear-post>-->
+          <!-- Post Create Box
+          ================================================= -->
+          <!--<crear-post>
+          </crear-post>-->
+          <!-- Post Create Box End-->
+
+          <!-- Post Content
+          ================================================= -->
+          <div class="post-content">
+          <div>
+            <!--<span infinite-scroll="cargarMultimedia(publicacion)" infinite-scroll-disabled="publicacion.Cargada"></span>-->
+            <!--<publicacion-video ng-if="tipoPublicacion('V',publicacion)"></publicacion-video>
+            <publicacion-sonido ng-if="tipoPublicacion('S',publicacion)"></publicacion-sonido>
+            <publicacion-imagen ng-if="tipoPublicacion('I',publicacion)"></publicacion-imagen>
+            <publicacion-texto ng-if="tipoPublicacion('T',publicacion)"></publicacion-texto>
+            <publicacion-compraventa ng-if="tipoPublicacion('N',publicacion)"></publicacion-compraventa>-->
+            <publicacionunica>
+            </publicacionunica>
+            <div class="row " ng-if="publicacion">
+             <div class="col-12 p-4">
+                <formulario-comentario ng-init="init(0, publicacion.IDPublicacion)"></formulario-comentario>
+             </div>
+
+             </div>
+          </div>
+
+          <div class="col-12 m-3">
+
+             <button class="btn-com  face-btn " type="submit" name="" value="Compartir con Facebook" ng-click="shareFB()">
+
+               <i class="fab fa-facebook-f"></i><small> Facebook</small>
+
+              </button>
+             <span id="twitterbuttonnoticia" class=""></span>
+             <span id="botonwhatsapp" class="d-block d-sm-none"></span>
+
+
+          </div>
+
+
+
+
+            <div class="col p-4">
+               <comentario ng-repeat="comentario in publicacion.Comentarios | filter:esComentarioBase" class="">
+                </comentario>
+            </div>
+
+
+
+          <!-- Post Content
+          ================================================= -->
+
+
+          </div>
+          <!-- Post Content
+          ================================================= -->
+        </div>
+
+        <!-- Newsfeed Common Side Bar Right
+        ================================================= -->
+        <div class="col-md-2 {{clasecolumna()}} d-block d-sm-none">
+           <mini-perfil class="d-none d-sm-block"></mini-perfil>
+
+          <encuentra></encuentra>
+
+          <top-semanal ></top-semanal>
+
+          <top-musicos ></top-musicos>
+          <spotify-playlist></spotify-playlist>
+        </div>
+
+       <div class="col-md-3">
+           <planes></planes>
+          <sugerencias-can class="mt-5"></sugerencias-can>
+        </div>
+         <div class="col-md-2" style="" >
+
+        </div>
+
+
+
+
+      </div>
+    </div>
+  </div>

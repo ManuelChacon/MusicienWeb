@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="musicien">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href=" ">
+  <title>MUSICIEN - Bring Music Back to Live</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="css/custom.css" rel="stylesheet">
+
+  <!-- Helper Styles -->
+  <link href="css/loaders.css" rel="stylesheet">
+  <link href="css/swiper.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/animate.min.css">
+   <link rel="stylesheet" href="css/ionicons.min.css" />
+  <!-- <link rel="stylesheet" href="css/nivo-lightbox.css"> -->
+  <!-- link rel="stylesheet" href="css/nivo_themes/default/default.css"> -->
+  <!-- Font Awesome Style -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+  <!--   ANGULAR 1.6 -->
+  <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>-->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <!--Angular Extensiones -->
+  <script type="text/javascript" src="js/infinite-scroll.js">
+
+  </script>
+  <!--Angular App-->
+  <script type="text/javascript" src="apps/applanding.js">
+
+  </script>
+  <script type="text/javascript" src="apps/llamadashttp.js">
+
+  </script>
+  <!--Angular Controladores -->
+  <script type="text/javascript" src="controllers/landingController.js">
+
+  </script>
+  <script type="text/javascript" src="js/dx.all.js">
+
+  </script>
+  <link rel="stylesheet" href="css/dx.common.css">
+  <link rel="stylesheet" href="css/dx.contrast.css">
+  <link rel="stylesheet" href="css/dx.light.css">
+</head>
+<body ng-controller="landing">
+<div class="loader loader-bg">
+  <div class="loader-inner ball-clip-rotate-pulse">
+    <div></div>
+    <div></div>
+  </div>
+</div>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded top-bar navbar-static-top sps sps--abv">
+    <div class="container" id="menu">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+        </button>
+  <a class="navbar-brand" href="#">
+     <img src="img/logo.png" alt=""> MUSICIEN
+  </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item active"> <a class="nav-link" href="#myCarousel">Inicio <span class="sr-only">(current)</span></a> </li>
+          <li class="nav-item"> <a class="nav-link" href="#quehacer">¿Que puedo hacer aquí?</a> </li>
+          <li class="nav-item"> <a href="index.html" class="nav-link">Descubre Musicien</a> </li>
+         <!--  <li class="nav-item"> <a class="nav-link btn btn-default btn-sm btn-rg"  data-toggle="modal" data-target="#modalRegistro">Regístrate</a> </li> -->
+         <!--  <li class="nav-item"> <a class="nav-link" data-toggle="modal" data-target="#modalLogin">Inicia Sesión</a> </li> -->
+          <li class="nav-item"> <a class="nav-link" href="#contact">Contacto</a> </li>
+          </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Swiper Silder
+    ================================================== -->
+<!-- Slider main container -->
+<div class="swiper-container main-slider" id="myCarousel">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide slider-bg-position" style="background:url('img/slider-02.jpg')" data-hash="slide1">
+      <div class="row">
+      <div class="col-12"> <img src="img/musicien_slogan.png"></div>
+      <!-- <div class="col-12"><img class="mx-auto d-block" src="img/live.png" alt=""></div> -->
+
+
+      </div>
+
+
+    </div>
+    <div class="swiper-slide slider-bg-position" style="background:url('img/slider-01.jpg')" data-hash="slide2">
+    <div class="row">
+      <div class="col-12">
+         <h2>Bienvenido a <span class="text-colorN">MUSICIEN</span></h2>
+      </div>
+      <div class="col-12">
+         <h3 class="text-colorB">¿Que puedo hacer aquí?</h3>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+  <!-- Add Pagination -->
+  <div class="swiper-pagination"></div>
+  <!-- Add Navigation -->
+  <div class="swiper-button-prev"><i class="fa fa-chevron-left"></i></div>
+  <div class="swiper-button-next"><i class="fa fa-chevron-right"></i></div>
+</div>
+
+<!-- Que puedo hacer aqui
+    ================================================== -->
+<section class="quehacer-sec" id="quehacer">
+  <div class="container">
+  <div class="row">
+    <div class="col text-center pb-3">
+      <h2>
+        ¡Suscríbete para encontrar conciertos y actuaciones!
+      </h2>
+    </div>
+  </div>
+    <div class="row text-center">
+      <div class="col-12   col-md-4 col-lg-4 ">
+        <div class="row">
+          <div class="col-12 mb-2 mr-2">
+            <img class=" img-fluid" src="img/conecta@2x.png" alt="">
+          </div>
+          <div class="col-12 text-colorB">
+            <h4>Conecta</h4>
+            <hr>
+            <p class="text-center">Mantente conectado, sigue a otros musicos. Promociona tus concierto y actuaciones ...</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12  col-md-4 col-lg-4">
+         <div class="row">
+          <div class="col-12 mb-2 mr-2">
+            <img class=" img-fluid" src="img/publica@2x.png" alt="">
+          </div>
+          <div class="col-12 text-colorB">
+            <h4>Publica</h4>
+             <hr>
+            <p class="text-center">Promociona tú música y consigue seguidores</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4 col-lg-4">
+         <div class="row">
+          <div class="col-12 mb-2">
+            <img class=" img-fluid" src="img/buscar@2x.png" alt="">
+          </div>
+          <div class="col-12 text-colorB">
+            <h4>Encuentra</h4>
+             <hr>
+            <p class="text-center">Vocalistas, bajistas, baterías, locales de ensayo, profesores e instrumentos.¡Todo lo que necesitas está aquí!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- + DE MUSICIEN
+    ================================================== -->
+
+<section class="blog-sec" id="blog">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+    <div class="heading text-md-center text-xs-center">
+      <h2><small>Mucho más que Música</small> Descubre  MUSICIEN</h2>
+    </div>
+    </div>
+      <div class="col-12 ">
+        <div class="row">
+          <div class="card-deck">
+
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div class="card card-01">
+                <img class="card-img-top img-fluid" src="img/guitarra_compraventa.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <span class="badge-box"><i class="fa fa-check"></i></span>
+                  <h4 class="card-title">Compra Venta </h4>
+                  <p class="card-text">Instrumentos, accesorios y demás, quizá lo que estas buscado otro músico lo vende aquí.</p>
+
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+              <div class="card card-01">
+              <img class="card-img-top img-fluid" src="img/music-live.jpg" alt="Card image cap">
+              <div class="card-body">
+                <span class="badge-box"><i class="fa fa-check"></i></span>
+                <h4 class="card-title">Actuaciones en directo</h4>
+                <p class="card-text">Hay infinidad de  locales con música en directo que demandan lo que tú tienes.<br><br></p>
+
+              </div>
+              </div>
+            </div>
+
+
+              <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                <div class="card card-01">
+                <img class="card-img-top img-fluid" src="img/pentagrama_musical660.jpg" alt="Card image cap">
+                <div class="card-body">
+                  <span class="badge-box"><i class="fa fa-check"></i></span>
+                  <h4 class="card-title">Clases</h4>
+                  <p class="card-text">¿Buscas un profesor? ¿Impartes clases de solfeo, canto o instrumentos?<br><br></p>
+
+                </div>
+                </div>
+              </div>
+         </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+
+<!-- TOP MUSICIEN
+    ================================================== -->
+<section class="top-sec parallax-section" id="top">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+         <h2 class="text-colorN"><small class="text-colorB" >  <i class="ion-arrow-up-c"></i> Top de la semana en </small>MUSICIEN<br>
+         </h2>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+       <iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/347134033&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>
+      </div>
+      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+         <iframe src="https://player.vimeo.com/video/10437814" width="100%" height="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+    </div>
+
+
+    <!-- MUSICOS DESTACADO -->
+    <div class="col-12 mt-5 pb-5" style="background-color: rgba(255, 255, 255, 0.33);">
+    <h2 class="text-colorN text-center mb-5"><small class="text-colorB" >  <i class="ion-arrow-up-c"></i> Usuarios de la semana en </small>MUSICIEN<br>
+         </h2>
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+        <a style="color:#fff;" href="perfil_usuario_top.html">
+          <div class="img-dst">
+          <img src="img/user-1.jpg" alt="" class="img-fluid mx-auto d-block">
+          <div class="text-dst mx-auto text-center">
+          María González - Solista
+          </div>
+
+          </div>
+          </a>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+            <div class="img-dst">
+          <img src="img/user-11.jpg" alt="" class="img-fluid mx-auto d-block">
+          <div class="text-dst mx-auto text-center">
+            Laura Rodríguez - Batería
+          </div>
+
+          </div>
+        </div>
+
+
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">  <div class="img-dst">
+          <img src="img/user-12.jpg" alt="" class="img-fluid mx-auto d-block">
+          <div class="text-dst mx-auto text-center">
+            Peter Row - Promotor
+          </div>
+
+          </div></div>
+
+
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">  <div class="img-dst">
+          <img src="img/user-15.jpg" alt="" class="img-fluid mx-auto d-block">
+          <div class="text-dst mx-auto text-center">
+            Queen - Grupo
+          </div>
+
+          </div></div>
+
+        <!-- <div class="col-2">1</div>
+        <div class="col-2">1</div> -->
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACERCA DE MUSICIEN -->
+<section class="about-sec parallax-section" id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 mr-md-2">
+        <h2 class="text-colorN"><small class="text-colorB" >Si eres Músico te Interesa</small>MUSICIEN<br>
+         </h2>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2">
+        <p> </p>
+
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+      MUSICIEN ha sido creado con el propósito de hacer llegar la música a todos los rincones del mundo. Si eres músico, sabrás el esfuerzo que supone llegar lejos dentro de esta profesión, por eso, y gracias a MUSICIEN, podrás abrirte camino, hacerte oír, darte a conocer y tener todo lo que necesitas a tu alcance. <br><br>
+       <p><a href="#" class="btn btn-transparent-white btn-capsul">échale un vistazo</a></p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMOCION APP -->
+<section class="promo">
+  <div class="container" >
+    <div class="row">
+      <div class="col-12">
+        <h2 class="text-center text-colorN">
+          <small class="text-colorBlack">Descarga gratis nuestra</small> APP
+        </h2>
+      </div>
+      <div class="col">
+        <img class="d-block mx-auto img-fluid" src="img/elmundodelamusica.png" alt="">
+      </div>
+      <div class="  col-12  ">
+        <img class="img-fluid mx-auto d-block" src="img/iphone_x.png" alt="">
+      </div>
+
+        <!-- <div class="col-12 text-left">
+          <p>Then they show that show to the people who make shows, and on the strength of that one show they decide if they're going to make more shows. Some pilots get picked and become television programs. Some don't, become nothing. She starred in one of the ones that became nothing</p>
+        </div> -->
+        <div class="col-12 text-center">
+          <p class="text-center mb-0"><small>Disponible en:</small></p>
+            <img src="img/app_google.png" alt="">
+            <img src="img/app_store.png" alt="">
+        </div>
+
+
+    </div>
+  </div>
+
+</section>
+
+<!-- CONTACTO -->
+
+<section class="contact-sec parallax-section" id="contact">
+  <div class="container">
+    <h2>Contacto <small>Envíanos cualquier sugerencia o duda que tengas.</small> </h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="exampleName">Nombre</label>
+          <input type="text" class="form-control" id="exampleName" aria-describedby="emailHelp">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="examplePhone">Teléfono</label>
+          <input type="text" class="form-control" id="examplePhone" aria-describedby="emailHelp">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="exampleInputEmail1">E-mail</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <small id="emailHelp" class="form-text text-muted text-colorB">Nunca daremos tu dirección de email a nadie.</small> </div>
+      </div>
+      <div class="col-md-12">
+        <label for="exampleTextarea">Tu mensaje</label>
+        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+      </div>
+      <div class="col-md-12 text-xs-center action-block"> <a href="#" class="btn btn-capsul btn-aqua">Enviar</a> </div>
+    </div>
+  </div>
+</section>
+
+
+<!--  REDES SOCIALES -->
+<section class="social-footer hidden-sm-down ">
+   <h2 class="text-center">Redes Sociales <small>comparte tu pasión, comparte música</small> </h2>
+            <div class="spacer"></div>
+            <div class="footer-container">
+                <div class="social-ico s-facebook"></div>
+                <div class="social-ico s-youtube"></div>
+                <div class="social-ico s-plus"></div>
+                <div class="social-ico s-twitter"></div>
+                <div class="social-ico s-soundcloud"></div>
+                <div class="social-ico s-instagram"></div>
+            </div>
+            <div class="clear"></div>
+</section>
+<footer>
+<div class="container">
+    <div class="row">
+    <div class="col-12 text-center mb-3">
+      <img class="mx-auto d-block" src="img/logo_footer.png" alt=""> MUSICIEN
+
+    </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#quehacer">¿Qué puedo hacer aquí?</a></li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <ul>
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Términos y Condiciones</a></li>
+          <li><a href="#">Acerca de Musicien</a></li>
+        </ul>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <h2>"SIN MÚSICA, LA VIDA SERÍA UN ERROR"</h2>
+        <p>(Friedrich Nietzsche)</p>
+      </div>
+    </div>
+    <div class="row copy-footer">
+      <div class="col-sm-6 col-md-3"> &copy;<script type="text/javascript">document.write(new Date().getFullYear());</script> Musicien.com </div>
+      <div class="col-sm-6 col-md-3 pull-right text-xs-right">desarrollo deSoft</div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> Regístrate</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="social-box">
+            <div class="row mb-1">
+                   <div class="col-md-12">
+                      <a href="#" class="btn btn-primary btn-block">
+                        <i class="fa fa-facebook" aria-hidden="true"></i> Regístrate con  Facebook
+                      </a>
+            </div>
+            </div>
+            <div class="row mb-1">
+              <div class="col-md-12">
+                        <a href="#" class="btn btn-info btn-block" >
+                          <i class="fa fa-twitter" aria-hidden="true"></i> Regístrate con  Twitter
+                        </a>
+                    </div>
+                </div>
+              <div class="row mb-1">
+              <div class="col-md-12">
+                        <a href="#" class="btn btn-instagram btn-block" >
+                         <i class="fa fa-instagram" aria-hidden="true"></i> Regístrate con  Instagram
+                        </a>
+                    </div>
+                </div>
+                 <div class="row mb-1">
+              <div class="col-md-12">
+                        <a href="#" class="btn btn-danger btn-block" >
+                          <i class="fa fa-google-plus" aria-hidden="true"></i> Regístrate con  Google+
+                        </a>
+                    </div>
+                </div>
+          </div>
+          <div class="main">
+          <h6 class="text-center">O registrate con tu email</h6>
+           <div class="col-12 mb-2">
+              <input type="text " class="form-control" placeholder="Nombre" autofocus ng-model="newusuario.Nombre">
+            </div>
+           <div class="col-12 mb-2">
+              <input type="text " class="form-control" placeholder="Email" autofocus ng-model="newusuario.Email">
+            </div>
+            <div class="col-12">
+               <input type="password" class="form-control" placeholder="Password" ng-model="newusuario.Contrasena">
+            </div>
+
+
+          <div class="col-xs-6 col-md-6 pull-right mt-4">
+              <button type="submit" class="btn btn-large btn-aqua pull-right" ng-click="registrarUsuario()">Enviar</button>
+          </div>
+
+          <span class="clearfix"></span>
+              </div>
+          <!-- <div class="login-footer">
+          <div class="row">
+                              <div class="col-xs-6 col-md-6">
+                                  <div class="left-section">
+                      <a href="">Olvidaste tu contraseña?</a>
+                      <a href="">Sign up now</a>
+                    </div>
+                              </div>
+                              <div class="col-xs-6 col-md-6 pull-right">
+                                  <button type="submit" class="btn btn-large btn-danger pull-right">Login</button>
+                              </div>
+                          </div>
+
+          </div> -->
+            </div>
+            <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+            </div> -->
+          </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Inicia Sesión</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="social-box">
+            <div class="row mb-1">
+                   <div class="col-md-12">
+                      <a href="#" class="btn btn-primary btn-block">
+                       <i class="fa fa-facebook" aria-hidden="true"></i> Inicia sesión con  Facebook
+                      </a>
+            </div>
+            </div>
+            <div class="row mb-1">
+              <div class="col-md-12">
+                        <a href="#" class="btn btn-info btn-block" >
+                          <i class="fa fa-twitter" aria-hidden="true"></i> Inicia sesión con  Twitter
+                        </a>
+                    </div>
+                </div>
+              <div class="row mb-1">
+              <div class="col-md-12">
+                        <a href="#" class="btn btn-instagram btn-block" >
+                          <i class="fa fa-instagram" aria-hidden="true"></i> Inicia sesión con  Instagram
+                        </a>
+                    </div>
+                </div>
+                 <div class="row mb-1">
+              <div class="col-md-12">
+                        <a href="#" class="btn btn-danger btn-block" >
+                         <i class="fa fa-google-plus" aria-hidden="true"></i> Inicia sesión con  Google+
+                        </a>
+                    </div>
+                </div>
+          </div>
+          <div class="main">
+           <div class="col-12 mb-2">
+              <input type="text " class="form-control" placeholder="Email" autofocus ng-model="oldusuario.Email">
+            </div>
+            <div class="col-12">
+               <input type="password" class="form-control" placeholder="Password" ng-model="oldusuario.Contrasena">
+            </div>
+
+
+          <div class="col-xs-6 col-md-6 pull-right mt-4">
+              <button type="submit" class="btn btn-large btn-aqua pull-right" ng-click="iniciarSesUsuario()">Enviar</button>
+          </div>
+
+          <span class="clearfix"></span>
+              </div>
+          </div>
+  </div>
+</div>
+
+
+
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery.min.js" ></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/scrollPosStyler.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/isotope.min.js"></script>
+<script src="js/nivo-lightbox.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/core.js"></script>
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!-- IMAGEN -->
+<span ng-if="NotNull(propiedad.Valor)">
+  <span ng-if="esTipoPropiedad(propiedad.TipoValor,'I')">
+    <div class="col-12">
+      <span infinite-scroll="cargarImagenPropiedad(propiedad)" infinite-scroll-disabled="propiedad.Cargada"></span>
+       <img ng-click="abrirLightbox(propiedad.DataValor)" ng-src="{{propiedad.DataValor}}" class="img-fluid  d-block mx-auto img-responsive" style="max-height: 500px;" />
+    </div>
+  </span>
+  <span ng-if="esTipoPropiedad(propiedad.TipoValor,'A')">
+    <div class="col-12">
+      <span infinite-scroll="cargarImagenesPropiedad(propiedad)" infinite-scroll-disabled="propiedad.Cargada"></span>
+      <span>
+        <div class="row">
+          <div class="col-2" ng-repeat="Imagen in propiedad.DataValor">
+            <img ng-src="{{Imagen}}" ng-click="abrirLightboxMultiple(propiedad.DataValor, $index)" class="img-fluid  d-block mx-auto img-responsive" style="max-height: 500px;" />
+          </div>
+        </div>
+      </span>
+
+    </div>
+  </span>
+ <!--  <span ng-if="esTipoPropiedad(propiedad.TipoValor,'I')">
+    <div class="col-12 contenedor" style="width: 100%;height: 300px;overflow: hidden;position: relative;">
+      <span infinite-scroll="cargarImagenPropiedad(propiedad)" infinite-scroll-disabled="propiedad.Cargada"></span>
+       <img ng-src="{{propiedad.DataValor}}" class="img-responsive post-image" style="position: absolute;left: -100%;right: -100%;top: -100%;bottom: -100%;margin: auto;min-height: 100%;min-width: 100%;object-fit: cover;" />
+    </div> -->
+    <span ng-if="esTipoPropiedad(propiedad.TipoValor,'T')">
+    <div class="post-text">
+     <p class="coment-post"><strong>"{{propiedad.Valor}}"</strong></p>
+   </div>
+  </span>
+  <!-- enlace -->
+  <span ng-if="esTipoPropiedad(propiedad.TipoValor,'L')">
+    <div class="post-text">
+     <p class="coment-post"><strong><a href="{{propiedad.Valor}}">{{propiedad.Valor}}</a></strong></p>
+   </div>
+  </span>
+  <!-- PANEL TEXTO -->
+  <span ng-if="esTipoPropiedad(propiedad.TipoValor,'C')">
+    <div  class="post-text">
+     <p class="coment-post">{{propiedad.Valor}}</p>
+   </div>
+  </span>
+  <!-- AUDIO -->
+  <span ng-if="esTipoPropiedad(propiedad.TipoValor,'S')">
+    <span infinite-scroll="cargarAltDe(propiedad)" infinite-scroll-disabled="propiedad.AltCargado"></span>
+    <audio ng-src="{{propiedad.DataValor}}" controls  loop>
+      <p>Tu navegador no implementa el elemento audio</p>
+    </audio>
+  </span>
+  <!-- VIDEO -->
+  <span ng-if="esTipoPropiedad(propiedad.TipoValor,'V')">
+    <span infinite-scroll="cargarAltDe(propiedad)" infinite-scroll-disabled="propiedad.AltCargado"></span>
+    <video controlsList="nodownload" ng-if="propiedad.AltCargado" class="post-video" controls> <source ng-src="{{propiedad.DataValor}}" type="video/mp4"> </video>
+  </span>
+  <!-- PLAYLIST -->
+  <span ng-if="esTipoPropiedad(propiedad.TipoValor,'R')">
+    <span>
+      <span infinite-scroll="cargarPlaylist(propiedad, publicacion)" infinite-scroll-disabled="propiedad.PlaylistCargado"></span>
+      <span id="playlist{{publicacion.IDPublicacion}}propi{{propiedad.IDPropiedad}}re{{publicacion.IDRePublicacion}}"></span>
+    </span>
+  </span>
+  <!-- FECHA -->
+  <span ng-if="esTipoPropiedad(propiedad.TipoValor,'D')">
+    <div class="post-text">
+     <p class="coment-post">{{propiedad.Valor}}</p>
+   </div>
+  </span>
+  <!-- FECHAS ntiguedad-->
+  <span ng-if="esTipoPropiedad(propiedad.TipoValor,'Y')">
+    <div class="post-text">
+      <span infinite-scroll="calcularTiempoPropiedad(propiedad)" infinite-scroll-disabled="propiedad.FechaCarg"></span>
+     <p class="coment-post">{{propiedad.FechaDiferencia}}</p>
+   </div>
+  </span>
+  <!-- PRECIO -->
+  <span ng-if="esTipoPropiedad(propiedad.TipoValor,'M')">
+    <div  class="post-text">
+     <p style="background: #666;
+    padding: 2px 46px;
+    width: 72%;
+    height: 30px;
+    border-radius: 15px;
+    /* position: relative; */
+    /* margin: 0 auto 20px; */
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+}">{{propiedad.Valor}} €</p>
+   </div>
+  </span>
+  </span>
+
+  <!-- Botoón me interesa -->
+
+<span ng-if="esTipoPropiedad(propiedad.TipoValor,'J')">
+ 
+        <div  class="post-text" style="width: 72%;">
+          <input type="submit" name="" class="btn btn-primary btn-block" value="{{propiedad.NombrePropiedad}}" ng-click="meInteresa(publicacion)">
+        </div>
+    
+  
+</span>

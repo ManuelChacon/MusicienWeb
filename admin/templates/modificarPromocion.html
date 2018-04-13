@@ -1,0 +1,78 @@
+<div>
+  <div class="login_wrapper panel-body">
+    <h3>Nombre Promocion</h3>
+    <input type="text" name="" value="" ng-model="promocion.NombrePromocion" >
+    <h3>Descripcion Promocion</h3>
+    <input type="text" name="" value="" ng-model="promocion.DescripcionPromocion" >
+    <h3>Imagen</h3>
+    <img style="width:20px" ng-src="{{promocion.newContenidoMM}}" alt="">
+    <input type="file" name="" value="" onchange="cambioImagenPromocion(this)" id="input-img-perfil">
+    <h3>Nº de Planes seleccionables</h3>
+    <input type="text" name="" value="" ng-model="promocion.MaxPlanes">
+    <div class="">
+      <table>
+        <tr>
+          <td>
+            <img style="width:20px" ng-src="{{plan.newImagen1}}" alt="">
+            <input type="file" name="" value="" onchange="cambioImagenDesc(this,1)" id="input-img-perfil">
+          </td>
+          <td>
+            <img style="width:20px" ng-src="{{plan.newImagen2}}" alt="">
+            <input type="file" name="" value="" onchange="cambioImagenDesc(this,2)" id="input-img-perfil">
+          </td>
+          <td>
+            <img style="width:20px" ng-src="{{plan.newImagen3}}" alt="">
+            <input type="file" name="" value="" onchange="cambioImagenDesc(this,3)" id="input-img-perfil">
+          </td>
+        </tr>
+        <tr>
+          <td><input type="text" name="" value="" class="form-control" ng-model="promocion.Titulo1"></td>
+          <td><input type="text" name="" value="" class="form-control" ng-model="promocion.Titulo2"></td>
+          <td><input type="text" name="" value="" class="form-control" ng-model="promocion.Titulo3"></td>
+        </tr>
+        <tr>
+          <td>
+            <textarea name="name" rows="8" cols="80" ng-model="promocion.Descripcion1"></textarea>
+          </td>
+          <td>
+            <textarea name="name" rows="8" cols="80" ng-model="promocion.Descripcion2"></textarea>
+          </td>
+          <td>
+            <textarea name="name" rows="8" cols="80" ng-model="promocion.Descripcion3"></textarea>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="">
+      <h4>Tarifas</h4>
+      <table>
+        <tr>
+          <th>Periodicidad</th>
+          <th>Precio</th>
+        </tr>
+        <tr ng-repeat="tarifa in promocion.Tarifas">
+          <td>{{tarifa.NombrePeriodicidad}}</td>
+          <td><input type="text" name="" value="" ng-model="tarifa.Precio"></td>
+          <td><input type="text" name="" value="" ng-model="tarifa.Texto"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="">
+      <h4>Planes disponibles</h4>
+      <select class="" name="" ng-model="newPlan" ng-change="anadirPlan()">
+        <option value="{{plan}}" ng-repeat="plan in planes | filter:noenplanes">{{plan.NombrePlan}}</option>
+      </select>
+      <table>
+        <tr>
+          <th>Nombre del Plan</th>
+          <th>Eliminar</th>
+        </tr>
+        <tr ng-repeat="plan in promocion.Planes">
+          <td>{{plan.NombrePlan}}</td>
+          <td><button type="button" name="button" ng-click="eliminarPlan($index)"> <i class="glyphicon glyphicon-remove"></i></button></td>
+        </tr>
+      </table>
+    </div>
+    <input type="submit" name="" value="Guardar Cambios" class="btn btn-primary" ng-click="guardarCambios()">
+  </div>
+</div>

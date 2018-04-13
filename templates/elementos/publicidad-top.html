@@ -1,0 +1,22 @@
+<div class="row p-0 m-0 cursor">
+  <div class="col-12">
+    <span infinite-scroll="cargarMultimedia(publicacion)" infinite-scroll-disabled="publicacion.Cargada"></span>
+   <!--  <img  ng-click="verPublicacion(publicacion)" ng-src="{{publicacion.DataContenidoMM}}" class="img-responsive post-image"> -->
+      <!-- <img ng-src="{{publicacion.Usuario.DataContenidoMM}}" alt="user" class="profile-photo-md pull-left" ng-click="verPerfil(publicacion.Usuario)"/> -->
+    <div class="row">
+      <div class="col-12 text-center cursor">
+        <p ng-click="verPublicacion(publicacion)"  class=" text-center " style="font-size: 16px;font-weight: bold; color: orange; text-transform:  uppercase; cursor: pointer;  ">{{publicacion.Titulo}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="post-container px-3 pt-0 pb-3" style="margin-top: -24px;">
+   <div class="row" ng-repeat="propiedad in publicacion.TipoPubli.Propiedades">
+    <div class="col-12">
+      <contenedor-propiedades-publi>
+      </contenedor-propiedades-publi>
+    </div>
+  </div>
+  
+</div>
+

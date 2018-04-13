@@ -1,0 +1,376 @@
+
+  <!-- CHATS -->
+    <div class="col-3" ng-repeat="chat in getConversaciones() | filter:seMuestra" ng-controller="mainCtrl"> 
+      <div class="chat-general mx-1 scrollbar-dynamic"  data-jquery-scrollbar="jqueryScrollbarOptions">
+      <div class="container">
+              <div class="row head-user-chat " ng-if="esUnGrupo(chat)">
+                <div class="col">
+                  <div class="row justify-content-between">
+                    <div class="col-3 ">
+                       <i class="fa fa-users" aria-hidden="true"></i>
+                      <small></small>
+                    </div>
+                    <div class="col-auto text-right ">
+
+                          <div class=" dropdown">
+                             <button class="dropdown-toggle btn-sm btn-opciones " id="navbarDropdownOp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <i class="fa fa-address-book" aria-hidden="true"></i>
+                            </button>
+                              <ul class="dropdown-menu menu-op-chat" aria-labelledby="navbarDropdownOp" role="menu">
+                                <li class="dropdown-item row m-0 py-0" ng-repeat="chatuser in chat.Users  | filter:nosoyyo" >
+                                  <i class="ion-record" style="color:{{comprobarEstado(chatuser)}}; font-size: 10px;"></i>
+                                  <small> {{chatuser.UserName}}</small>
+                                </li>
+                            </ul>
+                        </div> 
+                      </div>
+                   
+                    <div class="col-auto text-right ">
+
+                          <div class=" dropdown">
+                             <button class="dropdown-toggle btn-sm btn-opciones " id="navbarDropdownOp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <i class="fa fa-cog btn-prefe-chat" aria-hidden="true"></i>
+                            </button>
+                              <div class="dropdown-menu menu-op-chat" aria-labelledby="navbarDropdownOp">
+                                
+                                <a class="dropdown-item" ng-click="salirConversacion(chat)">{{lang.salir_conversa}}</a>
+                               <!--  <a class="dropdown-item" href="#"><i class="ion-person-add mr-1"></i>  Crear nuevo perfil</a> -->
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item"  ng-click="asignarGrupoParaAnadir(conversacion)">{{lang.anadir_usuario}}</a>
+                              </div>
+                        </div> 
+                      </div>
+                      <div class="col-2 text-right">
+                         <button type="submit" name="" value="X"  ng-click="mostrarChat(chat, false)" class="btn btn-sm chat-cerrar-btn"> <i class="fa fa-times-circle" aria-hidden="true"></i> </button>
+                      </div>
+                   </div>
+                  </div>
+              </div>
+             <!--  cabecera no es un grupo -->
+              <div class="row head-user-chat " ng-if="!esUnGrupo(chat)">
+                <div class="col">
+                  <div ng-repeat="chatuser in chat.Users  | filter:nosoyyo" class="row">
+                    <div class="col-5 ">
+                       <img ng-src="{{obtenerImagenUsuario(chatuser)}}" alt="" class="profile-photo-sm" style="width: 15px; height:15px;">
+                      <i class="ion-record" style="color:{{comprobarEstado(chatuser)}}; font-size: 10px;"></i>
+                      <small>{{chatuser.UserName}}</small>
+                    </div>
+                   
+                    <div class="col-5 text-right ">
+
+                          <div class=" dropdown">
+                             <button class="dropdown-toggle btn-sm btn-opciones " id="navbarDropdownOp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <i class="fa fa-cog btn-prefe-chat" aria-hidden="true"></i>
+                            </button>
+                              <div class="dropdown-menu menu-op-chat" aria-labelledby="navbarDropdownOp">
+                                
+                                <a class="dropdown-item" ng-click="salirConversacion(chat)">{{lang.salir_conversa}}</a>
+                               <!--  <a class="dropdown-item" href="#"><i class="ion-person-add mr-1"></i>  Crear nuevo perfil</a> -->
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item"  ng-click="asignarGrupoParaAnadir(conversacion)">{{lang.anadir_usuario}}</a>
+                              </div>
+                        </div> 
+                      </div>
+                      <div class="col-2 text-right">
+                         <button type="submit" name="" value="X"  ng-click="mostrarChat(chat, false)" class="btn btn-sm chat-cerrar-btn"> <i class="fa fa-times-circle" aria-hidden="true"></i> </button>
+                      </div>
+                   </div>
+                  </div>
+               
+              </div>
+             <!--  Fin cabecera no es un grupo -->
+              </div>
+              <div class="container">
+                <div class="row">
+
+                <!-- grupo -->
+                  <div class="col-12 text-center"  ng-if="esUnGrupo(chat)">
+                    <div class="row justify-content-md-center">
+                      <div class="col-12">
+                         <small>{{lang.miembros_grupo}}  </small>
+                      </div>
+                      <div class="col-auto"  class="row text-center mx-auto">
+                        <img ng-src="{{obtenerImagenUsuario(chatuser)}}" alt="" class="profile-photo-sm" style="width: 25px; height:25px;" ng-repeat="chatuser in chat.Users  | filter:nosoyyo">
+                      </div>
+                    </div>
+                  </div>
+                 <!--  fin grupo -->
+                <!-- indivudual -->
+                  <div class="col-12 text-center" ng-if="!esUnGrupo(chat)">
+                  <small>{{lang.anadir_grupo}} </small>
+                    <div ng-repeat="chatuser in chat.Users  | filter:nosoyyo" class="row text-center">
+                    <img ng-src="{{obtenerImagenUsuario(chatuser)}}" alt="" class="profile-photo-sm d-block mx-auto " style="width: 25px; height:25px;">
+                     
+                    </div>
+                  </div>
+
+                  <div class="col-12 mt-2 ">
+                    <div class="row">
+                        
+                      <div ng-repeat="mensaje in chat.Messages | limitTo:-10000" class="{{mensaje.Clase}}  d-block col-12" style="display: block;">
+                        <img ng-src="{{obtenerImagenUsuario(mensaje.Usuario)}}" alt="" class="profile-photo-sm" style="width: 15px; height: 15px;">
+                        <span id="user-chat">
+                          {{mensaje.UserName}}:
+                        </span>
+                         <p class="mb-0">
+                           {{mensaje.Message}}
+                         </p>
+                   <!--  {{mensaje.IDUsuario}} -->
+                       </div>
+                    
+                    </div>
+                    
+                  </div>
+                  <div class="col-12 mt-3 p-0 align-self-end" style="background-color:#fff;">
+                 <!--     <input type="text" name="" ng-model="chat.newMsj" ng-enter="enviarMensaje(chat)"> -->
+                      <div class="input-group">
+                        <input type="text" class="form-control form-control-sm" placeholder="" ng-model="chat.newMsj" ng-enter="enviarMensaje(chat)" id="msj-chat">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default btn-sm"  type="button" ng-click="enviarMensaje(chat)">{{lang.enviar}}</button>
+                        </span>
+                      </div>
+                  </div>
+                 
+
+
+                </div>
+                
+              </div>
+
+
+             
+             
+          </div>
+      </div>
+    
+   <!--  FIN CHATS -->
+       
+   <!--  CHAT GENERAL OPCIONES -->
+<div class=" scrollbar-inner chat-general"  >
+       <div class="container" class="scrollbar-dynamic ">
+        <div class="row">
+          <div class="col-12">
+
+              <div class="" ng-if="cargandoChat">
+                <img src="img/loader.gif" alt="" class="d-block mx-auto img-fluid">
+       
+              </div>
+
+     
+    <div ng-if="mostrandoChat">
+
+      <div class="mt-1" ng-repeat="conversacion in getConversaciones()" >
+       <!--  {{conversacion.roomName}} {{conversacion.Leido}} {{esUnGrupo(conversacion)}} -->
+        
+        
+        <div class="" ng-if="esUnGrupo(conversacion)">
+             <div class="row py-3" style="border-bottom: 1px solid #e0e0e0; cursor: pointer;">
+              <div class="col-2" ng-click="mostrarChat(conversacion, true)"> <i class="fa fa-users" aria-hidden="true"></i></div>
+              <div class="col" ng-click="mostrarChat(conversacion, true)">
+                 {{conversacion.Titulo}} 
+              </div>
+              <div class="col" style="font-size:26px;" ng-click="mostrarChat(conversacion, true)">
+                 <i class="ion-email-unread" style="color:{{comprobarLeidos(conversacion)}}"></i>
+              </div>
+              <div class="col">
+                  <div class=" dropdown">
+                             <button class="dropdown-toggle btn-sm btn-opciones " id="navbarDropdownOp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <i class="fa fa-cog btn-prefe-chat" aria-hidden="true"></i>
+                            </button>
+                              <div class="dropdown-menu menu-op-chat" aria-labelledby="navbarDropdownOp">
+                                
+                                <a class="dropdown-item" ng-click="salirConversacion(conversacion)">{{lang.salir_conversa}}</a>
+                               <!--  <a class="dropdown-item" href="#"><i class="ion-person-add mr-1"></i>  Crear nuevo perfil</a> -->
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item"  ng-click="asignarGrupoParaAnadir(conversacion)">{{lang.anadir_usuario}}</a>
+                              </div>
+                        </div> 
+              </div>
+             
+             </div>
+         
+        </div>
+       
+        <div class="" ng-if="!esUnGrupo(conversacion)">
+          <div class="" ng-repeat="chatuser in conversacion.Users | filter:nosoyyo">
+            <div class="row py-3" style="border-bottom: 1px solid #e0e0e0; cursor: pointer;">
+              <div class="col-2" ng-click="mostrarChat(conversacion, true)">
+              <div class="chat-usuario">
+                <img ng-src="{{obtenerImagenUsuario(chatuser)}}" alt="" class="profile-photo-sm" style="width: 34px; height: 34px;">
+                  <div class="chat-conectado">
+                    <i class="ion-record" style="color:{{comprobarEstado(chatuser)}}"></i>
+                  </div>
+                  
+              </div>
+                 
+              </div>
+              <div class="col" ng-click="mostrarChat(conversacion, true)">
+                 {{chatuser.UserName}}
+              </div>
+              <div class="col" style="font-size:26px;" ng-click="mostrarChat(conversacion, true)">
+                  <i class="ion-email-unread" style="color:{{comprobarLeidos(conversacion)}}"></i>
+              </div>
+              <div class="col">
+                 <!-- <button type="submit" name="" value="+" ng-click="asignarGrupoParaAnadir(conversacion)">Añadir a un grupo</button>  -->
+                   <div class=" dropdown">
+                             <button class="dropdown-toggle btn-sm btn-opciones " id="navbarDropdownOp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <i class="fa fa-cog btn-prefe-chat" aria-hidden="true"></i>
+                            </button>
+                              <div class="dropdown-menu menu-op-chat" aria-labelledby="navbarDropdownOp">
+                                
+                                <a class="dropdown-item" ng-click="salirConversacion(conversacion)">{{lang.salir_conversa}}</a>
+                               <!--  <a class="dropdown-item" href="#"><i class="ion-person-add mr-1"></i>  Crear nuevo perfil</a> -->
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item"  ng-click="asignarGrupoParaAnadir(conversacion)">{{lang.anadir_usuarios}}</a>
+                              </div>
+                        </div> 
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    
+     <div class="row">
+       <div class="col-12">
+        <div class="row" ng-if="anadirAGrupo"> 
+          <!-- añadir a grupo ya hecho -->
+          <div class="col-12">
+            <small>{{lang.utiliza_buscador_para}}</small>
+          </div>
+          <div class="col-12">
+            <button type="submit" name="" value="" ng-click="anadirPersonasAGrupo()"> <i class="fa fa-users" aria-hidden="true"></i> {{lang.anadir_grupo}} {{conversacionAsignadaAnadir.Titulo}}</button>
+          </div>
+          <!-- fin añadir a grupo ya hecho -->
+        </div>
+        <!--  inicio nuevo grupo -->
+        <div class="row" ng-if="selectedUsers.length>0">
+         <div class="col-12" ng-if="!anadirAGrupo">
+          <div class="row">
+            <div class="col-12 ">  
+              <small>{{lang.utiliza_buscar_usuarios}}</small>
+            </div> 
+            <div class="col-12">
+            <div class="input-group">
+              <input type="text" class="form-control form-control-sm" ng-model="groupName" id="groupName" placeholder="Nombre del Grupo" >
+              <span class="input-group-btn">
+              <button class="btn btn-default btn-sm" type="button" value="Crear un grupo" ng-click="crearGrupo()"">{{lang.crear}}</button>
+             </span>
+          </div>
+          </div> 
+          </div>
+           
+         
+         </div>
+        </div>
+        <!-- fin inicio nuevo grupo -->
+       
+
+      
+      
+      
+      
+       <!-- Seleccion de usuarios   -->
+     
+      <div class="row" ng-repeat="chatuser in selectedUsers track by $index">
+        <div class="col">
+          <img ng-src="{{obtenerImagenUsuario(chatuser)}}" alt="" class="profile-photo-sm" style="width: 20px; height: 20px;">
+          <i class="ion-record" style="color:{{comprobarEstado(chatuser)}}"></i>
+          {{chatuser.UserName}}
+        </div>
+        <div class="col">
+          <a  ng-click="unseleccionarUsuario($index)"><i class="fa fa-trash" aria-hidden="true"></i><small> {{lang.borrar}}</small> </a>
+        </div>
+        </div>
+       <!--  Fin seleccion de usuarios -->
+      </div>
+    </div>
+     
+        <!--  LISTADO DE USUARIOS -->
+    
+      <div class="row mt-2" ng-repeat="chatuser in filtroUsuarios | filter:mifiltrouser | filter:noselected" style="background-color: #fff;">
+      
+       <div class="col-1" >
+          <div class="chat-usuario">
+            <img ng-src="{{obtenerImagenUsuario(chatuser)}}" alt="" class="profile-photo-sm" style="width: 20px; height: 20px">
+          </div>
+          <div class="chat-conectadolistado">
+             <i class="ion-record" style="color:{{comprobarEstado(chatuser)}}"></i>
+          </div>
+        </div> 
+        <div class="col">
+         <small>{{chatuser.UserName}}</small> 
+        </div>
+        <div class="col">
+          <a ng-click="IniciarChat(chatuser.IDUsuario)"> <i class="fa fa-user-plus" aria-hidden="true"></i> <small>{{lang.anadir_chat}} </small> </a>
+        </div>
+       <div class="col-auto" >
+          <a  ng-click="seleccionarUsuario(chatuser)" ><i class="fa fa-users" aria-hidden="true"></i><small>{{lang.anadir_grupo}}</small></a>
+        </div>
+      </div>  
+      <!-- FIN LISTADO DE USUARIOS -->
+      <div class="col-12 my-2">
+        <span style="visibility: hidden;">{{mifiltrouser}} </span>
+         <input type="text" name="" value="" id="filtroUsersChat" class="form-control" ng-model="mifiltrouser" ng-change="checkLongFiltro()" ng-enter="enviarFiltroUsuarios()" placeholder="Buscar Usuarios...">
+      </div>
+       
+     
+    </div>
+       </div>
+     </div>
+      
+    <div class="row">
+      <div ng-click="abrirChat()" class="col-12 text-center" style="cursor: pointer;">
+      <i class="fa fa-comments-o" aria-hidden="true" style="color:{{IsConnected()}}"></i>
+       <!-- <img src="img/chat-orange.png" alt="" class="img-fluid mx-auto" style="width: 16px;"> -->
+       <strong> {{lang.abrir_chat}} <small>{{lang.tienes}} <span ng-if="chatConectado"></span>{{cantidadMsjPendientes()}} {{lang.mensajes_sin_leer}}</small></strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+    </div>
+<!-- FIN CHAT GENERAL OPCIONES -->
+    
+    
+
+
+
+<div class="row">
+  contenedor chat General 
+</div>
+
+
+<!-- <script>
+  jQuery(document).ready(function(){
+    jQuery('.scrollbar-inner').scrollbar();
+});
+</script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

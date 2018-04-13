@@ -1,0 +1,38 @@
+<div class="row">
+              <div class="col-md-12" >
+                <div class="x_panel">
+                  <div class="x_title">
+                    <div class="col-md-4"> <h2>Filtros <small> Listado de Filtros Creados </small></h2></div>
+                    <div class="col-md-4 col-md-offset-4 text-right"><input type="submit" name="" value="Crear Filtro" class="btn btn-primary" ng-click="crearFiltro()"></div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <div class="row">
+
+                      <p></p>
+
+                      <div class="col-md-55" ng-repeat="filtro in filtros track by $index">
+                        <div class="thumbnail">
+                          <div class="image view view-first" >
+                            <img class="img-responsive  center-block" ng-src="{{filtro.DataContenidoMM}}" alt="image" />
+                            <span infinite-scroll="cargarMultimediaFiltro(filtro)" infinite-scroll-disabled="filtro.Cargada"></span>
+                            <div class="mask">
+                              <p >Editar {{filtro.NombreFiltro}}</p>
+                              <div class="tools tools-bottom">
+                                <a ng-click="modificarFiltro(filtro)" style="cursor: pointer"><i class="fa fa-pencil cursor"></i></a>
+                                <a ng-click="eliminarFiltro(filtro, $index)"  style="cursor: pointer"><i class="fa fa-times"></i></a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="caption">
+                            <p class="text-center"><strong>{{filtro.NombreFiltro}}</strong></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>

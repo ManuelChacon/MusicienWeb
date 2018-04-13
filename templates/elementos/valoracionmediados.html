@@ -1,0 +1,11 @@
+{{lang.valoracion_usuario}}<br>
+<ul class="tools-public m-0 p-0">
+  <li ng-repeat="nota in notamusic track by $index" style="width: 10px;"><img ng-src="{{nota.url}}" width="10px"></li>
+  ( {{perfilUsuario.Valoracion/2}} {{lang.de}} 5 {{lang.notas}} )
+</ul>
+<span ng-if="logintrueynosoyyo()">
+  {{lang.tu_valoracion_usuario}}<br>
+  <ul class="tools-public m-0 p-0">
+    <li ng-repeat="nota in notamusic2 track by $index" style="width: 10px;"><img ng-click="valoraryanotar((+($index)+1)*2, 'V')" ng-mouseover="changeclass($index)" ng-mouseleave="changeoutclass($index)" ng-src="{{nota.url}}" width="10px"></li>
+  </ul>
+</span>

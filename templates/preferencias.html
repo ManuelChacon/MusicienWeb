@@ -1,0 +1,459 @@
+<div id="page-contents" ng-controller="chat">
+    <div class="container-fluid">
+
+      <div class="row">
+
+
+        <div class="col-md-2 sidebar {{clasecolumna()}}"  >
+
+           <mini-perfil></mini-perfil>
+
+          <encuentra></encuentra>
+
+          <top-semanal ></top-semanal>
+
+          <top-musicos ></top-musicos>
+          <spotify-playlist></spotify-playlist>
+
+        </div>
+
+
+    <div ng-controller="TabsDemoCtrl" class="col-md-5 post-content ">
+      <div class="text-center">
+              <h2>{{lang.mas_detalles}}</h2>
+              <p class="">{{lang.puedes_cambiar_o}} </p>
+            </div>
+        <form name="outerForm" class="tab-form-demo">
+
+          <uib-tabset active="activeb" justified="true">
+          <!--  TAB 1 PERFIL -->
+            <uib-tab index="0" heading="EDITAR PERFIL">
+             <ng-form name="">
+                <div class="form-group mb-5">
+                    <label for="exampleFormControlInput1">{{lang.nombre_usuario}}</label>
+                     <input type="text" class="form-control" id="" placeholder="{{usuario.Nombre}}" ng-model="usuario.Nombre">
+                    <small id="passwordHelpBlock" class="form-text text-muted">
+                        {{lang.tu_nombre_de}} <strong>{{usuario.Nombre}}</strong>
+                    </small>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-6">
+                      <div class="form-group">
+                          <label for="exampleFormControlFile1">{{lang.sube_una_imagen_para}}</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1" onchange="previsualizarFoto()">
+                      </div>
+                    </div>
+                    <div class="col-6">
+                    <!--   {{inputSeleccionada()}} -->
+                      <img alt="" id="img-contenedor" class="profile-photo-md pull-left m-1 " ng-click="cambiarPorInput()" ng-class="inputSeleccionada()">
+                      <!-- {{actualSeleccionada()}} -->
+                      <img ng-src="{{usuario.DataContenidoMM}}" alt="post-image" class="profile-photo-md pull-left m-1" ng-class="actualSeleccionada()" ng-click="cambiarPorActual()">
+                      <!-- {{defaultSeleccionada}} -->
+                      <img src="img/defaultprofile.png" alt="post-image" class="profile-photo-md pull-left m-1" ng-class="defaultSeleccionada()" ng-click="cambiarPorDefault()">
+                    </div>
+                  </div>
+                  <div class="row mb-5">
+                      <div class="col-6">
+                        <div class="form-group">
+                            <label for="exampleFormControlFile2">{{lang.sube_imagen_fondo}}</label>
+                          <input type="file" class="form-control-file" id="exampleFormControlFile2" onchange="previsualizarFondo()">
+                        </div>
+                      </div>
+                      <div class="col-6">
+                       <!--  {{inputFondoSeleccionada()}} -->
+                        <img alt="" id="imgfondo-contenedor" class="profile-photo-md pull-left m-1 " ng-click="cambiarFondoPorInput()" ng-class="inputFondoSeleccionada()">
+                       <!--  {{actualFondoSeleccionada()}} -->
+                        <img ng-if="usuario.ContenidoMMBanner" ng-src="{{usuario.DataContenidoMMBanner}}" alt="post-image" class="profile-photo-md pull-left m-1" ng-class="actualFondoSeleccionada()" ng-click="cambiarFondoPorActual()">
+                        <!--  <img src="img/conecta.png" alt="" class="profile-photo-md pull-left m-1">
+ -->                    <img src="img/img_defecto.jpg" alt="post-image" class="profile-photo-md pull-left m-1" ng-class="defaultFondoSeleccionada()" ng-click="cambiarPorFondoDefault()">
+                      </div>
+                    </div>
+                  <div class="row mb-2">
+                    <div class="col-12">
+                        <!-- <label for="">Escribe algo sobre tí, gustos, aficiones,etc.. </label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Me gusta leer, viajar, la buena musica..."></textarea> -->
+                      </div>
+                  </div>
+
+                  <div class="row">
+                        <div class="col-6">
+                        <div class="ng-cloak" ng-controller="DemoCtrl as ctrl">
+
+
+
+
+
+                        </div>
+
+                        <div id="perfiles" ng-repeat="tipoObjeto in usuario.TiposObjeto">
+                          <span ng-hide="!esTipoObjeto('T',tipoObjeto)">
+                           <!--  {{tipoObjeto.NombreTipoObjeto}} -->
+                          <!-- <div class="badge badge-dark ml-2" ng-repeat="objeto in tipoObjeto.Objetos">
+                            {{objeto.NombreObjeto}} -
+                          </div> -->
+                          </span>
+                          <!-- <span ng-hide="!esTipoObjeto('P',tipoObjeto)">
+                            {{tipoObjeto.NombreTipoObjeto}}
+                            <div ng-repeat="objeto in tipoObjeto.Objetos">
+                              {{objeto.NombreObjeto}}
+                            </div>
+                          </span> -->
+
+                        </div>
+
+
+
+                      </div>
+
+
+
+
+
+
+                      </div>
+
+                      <div class="row pt-2">
+                        <div class="col-6 offset-6 text-right">
+                          <img ng-if="guardandocambios" src="img/loader.gif" alt="" width="100px">
+                          <button type="" class="btn btn-sm btn-primary" ng-click="guardarCambiosUsuario()">{{lang.guardar_cambios}}</button>
+                        </div>
+                      </div>
+
+                      <hr>
+
+              </ng-form>
+               <div class="row">
+                <div class="col text-center mb-2">
+                  <h2>{{lang.mis_perfiles}}</h2>
+                  <small>{{lang.selecciona_uno}}</small>
+                </div>
+              </div>
+               <div class="row justify-content-center pt-3">
+
+
+
+                 <div ng-click="selectPerfil($index)" class="col-2 rol p-2 m-1 text-center " ng-repeat="perfil in usuario.Categorias">
+
+                     <img ng-src="{{perfil.DataContenidoMM}}" alt="" class="img-fluid d-block mx-auto ico-perfil" style="width: 40px;">
+                     <!--<span ng-repeat="propiedad in perfil.Propiedades"> {{propiedad.Valor}}</span>-->
+                     <a class='mostrar-rol'><small>{{perfil.Descripcion}}</small></a>
+
+                </div>
+
+
+                <div ng-click="anadirPerfil()" class="col-2 rol p-2 m-1 text-center ">
+                   <img src="img/anadir.png" alt="" class="img-fluid d-block mx-auto" style="width: 40px;">
+                  <small>{{lang.nuevo_perfil}}</small>
+                </div>
+
+              </div>
+               <!-- PANELES X ROL -->
+              <div id="perfil" ng-hide="!selectedPerfil">
+                <h2 class="mt-2">{{selectedPerfil.Descripcion}}</h2>
+                <div class="row">
+                  <div class="col-12">
+                  <span ng-repeat="propiedad in selectedPerfil.Propiedades">
+                      <div class="form-group">
+                        {{propiedad.NombrePropiedad}}
+                        <campo-propiedad>
+                        </campo-propiedad>
+                      <!--<label for="exampleFormControlTextarea1">{{propiedad.NombrePropiedad}}</label>
+                      <input type="text" name="" value="" class="form-control" ng-model="propiedad.Valor">-->
+                    </div>
+
+                  </span>
+                  </div>
+                </div>
+
+                <div class="mb-5">
+                  <formulario-objeto ng-repeat="tipoObjeto in selectedPerfil.Objetos" class="mb-5">
+
+                  </formulario-objeto>
+                </div>
+
+               <div class="col-12 mt-5  text-right">
+                 <button type="button" class="btn btn-secondary btn-lg" ng-click="actualizarPerfil()">{{lang.guardar}} </button>
+                 <button type="button" class="btn btn-secondary btn-lg" ng-click="eliminarPerfil()">{{lang.eliminar}} </button>
+               </div>
+               </div>
+               <hr>
+                <div id="perfil" ng-hide="!selectingPerfil" >
+                 <h4>{{lang.seleciona_nuevo_tipo_p}}</h4>
+                 <span class="row justify-content-center">
+                   <div ng-click="selectNewPerfil($index)" class="col-2 rol p-2 m-1 text-center " ng-repeat="perfil in perfilesdisp">
+                       <img ng-src="{{perfil.DataContenidoMM}}" alt="" class="img-fluid d-block mx-auto ico-perfil" style="width: 24px;">
+                       <a class='mostrar-rol'><small>{{perfil.Descripcion}}</small></a>
+                  </div>
+                 </span>
+                  <div class="col-12  text-right my-3">
+                    <button type="button" class="btn btn-secondary btn-lg" ng-click="cancelNewPerfil()">{{lang.cancelar}} </button>
+                  </div>
+                </div>
+
+
+            </uib-tab>
+              <!--FIN  TAB 1 PERFIL -->
+              <!--TAB 2 DATOS -->
+            <uib-tab index="1" heading="DATOS PERSONALES">
+                <small>{{lang.estos_datos_muestran}}</small>
+                <ng-form name="">
+                   <form class="mt-3">
+                    <!--<div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">Nombre</label>
+                        <input type="text" class="form-control" id="inputEmail4" placeholder="Nombre">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Apellidos</label>
+                        <input type="text" class="form-control" id="inputPassword4" placeholder="Apellidos">
+                      </div>
+                    </div>-->
+
+                    <div class="form-group">
+                      <label for="inputAddress2">{{lang.escribe_algo_ti}}</label>
+                      <textarea name="name" rows="8" cols="80" ng-model="usuario.Descripcion">
+                      </textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputAddress2">{{lang.localizacion}}</label>
+                      <input type="text" class="form-control" id="inputAddress4" placeholder="" ng-model="usuario.Localizacion">
+                    </div>
+                    <div class="form-group">
+                      <label for="inputAddress2">Web</label>
+                      <input type="text" class="form-control" id="inputAddress5" placeholder="" ng-model="usuario.Web">
+                    </div>
+                    <div class="form-group">
+                      <label for="inputAddress2">{{lang.telefono}}</label>
+                      <input type="text" class="form-control" id="inputAddress6" placeholder="" ng-model="usuario.Telefono">
+                    </div>
+                    <div class="form-group">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox"> {{lang.acepto_politica}} MUSICIEN
+                        </label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-6 offset-6 text-right">
+                          <img ng-if="guardandocambios" src="img/loader.gif" alt="">
+                         <button type="" class="btn btn-sm btn-primary" ng-click="guardarCambiosUsuario()">{{lang.guardar_cambios}}</button>
+                      </div>
+                    </div>
+
+                  </form>
+                </ng-form>
+            </uib-tab>
+              <!--FIN  TAB 2 DATOS -->
+              <!--TAB 3 PERSONALIZAR -->
+            <uib-tab index="2" heading="MIS SUSCRIPCIONES">
+              <span infinite-scroll="LeerPlanes()" infinite-scroll-disabled="planescargados"></span>
+             <div class="row">
+               <div class="col-12 mt-2">
+                 <h2>{{lang.suscripciones_activas}}</h2>
+               </div>
+               <div class="col-12">
+                 {{lang.actualmente_tienes}}
+               </div>
+
+             </div>
+
+             <div class="row">
+               <div class="col-6 " ng-repeat="plan in planesu">
+                        <div class="card bg-light mb-3" style="max-width: 20rem;">
+                              <div class="card-header">
+                                  <div class="row">
+                                    <div class="col-6"><h6>{{plan.NombrePlan}}</h6></div>
+                                    <div class="col-6 text-right">
+                                      <button type="button" class="btn  btn-xs btn-danger" ng-click="anularPlan(plan, $index)">
+                                         <i class="{{estaanulado(plan)}}" aria-hidden="true"></i>
+                                      </button>
+
+
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                  <strong>{{lang.caracteristicas}}:</strong>
+                                   <ul>
+                                     <li>{{plan.Titulo1}}</li>
+                                     <li>{{plan.Titulo2}}</li>
+                                     <li>{{plan.Titulo3}}</li>
+                                   </ul>
+
+                                  <span ng-repeat="tarifa in plan.Tarifas">
+                                    <p>
+                                      <strong>{{lang.tipo}}:</strong>
+                                                   {{tarifa.NombrePeriodicidad}}
+                                    </p>
+                                    <p>
+                                      <strong>{{lang.vigencia}}:</strong>
+                                                   {{plan.FechaFin}}
+                                                   </p>
+                                  </span>
+
+                                   <div class="row">
+
+                                  </div>
+
+
+
+
+
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-6 " ng-repeat="promo in promocionesu">
+                                                   <div class="card bg-light mb-3" style="max-width: 20rem;">
+                                                         <div class="card-header">
+                                                             <div class="row">
+                                                               <div class="col-6"><h6>{{promo.NombrePromocion}}</h6></div>
+                                                               <div class="col-6 text-right">
+                                                                 <button type="button" class="btn  btn-xs btn-danger" ng-click="anularPromo(promo, $index)">
+                                                                    <i class="{{estaanulado(promo)}}" aria-hidden="true" ></i>
+                                                                 </button>
+
+
+                                                                 </div>
+                                                               </div>
+                                                           </div>
+                                                           <div class="card-body">
+                                                            <strong>{{lang.caracteristicas}}:</strong>
+                                                             <ul>
+                                                               <li>{{promo.Titulo1}}</li>
+                                                               <li>{{promo.Titulo2}}</li>
+                                                               <li>{{promo.Titulo3}}</li>
+                                                             </ul>
+                                                             <strong>Planes:</strong>
+                                                              <ul>
+                                                                <li ng-repeat="plan in promo.Planes">{{plan.NombrePlan}}</li>
+                                                              </ul>
+                                                             <span ng-repeat="tarifa in promo.Tarifas">
+                                                               <p>
+                                                                 <strong>{{lang.tipo}}:</strong>
+                                                                              {{tarifa.NombrePeriodicidad}}
+                                                               </p>
+                                                               <p>
+                                                                 <strong>{{lang.vigencia}}:</strong>
+                                                                              {{promo.FechaFin}}
+                                                                              </p>
+                                                             </span>
+
+                                                              <div class="row">
+
+                                                             </div>
+
+
+
+
+
+                                                                         </div>
+                                                                       </div>
+                                                                     </div>
+                                            <div class="col-6 ">
+
+                                            </div>
+               </div>
+
+               <hr>
+
+               <div class="row">
+                 <div class="col-12">
+                   <h3> {{lang.planes_promociones}}</h3>
+                   <p>{{lang.echale_vistazo_planes}}</p>
+                 </div>
+                 <div class="col-12">
+                     <div class="card bg-light mb-3" >
+                     <div class="card-header">
+                                <h3>{{lang.planes_musicien}} MUSICIEN</h3>
+                                </div>
+                        <div class="card-body">
+                            <div class="col-12" ng-repeat="plan in planes">
+                   <span infinite-scroll="cargarMultimediaPlan(plan, $index)" infinite-scroll-disabled="plan.MultimediaCargada"></span>
+                  <img src="{{plan.DataContenidoMM}}" alt="" class="img-fluid d-block mx-auto" style="width: 30%;">
+                   <h6>  {{plan.NombrePlan}}</h6>
+                   <p><strong>{{plan.Descripcion1}}</strong></p>
+                 </div>
+                  <button type="" class="btn btn-primary mt-5" ng-click="contratar()">{{lang.mas_informacion}}</button>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="col-12">
+                     <div class="card bg-light mb-3" >
+                                <div class="card-header">
+                                <h3 style="text-transform: uppercase;">{{lang.promociones}}</h3>
+                                </div>
+                                  <div class="card-body">
+
+
+
+                              <div class="row text-center">
+                              <div class="col-6 p-2" ng-repeat="promo in promociones" ng-click="verPromo(promo)">
+                      <span infinite-scroll="cargarMultimediaPlan(promo, $index)" infinite-scroll-disabled="promo.MultimediaCargada"></span>
+                     <img src="{{promo.DataContenidoMM}}" alt="" class="img-fluid d-block mx-auto" style="width: 20%;">
+                    <!--  <img src="img/grupos.png" alt="" class="img-fluid d-block mx-auto" style="width: 20%;"> -->
+                     <h6 class="mb-0">{{promo.NombrePromocion}}</h6>
+                     <small class="text-muted">{{promo.DescripcionPromocion}}</small><br>
+
+                   </div>
+                   <div class="col-12 text-center">
+                      <button type="" class="btn btn-primary mt-5" ng-click="contratar()">{{lang.mas_informacion}}</button>
+
+                   </div>
+
+
+                                    </div>
+
+
+
+
+
+
+
+
+
+                                                </div>
+                                              </div>
+                 </div>
+                 <div class="col-12">
+                     <div class="card bg-light mb-3" >
+
+                                  <div class="card-body">
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                </div>
+                                              </div>
+                 </div>
+
+
+               </div>
+            </uib-tab>
+            <!-- FIN TAB 3 PERSONALIZAR -->
+          </uib-tabset>
+        </form>
+      </div>
+
+
+     <div class="col-md-3">
+           <planes></planes>
+          <sugerencias-can></sugerencias-can>
+      </div>
+       <div class="col-md-2" style="" >
+
+        </div>
+
+
+
+    </div>
+  </div>
+</div>

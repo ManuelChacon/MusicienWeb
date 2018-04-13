@@ -1,0 +1,176 @@
+<div class="row">
+  <div class="col-md-6 col-xs-12">
+    <h1>Publicaciones</h1>
+  </div>
+  <div class="col-md-6 col-xs-12 text-right" >
+    <input type="submit" name="" value="Guardar Cambios" class="btn btn-primary" ng-click="guardarCambios()">
+  </div>
+  <div class="col-md-12 col-xs-12">
+    <div class="x_panel">
+      <div class="">
+        <h2>Nombre de la Publicación</h2>
+      </div>
+        <div class="x_content">
+          <form  class="form-horizontal">
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombre de la Publicacion
+                </label>
+                <div class="col-md-9 col-xs-12">
+                  <input type="text" name="" value="" class="form-control" ng-model="publicacion.NombreTipo">
+                </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 col-sm-3 col-xs-12 control-label">Icono de la Publicación</label>
+              <div class="col-md-9 col-xs-12">
+                <input type="file" name="" value="" onchange="cambioImgPubli(this)" id="input-img-perfil">
+              </div>
+              <div class="col-md-12 text-center">
+                 <img class="ico-perfil" ng-src="{{ImagenDelPerfil(publicacion)}}" alt="" width="60px">
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+    </div>
+    <div class="x_panel">
+      <div class="">
+        <h2>Propiedades de la Publicación</h2>
+      </div>
+      <div class="x_content">
+          <form  class="form-horizontal">
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">Seleccionar una de las propiedades disponibles
+            </label>
+            <div class="col-md-9 col-xs-12">
+              <select class="form-control" name="" ng-model="selectedProperty" ng-change="AnadirPropiedad()">
+                <option value="{{propiedad}}" ng-repeat="propiedad in propiedades | filter:noenlista"> {{propiedad.NombrePropiedad}}</option>
+              </select>
+            </div>
+            <div class="clearfix"></div>
+            <hr>
+              <div class="col-md-12 col-xs-12">
+                <div class="tile-stats">
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <small>Elementos seleccionados que aparecen en la Publicación</small>
+                      <div class="clearfix"> </div>
+                      <br><br>
+                         <ul class="list-unstyled text-center">
+                          <li ng-repeat="propiedad in publicacion.Propiedades track by $index"> 
+
+                          <span class="tag">
+                            <span>
+                              <input class="instrumentos_tag" type="text" ng-model="propiedad.NombrePropiedad">
+
+                              <a type="button" name="button" ng-click="eliminarPropiedad($index)"> 
+
+                              X</a>
+                            </span>
+                          </span>
+                          </li>
+                        </ul>
+                     
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                
+              </div>
+
+            </div>
+          </form>
+      </div>
+    </div> 
+  </div>
+  <div class="col-md-12">
+    <div class="x_panel">
+      <div class="">
+        <h2>Crear nueva propiedad</h2>
+      </div>
+      <div class="x_content">
+       <form  class="form-horizontal">
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombre de la Propiedad
+                </label>
+                <div class="col-md-9 col-xs-12">
+                    <input class="form-control" type="text" name="" value="" ng-model="newPropiedad.NombrePropiedad">
+                </div>
+            </div>
+            <div class="form-group">
+              <label  class="control-label col-md-3 col-xs-12">Seleccione el tipo de propiedad </label>
+              <div class="col-md-9 col-md-3">
+                <select class="form-control" name="" ng-model="newPropiedad.TipoValor">
+                  <option value="C">Texto</option>
+                  <option value="T">Área de Texto</option>
+                  <option value="I">Imagen</option>
+                  <option value="S">Sonido</option>
+                  <option value="V">Video</option>
+                  <option value="R">Lista de Reproducción</option>
+                  <option value="M">Precio</option>
+                  <option value="D">Fecha</option>
+                  <option value="Y">Antigüedad</option>
+                  <option value="J">Botón</option>
+                  <option value="L">Enlace</option>
+                  <option value="A">Galería Imágenes</option>
+                </select>
+                <div class="col-md-12 col-md-12" style="margin-top: 20px;">
+                <input type="submit" name="" value="Crear Propiedad" class="form-control btn-primary " ng-click="crearPropiedad()">
+              </div>
+              </div>
+              
+            </div>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 text-right">
+     <input type="submit" name="" value="Guardar Cambios" class="btn btn-primary" ng-click="guardarCambios()">
+  </div>
+</div>
+
+
+
+
+
+<!-- <div>
+  <div class="login_wrapper panel-body">
+    <input type="text" name="" value="" class="form-control" ng-model="publicacion.NombreTipo">
+
+    <img class="ico-perfil" ng-src="{{ImagenDelPerfil(publicacion)}}" alt="" width="20px">
+    <input type="file" name="" value="" onchange="cambioImgPubli(this)" id="input-img-perfil">
+    <div class="">
+      <h3>Propiedades</h3>
+      <h4>Seleccionar una de las propiedades disponibles</h4>
+      <select class="form-control" name="" ng-model="selectedProperty" ng-change="AnadirPropiedad()">
+        <option value="{{propiedad}}" ng-repeat="propiedad in propiedades | filter:noenlista"> {{propiedad.NombrePropiedad}}</option>
+      </select>
+      <div class="">
+        <h4>Crear Nueva Propiedad</h4>
+        <input class="form-control" type="text" name="" value="" ng-model="newPropiedad.NombrePropiedad">
+        <select class="form-control" name="" ng-model="newPropiedad.TipoValor">
+          <option value="C">Texto</option>
+          <option value="T">Área de Texto</option>
+          <option value="I">Imagen</option>
+          <option value="S">Sonido</option>
+          <option value="V">Video</option>
+          <option value="R">Lista de Reproducción</option>
+          <option value="M">Precio</option>
+          <option value="D">Fecha</option>
+          <option value="Y">Antigüedad</option>
+          <option value="J">Botón</option>
+          <option value="L">Enlace</option>
+          <option value="A">Galería Imágenes</option>
+        </select>
+        <input type="submit" name="" value="Crear Propiedad" class="form-control" ng-click="crearPropiedad()">
+      </div>
+      <ul>
+        <li ng-repeat="propiedad in publicacion.Propiedades track by $index"> <input type="text" ng-model="propiedad.NombrePropiedad"><button type="button" name="button" ng-click="eliminarPropiedad($index)"> <i class="glyphicon glyphicon-remove"></i></button></li>
+      </ul>
+    </div>
+    <input type="submit" name="" value="Guardar Cambios" class="btn btn-primary" ng-click="guardarCambios()">
+  </div>
+</div>
+ -->

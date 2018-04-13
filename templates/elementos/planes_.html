@@ -1,0 +1,30 @@
+
+   <div   >
+     <div class="p-2  col-derecha  " >
+        <div class="col-derecha p-2 text-center " >
+               <small ng-click="verPlanes()">Contrata nuestros planes y promos</small>
+               <h4 class="grey" ng-click="verPlanes()"> <img src="img/planes.png" class="img-fluid"> Planes Musicien</h4>
+               <div class="col-12">
+                 <img src="img/plan3.jpg" alt="" class="img-fluid img-thumbnail">
+                 <h6 ng-repeat="plan in planes" ng-click="verPlan(plan)">{{plan.NombrePlan}}</h6>
+
+               </div>
+               <hr>
+                <h4 class="grey" ng-click="verPlanes()"> <img src="img/victoria.png" class="img-fluid"> Promos</h4>
+
+                 <div class="col-12">
+                   <span ng-repeat="promo in promociones" ng-click="verPromo(promo)">
+                     <h6 class="mb-0">{{promo.NombrePromocion}}</h6>
+                     <small class="text-muted">{{promo.DescripcionPromocion}}</small><br>
+                   </span>
+
+                 <button type="" class="btn btn-primary">Más Información</button>
+               </div>
+           </div>
+     </div>
+
+   </div>
+
+   
+
+

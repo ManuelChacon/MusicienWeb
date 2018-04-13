@@ -1,0 +1,281 @@
+ <!-- top tiles -->
+          <div class="row tile_count" ng-if="estadisticas">
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count cursor"  ng-click="cambioPagina(1)" >
+              <span class="count_top"><i class="fa fa-user"></i> Total de Usuarios</span>
+              <div class="count">{{estadisticas.TotalUsuarios}}</div>
+              <span class="count_bottom"><i class="{{color}}" ng-controller="porcentaje" ng-init="init(estadisticas.TotalUsuarios, estadisticas.TotalUsuariosSemanaAnterior)"><i class="{{clasesort}}"></i>{{porcentaje}}% </i> {{mas}} que la semana pasada</span>
+              <div class="col-md-12 text-center">
+              <hr>
+                <button ng-click="cambioPagina(1)" type="button" class="btn btn-dark btn-xs" data-toggle="tooltip" data-placement="bottom" data-original-title="VER TODOS"><i class="fa fa-users"></i> Ver todos los usuarios</button>
+              </div>
+
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count cursor" ng-click="cambioPagina(2)">
+              <span class="count_top"><i class="fa fa-user"></i> Total Nuevos Usuarios</span>
+              <div class="count green">{{estadisticas.TotalUsuariosRegistradosEstaSemana}}</div>
+              <span class="count_bottom"><i class="{{color}}" ng-controller="porcentaje" ng-init="init(estadisticas.TotalUsuariosRegistradosEstaSemana, estadisticas.TotalUsuariosRegistradosSemanaAnterior)"><i class="{{clasesort}}"></i>{{porcentaje}}% </i> {{mas}} que la semana pasada</span>
+
+               <div class="col-md-12 text-center">
+              <hr>
+                <button ng-click="cambioPagina(2)" type="button" class="btn btn-dark btn-xs" data-toggle="tooltip" data-placement="bottom" data-original-title=""><i class="fa fa-user"></i> Ver nuevos usuarios</button>
+              </div>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count cursor" ng-click="cambioPagina(3)">
+              <span class="count_top"><i class="fa fa-bookmark"></i> Total Nuevos Planes de Pago</span>
+              <div class="count">{{estadisticas.TotalPlanesEstaSemana}}</div>
+              <span class="count_bottom"><i class="{{color}}" ng-controller="porcentaje" ng-init="init(estadisticas.TotalPlanesEstaSemana, estadisticas.TotalPlanesSemanaAnterior)"><i class="{{clasesort}}"></i>{{porcentaje}}% </i> {{mas}} que la semana pasada</span>
+
+
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count cursor" ng-click="cambioPagina(3)">
+              <span class="count_top"><i class="fa  fa-thumbs-up"></i> Total Planes de Pago</span>
+              <div class="count">{{estadisticas.TotalPlanes}}</div>
+              <span class="count_bottom"><i class="{{color}}" ng-controller="porcentaje" ng-init="init(estadisticas.TotalPlanesExistentesSemanaAnterior, estadisticas.TotalPlanesSemanaAnterior)"><i class="{{clasesort}}"></i>{{porcentaje}}% </i> {{mas}} que la semana pasada</span>
+              <div class="col-md-12 text-center">
+              <hr>
+                <button ng-click="cambioPagina(3)" type="button" class="btn btn-dark btn-xs" data-toggle="tooltip" data-placement="bottom" data-original-title="VER TODOS"><i class="fa fa-thumbs-up"></i> Ver Planes Contratados</button>
+              </div>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count cursor" ng-click="cambioPagina(4)">
+              <span class="count_top"><i class="fa fa-thumbs-up"></i> Interacciones de Usuarios </span>
+              <div class="count">{{estadisticas.TotalInteracciones}}</div>
+              <span class="count_bottom"><i class="{{color}}" ng-controller="porcentaje" ng-init="init(estadisticas.TotalInteraccionesEstaSemana, estadisticas.TotalInteraccionesSemanaAnterior)"><i class="{{clasesort}}"></i>{{porcentaje}}% </i> {{mas}} que la semana pasada</span>
+              <div class="col-md-12 text-center">
+              <hr>
+                <button ng-click="cambioPagina(4)" type="button" class="btn btn-dark btn-xs" data-toggle="tooltip" data-placement="bottom" data-original-title="VER "><i class="fa fa-thumbs-up"></i> Ver interacciones</button>
+              </div>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count cursor" ng-click="cambioPagina(5)">
+              <span class="count_top"><i class="glyphicon glyphicon-pencil"></i> Publicaciones </span>
+              <div class="count">{{estadisticas.TotalPublicaciones}}</div>
+              <span class="count_bottom"><i class="{{color}}" ng-controller="porcentaje" ng-init="init(estadisticas.TotalPublicacionesEstaSemana, estadisticas.TotalPublicacionesSemanaAnterior)"><i class="{{clasesort}}"></i>{{porcentaje}}% </i> {{mas}} que la semana pasada</span>
+               <div class="col-md-12 text-center">
+              <hr>
+                <button ng-click="cambioPagina(5)" type="button" class="btn btn-dark btn-xs" data-toggle="tooltip" data-placement="bottom" data-original-title="VER "><i class="glyphicon glyphicon-pencil"></i> Ver publicaciones</button>
+              </div>
+            </div>
+          </div>
+          <div class="">
+            <uib-tabset active="active" type="pills">
+              <uib-tab index="1" classes="tab-usuarios">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="x_panel">
+                      <div class="x_content">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="invoice-header">
+                              <h1 class="text-center"> <i class="fa fa-users"></i>Usuarios en Musicien</h1>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="input-group">
+                              <input type="text" class="form-control" placeholder="Buscar Usuarios">
+                              <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="col-12" style="padding: 30px;">
+                             <tabla-usuarios>
+                            </tabla-usuarios>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </uib-tab>
+
+              <!-- TAB PLANES Y PROMOS -->
+              <uib-tab index="2" classes="tab-usuarios">
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="x_panel">
+                        <div class="x_content">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="invoice-header">
+                                <h1 class="text-center"> <i class="fa fa-user"></i>Nuevos Usuarios en Musicien</h1>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Buscar Usuarios">
+                                <span class="input-group-btn">
+                                  <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                              </div>
+                            </div>
+                            <div class="col-12" style="padding: 30px;">
+                               <tabla-usuarios>
+                              </tabla-usuarios>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </uib-tab>
+              <!-- TAB PLANES -->
+              <uib-tab index="3" classes="tab-usuarios">
+              <div class="row">
+                  <div class="col-md-12">
+                    <div class="x_panel">
+                      <div class="x_content">
+                        <div class="row mt-2">
+                          <div class="col-md-6">
+                            <div class="invoice-header">
+                              <h1 class="text-center"> <i class="fa fa-bookmark"></i> Planes y Promos Contratados</h1>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="input-group">
+                              <input type="text" class="form-control" placeholder="Buscar...">
+                              <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="col-12" style="padding: 30px;">
+
+                            <uib-tabset active="pn" >
+                              <uib-tab index="1" active>
+                                <uib-tab-heading>
+                                 <i class="glyphicon glyphicon-star"></i> PLANES
+                                </uib-tab-heading>
+
+                                <span infinite-scroll="verPlanesPromos(1)" infinite-scroll-disabled="planesperiodos"></span>
+                                <table class="table table-striped">
+                                  <tr>
+                                    <th>Usuario</th>
+                                    <th>Plan</th>
+                                    <th>Periodicidad</th>
+                                    <th>Fecha Inicial</th>
+                                    <th>Fecha Final</th>
+                                  </tr>
+                                  <tr ng-repeat="plan in planesperiodos[pagina]">
+
+                                    <td ng-click="verUsuario(plan.IDUsuario)" class="cursor"><i class="fa fa-info-circle"></i> {{plan.Nombre}}</td>
+                                    <td>{{plan.NombrePlan}}</td>
+                                    <td>{{plan.NombrePeriodicidad}}</td>
+                                    <td>{{transformarFecha(plan.FechaInicio).Fecha}}</td>
+                                    <td>{{transformarFecha(plan.FechaFin).Fecha}}</td>
+                                  </tr>
+                                </table>
+                                 <button class="btn btn-primary" type="submit" name="" value="<" ng-click="haciaAtras(1)"><i class="fa fa-arrow-circle-left"></i> Anterior</button>
+                                <button class="btn btn-primary" type="submit" name="" value=">" ng-click="haciaAdelante(1)">Siguiente <i class="fa fa-arrow-circle-right"></i></button>
+                              </uib-tab>
+                              <uib-tab index="2">
+                                <uib-tab-heading>
+                                 <i class="glyphicon glyphicon-bookmark"></i> PROMOCIONES
+                                </uib-tab-heading>
+                                <span infinite-scroll="verPlanesPromos(2)" infinite-scroll-disabled="promocionesperiodos"></span>
+                                <table class="table table-striped">
+                                  <tr>
+                                    <th>Usuario</th>
+                                    <th>Promocion</th>
+                                    <th>Periodicidad</th>
+                                    <th>Fecha Inicial</th>
+                                    <th>Fecha Final</th>
+                                  </tr>
+                                  <tr ng-repeat="promo in promocionesperiodos[pagina]">
+                                    <td ng-click="verUsuario(promo.IDUsuario)" class="cursor"><i class="fa fa-info-circle"></i>  {{promo.Nombre}}</td>
+                                    <td>{{promo.NombrePromocion}}</td>
+                                    <td>{{promo.NombrePeriodicidad}}</td>
+                                    <td>{{transformarFecha(promo.FechaInicio).Fecha}}</td>
+                                    <td>{{transformarFecha(promo.FechaFin).Fecha}}</td>
+                                  </tr>
+                                </table>
+                                <button class="btn btn-primary" type="submit" name="" value="<" ng-click="haciaAtras(2)"><i class="fa fa-arrow-circle-left"></i> Anterior</button>
+                                <button class="btn btn-primary" type="submit" name="" value=">" ng-click="haciaAdelante(2)">Siguiente <i class="fa fa-arrow-circle-right"></i></button>
+                              </uib-tab>
+                            </uib-tabset>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </uib-tab>
+              <!-- /TAB PLANES -->
+             <!--  TAB INTERACCIONES -->
+              <uib-tab index="4" classes="tab-usuarios">
+
+                <div class="x_panel">
+                <div class="x_title">
+                  <h2>INTERACIONES <small> de usuarios</small></h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <ul class="list-unstyled timeline">
+                    <li ng-repeat="accion in actions[pagina] track by $index">
+                      <div class="block" style="margin: 0 0 0 200px !important">
+                        <div class="tags">
+
+                            <span>{{accion.NombreUsuario}}</span>
+
+                        </div>
+                        <div class="block_content">
+                          <h2 class="title">
+                                        {{accion.Texto}}
+                                      </h2>
+                          <div class="byline">
+                            <span>{{calcularTiempo(accion)}}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+
+                <button class="btn btn-primary" type="submit" name="" ng-click="haciaAtras()">
+                  <i class="fa fa-arrow-circle-left"></i> Anterior
+                </button>
+                <button class="btn btn-primary" type="submit" name="" value=">" ng-click="haciaAdelante()">
+                  Siguiente <i class="fa fa-arrow-circle-right"></i>
+                </button>
+
+                </div>
+              </div>
+              </uib-tab>
+
+              <!-- /TAB INTERACCIONES -->
+              <!-- PUBLICACIONES -->
+              <uib-tab index="5" classes="tab-usuarios">
+                <div class="x_panel">
+                  <div class="x_content">
+                     <table class="table table-striped" >
+                      <tr>
+                        <th>Publicacion</th>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                        <th>Colocar en Top</th>
+                        <th class="text-center">Eliminar Publicación</th>
+                      </tr>
+                        <tr ng-repeat="publicacion in publicaciones[pagina]">
+                          <td>{{publicacion.Titulo}}</td>
+                          <td ng-click="verUsuario(publicacion.Usuario.IDUsuario)" class="cursor">{{publicacion.Usuario.Nombre}}</td>
+                          <td>{{transformarFecha(publicacion.Creacion).Fecha}}</td>
+                          <td class="text-center" > <button type="" class="btn btn-primary" ng-click="hacerTopPublicacion(publicacion, $index)"><i class="{{claseFijadaUTop(publicacion.EnTop)}}"></i></button></td>
+                          <td class="text-center" > <button type="" class="btn btn-danger" ng-click="eliminarPublicacion(publicacion, $index)"><i class="glyphicon glyphicon-remove"></i></button></td>
+                        </tr>
+                </table>
+                 <button class="btn btn-primary" type="submit" name="" ng-click="haciaAtras()">
+                  <i class="fa fa-arrow-circle-left"></i> Anterior
+                </button>
+                <button class="btn btn-primary" type="submit" name="" value=">" ng-click="haciaAdelante()">
+                  Siguiente <i class="fa fa-arrow-circle-right"></i>
+                </button>
+                  </div>
+
+                </div>
+
+              </uib-tab>
+             <!--  /PUBLICACIONES -->
+            </uib-tabset>
+
+
+
+          </div>
+<!-- /top tiles -->

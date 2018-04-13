@@ -1,0 +1,260 @@
+<div class="row ">
+  <div class="col-md-6 col-xs-12">
+  <h1> <i class="fa fa-puzzle-piece" aria-hidden="true"></i> Editar elementos de Perfil</h1>
+</div>
+<div class="col-md-6 col-xs-12 text-right" >
+  <input type="submit" name="" value="Guardar Cambios" class="btn btn-primary" ng-click="guardarCambios()">
+</div>
+</div>
+
+<div class="col-md-12 col-xs-12">
+  <div class="x_panel">
+    <div class="x_content">
+      <form  class="form-horizontal">
+        <div class="form-group">
+         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre elemento de perfíl</label>
+         <div class="col-md-9 col-xs-12">
+            <input type="text" name="" value="" class="form-control" ng-model="tipoObjeto.NombreTipoObjeto">
+         </div>
+        </div>
+        <div class="form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripción</label>
+           <div class="col-md-9 col-xs-12">
+             <input type="text" name="" value="" class="form-control" ng-model="tipoObjeto.DescripcionTipoObjeto">
+           </div>
+        </div>
+        <div class="form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Texto de Ayuda</label>
+           <div class="col-md-9 colxs-12">
+             <textarea type="text" name="" value="" class="form-control" ng-model="tipoObjeto.DescripcionAyuda"></textarea>
+           </div>
+        </div>
+        <div class="form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Descripción que aparece en el perfíl del usuario</label>
+           <div class="col-md-9 colxs-12">
+            <input type="text" name="" value="" class="form-control" ng-model="tipoObjeto.DescripcionEnPerfil">
+           </div>
+        </div>
+         <div class="form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Pregunta que le hacemos al usuario</label>
+           <div class="col-md-9 colxs-12">
+            <input type="text" name="" value="" class="form-control" ng-model="tipoObjeto.DescripcionPregunta">
+           </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12 col-xs-12">
+  <div class="x_panel">
+    <div class="x_content">
+      <form  class="form-horizontal">
+        <div class="form-group">
+          <label class="control-label col-md-12 col-sm-12 col-xs-12" for="first-name"><strong><h3>{{obtenerTipoCaracteristica()}}</h3></strong> </label>
+        </div>
+        <div class="form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">¿Que tipo de elemento es?</label>
+           <div class="col-md-9 colxs-12">
+             <select class="form-control" name="" ng-model="newTipo" ng-change="tipoCambiado(this)">
+                <option value="T">Etiquetas</option>
+                <option value="P">Tarjetas</option>
+              </select>
+             <small>Dependiendo del tipo de elemento seleccionado las Opciones que le damos al usuario cambian.  </small>
+           </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-xs-12">
+            <h2>
+              Opciones que damos a elegir al usuario
+            </h2>
+          </div>
+        </div>
+        <div class="form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre Opción</label>
+           <div class="col-md-9 colxs-12">
+              <input type="text" name="" class="form-control" ng-model="newObjeto.NombreObjeto">
+           </div>
+        </div>
+        <div class="form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Icono(opcional)</label>
+           <div class="col-md-9 col-xs-12">
+              <img style="width:60px" ng-src="{{newObjeto.newContenidoMM}}" alt="">
+              <input class="form-control" type="file" name="" value="" onchange="cambioIconoOpcion(this)" id="input-img-perfil">
+           </div>
+           <div class="col-md-12 text-center" style="margin-top: 15px;">
+             <input type="submit" class="form-control  btn-lg" name="" value="Añadir Opción" ng-click="anadirObjeto()">
+           </div>
+        </div>
+        <div class="form-group">
+          <div class="tile-stats">
+            <div class="row" >
+              <div class="col-md 12">
+                <ul class="list-unstyled list-inline" style="padding: 20px;">
+                <li ng-repeat="objeto in tipoObjeto.Objetos track by $index">
+                  <span class="tag"><span>
+                    <input class="instrumentos_tag" type="text" ng-model="objeto.NombreObjeto">
+                 <a ng-click="eliminarObjeto($index)" title="Removing tag">x</a></span>
+                </li>
+              </ul>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="col-md-12 col-xs-12" ng-hide="tipoObjeto.TienePropiedades<1">
+  <div class="x_panel">
+    <div class="x_content">
+      <form  class="form-horizontal">
+        <div class="form-group">
+          <h3>
+            Propiedades que se rellenan en cada elemento de perfil del tipo Tarjetas
+          </h3>
+        </div>
+        <div class="form-group">
+           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Seleccionar una de las propiedades disponibles</label>
+           <div class="col-md-9 colxs-12">
+             <select class="form-control" name="" ng-model="selectedProperty" ng-change="AnadirPropiedad()">
+              <option value="{{propiedad}}" ng-repeat="propiedad in propiedades | filter:noenlista"> {{propiedad.NombrePropiedad}}</option>
+            </select>
+           </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-12">
+            <h3>Crear nueva propiedad</h3>
+          </div>
+          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre propiedad</label>
+           <div class="col-md-9 col-xs-12">
+               <input class="form-control" type="text" name="" value="" ng-model="newPropiedad.NombrePropiedad">
+           </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Selecciona un tipo</label>
+          <div class="col-md-9 col-xs-12">
+             <select class="form-control" name="" ng-model="newPropiedad.TipoValor">
+                <option value="C">Texto</option>
+                <option value="T">Área de Texto</option>
+                <option value="I">Imagen</option>
+                <option value="S">Sonido</option>
+                <option value="V">Video</option>
+                <option value="R">Lista de Reproducción</option>
+                <option value="M">Precio</option>
+                <option value="D">Fecha</option>
+                <option value="Y">Antigüedad</option>
+                <option value="J">Botón</option>
+                </select>
+            </div>
+            <div class="col-md-12 text-center" style="margin-top: 15px;">
+             <input type="submit" name="" value="Crear Propiedad" class="form-control" ng-click="crearPropiedad()">
+           </div>
+        </div>
+        <div class="clearfix"></div>
+        <hr>
+        <div class="form-group">
+          <ul class="list-unstyled list-inline"  style="padding: 20px;">
+            <!--<li ng-repeat="propiedad in tipoObjeto.Propiedades track by $index">
+
+              <span class="tag"><span>{{propiedad.NombrePropiedad}} &nbsp;&nbsp;</span><a ng-click="eliminarPropiedad($index)" title="Removing tag">x</a></span>
+
+            </li>-->
+            <li ng-repeat="propiedad in tipoObjeto.Propiedades track by $index">
+              <span class="tag"><span>
+                <input class="instrumentos_tag" type="text" ng-model="propiedad.NombrePropiedad">
+             <a ng-click="eliminarPropiedad($index)" title="Removing tag">x</a></span>
+            </li>
+          </ul>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="col-md-12 col-xs-12 text-right">
+  <div class="x_panel">
+    <div class="x_content">
+      <form  class="form-horizontal">
+        <div class="form-group">
+         <input type="submit" name="" value="Guardar Cambios" class="btn btn-primary" ng-click="guardarCambios()">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- <div>
+  <div class="login_wrapper panel-body">
+    <h3>Nombre Característica</h3>
+    <input type="text" name="" value="" class="form-control" ng-model="tipoObjeto.NombreTipoObjeto">
+    <h4>Descripcion</h4>
+    <input type="text" name="" value="" class="form-control" ng-model="tipoObjeto.DescripcionTipoObjeto">
+    <h4>Descripción de ayuda</h4>
+    <textarea type="text" name="" value="" class="form-control" ng-model="tipoObjeto.DescripcionAyuda">
+    </textarea>
+    <h4>Descripción que aparece en el perfil</h4>
+    <input type="text" name="" value="" class="form-control" ng-model="tipoObjeto.DescripcionEnPerfil">
+    <h4>Pregunta que le hacemos al usuario</h4>
+    <input type="text" name="" value="" class="form-control" ng-model="tipoObjeto.DescripcionPregunta">
+
+    <div class="">
+      <h4>¿Qué tipo de Característica es?</h4>
+      {{obtenerTipoCaracteristica()}}
+      <select class="form-control" name="" ng-model="newTipo" ng-change="tipoCambiado(this)">
+        <option value="T">Etiquetas</option>
+        <option value="P">No se como llamar a esto</option>
+      </select>
+    </div>
+
+    <div class="">
+      <h3>Añade las opciones que le damos al usuario.</h3>
+      Nombre Opción:
+      <input type="text" name="" class="form-control" ng-model="newObjeto.NombreObjeto">
+      Icono (opcional):
+      <img style="width:20px" ng-src="{{newObjeto.newContenidoMM}}" alt="">
+      <input type="file" name="" value="" onchange="cambioIconoOpcion(this)" id="input-img-perfil">
+      <input type="submit" class="form-control" name="" value="Añadir Opción" ng-click="anadirObjeto()">
+      <div class="">
+        <ul>
+          <li ng-repeat="objeto in tipoObjeto.Objetos track by $index">{{objeto.NombreObjeto}}  <button type="button" name="button" ng-click="eliminarObjeto($index)"> <i class="glyphicon glyphicon-remove"></i></button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="" ng-hide="tipoObjeto.TienePropiedades<1">
+      <h3>Propiedades que se rellenan en cada registro de este tipo de característica</h3>
+      <h4>Seleccionar una de las propiedades disponibles</h4>
+      <select class="form-control" name="" ng-model="selectedProperty" ng-change="AnadirPropiedad()">
+        <option value="{{propiedad}}" ng-repeat="propiedad in propiedades | filter:noenlista"> {{propiedad.NombrePropiedad}}</option>
+      </select>
+      <div class="">
+        <h4>Crear Nueva Propiedad</h4>
+        <input class="form-control" type="text" name="" value="" ng-model="newPropiedad.NombrePropiedad">
+        <select class="form-control" name="" ng-model="newPropiedad.TipoValor">
+          <option value="C">Texto</option>
+          <option value="T">Área de Texto</option>
+          <option value="I">Imagen</option>
+          <option value="S">Sonido</option>
+          <option value="V">Video</option>
+          <option value="R">Lista de Reproducción</option>
+          <option value="M">Precio</option>
+          <option value="D">Fecha</option>
+          <option value="Y">Antigüedad</option>
+          <option value="J">Botón</option>
+
+        </select>
+        <input type="submit" name="" value="Crear Propiedad" class="form-control" ng-click="crearPropiedad()">
+      </div>
+      <ul>
+        <li ng-repeat="propiedad in tipoObjeto.Propiedades track by $index"> {{propiedad.NombrePropiedad}} <button type="button" name="button" ng-click="eliminarPropiedad($index)"> <i class="glyphicon glyphicon-remove"></i></button></li>
+      </ul>
+    </div>
+    <input type="submit" name="" value="Guardar Cambios" class="btn btn-primary" ng-click="guardarCambios()">
+  </div>
+</div>
+ -->

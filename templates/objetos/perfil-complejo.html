@@ -1,0 +1,9 @@
+
+<div class="col-12 mt-1 p-1 my-5" ng-repeat="objeto in tipoObjeto.Objetos track by $index" style="border: 1px dotted #666; border-radius: 4px;">
+    <h6> {{objeto.NombreObjeto}}</h6>
+    <span ng-repeat="propiedad in objeto.Propiedades" ng-if="NotNull(propiedad.Valor)">
+        <p class=""> {{propiedad.NombrePropiedad}}: <contenedor-propiedades></contenedor-propiedades>   </p> 
+                  
+      </span>
+</div>
+

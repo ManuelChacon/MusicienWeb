@@ -1,0 +1,15 @@
+<table>
+  <tr>
+    <th>Cupón</th>
+    <th>Fecha Inicio</th>
+    <th>Fecha Fin</th>
+  </tr>
+  <tr ng-repeat="cupon in cupones">
+    <td>{{cupon.Texto}}</td>
+    <td>{{transformarFecha(cupon.FechaDesde).Fecha}}</td>
+    <td>{{transformarFecha(cupon.FechaHasta).Fecha}}</td>
+    <td><i class="glyphicon glyphicon-pencil" ng-click="modificarCupon(cupon)"></i></td>
+    <td ng-click="eliminarCupon(cupon, $index)"><i class="glyphicon glyphicon-remove"></i></td>
+  </tr>
+</table>
+<input type="submit" name="" value="Crear nuevo" class="btn btn-primary" ng-click="crearCupon()">

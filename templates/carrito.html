@@ -1,0 +1,202 @@
+<div id="page-contents">
+  <div class="container-fluid">
+    <div class="row">
+
+       <div  class="col-md-12 post-content ">
+          <div class="text-center mb-5">
+
+
+
+            <h1 class="mt-3">{{lang.este_es_carrito}}</h1>
+            <div class="col-12" ng-if="contentCarrito().length<1">
+
+              <div class="row justify-content-center">
+                <div class="col-6 text-center p-4">
+                  <!-- <img src="img/opss.png" class="img-fluid" alt=""></div> -->
+                  <i class="ion-android-cart" aria-hidden="true" style="    font-size: 15em;"></i>
+                  </div>
+                <div class="col-6 text-left align-self-center p-4">
+                  <h1 class="grey ">
+                    {{lang.carrito_vacio}}
+                  </h1>
+                  <h3 ng-click="contratar()" class="cursor" style="cursor: pointer;"> <span class="" > {{lang.vistazo_planes_promos}}</span></h3>
+                </div>
+              </div>
+
+            </div>
+
+              <div ng-click="consoleCarrito()" class="">
+              </div>
+               <span ng-if="contentCarrito().length>0">
+                 <p style="font-weight: 600;"> {{lang.vas_a_contratar}}</p>
+               </span>
+
+              <div class="" ng-repeat="articulo in contentCarrito()">
+              <!-- PROMOCIONES -->
+                <span ng-hide="noesTipo('PR', articulo)">
+                  <div class="container-fluid" style="border-bottom: 2px solid #f3f3f3;">
+                   <div class="row mx-5 my-1 p-4 align-items-center">
+                     <div class="col-3">
+                           <img ng-src="{{articulo.DataContenidoMM}}" alt="" class="img-fluid mx-auto d-block" style="width:50%;">
+                      </div>
+                     <div class="col-2 text-left">
+                     <p>
+                       <strong><i class="ion-information-circled d-flex mx-auto" style="font-size: 29px;line-height: 33px !important; width: 30px;"></i><span >{{lang.ojo_marca}}</span></strong>
+                     </p>
+                        <ul>
+                               <li  ng-repeat="plan in articulo.Planes" >
+                                 <div class="checkbox{{plan.Checked}} mr-2" ng-click="cambioSelectedPlan(articulo, plan)">
+                                 </div>
+                                 <span class="ml-2"> {{plan.NombrePlan}}</span></li>
+                        </ul>
+                     </div>
+                     <div class="col-6 text-center" style="border-left: 1px dotted #f19103;">
+                       <div class="row justify-content-center align-items-center" ng-repeat="tarifa in articulo.Tarifas track by $index">
+                         <div class="col text-center mb-3" style=" border-bottom: 1px dotted #666;">
+                              {{tarifa.Texto}}
+
+
+                         </div>
+                         <div class="col-5 text-center p-4">
+                           <div class="capa-precios-carrito">
+                              <span class="n-precio"  >
+                                <input class="" type="radio" ng-change="cambioTarifa(this, $index, tarifa, articulo)" name="promo{{articulo.IDPromocion}}" value="{{tarifa.IDTarifaPromocion}}" ng-model="articulo.TarifaSelected" > {{tarifa.Precio}}
+                              </span>
+                              <span class="n-moneda">€ </span>
+                              <span class="n-periodo">{{tarifa.NombrePeriodicidad}}es</span>
+                            </div>
+
+                         </div>
+                       </div>
+                     </div>
+                     <div class="col-1 text-right">
+                       <div class="">
+                        <button type="" ng-click="eliminarDelCarrito($index)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+
+                       </div>
+                     </div>
+                   </div>
+                  </div>
+                </span>
+                <!-- /PROMOSCIONES -->
+
+                <!-- PLANES -->
+                <span ng-hide="noesTipo('PL', articulo)" class="d-none d-md-block d-xl-block">
+
+                  <div class="container-fluid" style="border-bottom: 2px solid #f3f3f3;">
+                   <div class="row mx-5 my-1 p-4 align-items-center">
+                     <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                       <img ng-src="{{articulo.DataContenidoMM}}" alt="" class="img-fluid mx-auto d-block" style="width:50%;">
+                     </div>
+
+                     <div class="col-7 text-center" >
+                       <div class="row justify-content-center align-items-center" ng-repeat="tarifa in articulo.Tarifas track by $index" style=" border-left: 1px dotted #f19103;">
+                         <div class="col text-center" style=" border-bottom: 1px dotted #666;" >
+                              {{tarifa.Texto}}
+
+                         </div>
+                         <div class="col text-center p-4" >
+                           <div class="capa-precios "> <span class="n-precio"  ><input type="radio" ng-change="cambioTarifa(this, $index, tarifa, articulo)" name="plan{{articulo.IDPlan}}" value="{{tarifa.IDTarifaPlan}}" ng-model="articulo.TarifaSelected"> {{tarifa.Precio}}</span> <span class="n-moneda">€ </span> <span class="n-periodo">{{tarifa.NombrePeriodicidad}}es</span></div>
+
+                         </div>
+                       </div>
+                     </div>
+                     <div class="col-2 text-center" >
+                       <div class="" >
+                        <button type="" ng-click="eliminarDelCarrito($index)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                       </div>
+                     </div>
+                   </div>
+                  </div>
+                </span>
+                <!-- /PLANES -->
+                <!-- PLANES MOVIL-->
+                <span ng-hide="noesTipo('PL', articulo)" class="d-block d-sm-none ">
+
+                  <div class="container-fluid" >
+                   <div class="row  align-items-center">
+                     <div class="col-12">
+                       <img ng-src="{{articulo.DataContenidoMM}}" alt="" class="img-fluid mx-auto d-block" style="width:50%;">
+                     </div>
+
+                     <div class="col-12 text-center"  >
+                       <div class="row justify-content-center align-items-center" ng-repeat="tarifa in articulo.Tarifas track by $index" style=" border-left: 1px dotted #f19103;">
+                         <div class="col text-center"  >
+                              {{tarifa.Texto}}
+
+                         </div>
+                         <div class="col-12 text-center p-4" style="border-bottom: 2px solid #f3f3f3;">
+                           <div class="capa-precios "> <span class="n-precio"  ><input type="radio" ng-change="cambioTarifa(this, $index, tarifa, articulo)" name="plan{{articulo.IDPlan}}" value="{{tarifa.IDTarifaPlan}}" ng-model="articulo.TarifaSelected"> {{tarifa.Precio}}</span> <span class="n-moneda">€ </span> <span class="n-periodo">{{tarifa.NombrePeriodicidad}} {{lang.plural_peridicidad}}</span></div>
+
+                         </div>
+                       </div>
+                     </div>
+                     <div class="col-12 text-center" >
+                       <div class=" mt-3" >
+                        <button type="" ng-click="eliminarDelCarrito($index)" class="btn btn-danger" style="border-radius: 30px;"><i class="fa fa-trash" aria-hidden="true"></i><small>{{lang.eliminar_articulo}} </small></button>
+                       </div>
+                     </div>
+                   </div>
+                  </div>
+                </span>
+                <!-- /PLANES movil-->
+                <!-- Publicaciones -->
+                <span ng-hide="noesTipo('PB', articulo)">
+
+                  <div class="container-fluid" style="border-bottom: 2px solid #f3f3f3;">
+                   <div class="row mx-5 my-1 p-4 align-items-center">
+                     <div class="col-3">
+                       <span infinite-scroll="cargarArticulo(articulo)" infinite-scroll-disabled="articulo.artCargado"></span>
+                       <img src="{{articulo.DataContenidoMM}}" alt="" class="img-fluid mx-auto d-block" style="width:50%;">
+                       {{articulo.Titulo}}
+                     </div>
+
+                     <div class="col-7 text-center" >
+                       <div class="row justify-content-center align-items-center" ng-repeat="tarifa in articulo.Tarifas track by $index" style=" border-left: 1px dotted #f19103;">
+                         <div class="col text-center" style=" border-bottom: 1px dotted #666;" >
+                              {{tarifa.Texto}}
+
+                         </div>
+                         <div class="col text-center p-4" >
+                           <div class="capa-precios "> <span class="n-precio"  ><input type="radio" ng-change="cambioTarifa(this, $index, tarifa, articulo)" name="publicacion{{articulo.IDPublicacion}}" value="{{tarifa.IDTarifaPublicacion}}" ng-model="articulo.TarifaSelected"> {{tarifa.Precio}}</span> <span class="n-moneda">€ </span> <span class="n-periodo"></span></div>
+
+                         </div>
+                       </div>
+                     </div>
+                     <div class="col-2 text-right" >
+                       <div class="" >
+                        <button type="" ng-click="eliminarDelCarrito($index)" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                       </div>
+                     </div>
+                   </div>
+                  </div>
+                </span>
+              </div>
+             <!--  <span >
+              <input type="submit" class="btn btn-primary" name="" value="FINALIZAR COMPRA" ng-click="guardarCompra()">
+              </span>
+               <input type="submit" class="btn btn-primary" name="" value="Seguir Comprando" ng-click="contratar()"> -->
+
+               <div class="row mt-3">
+
+
+                     <div class="col text-center mb-2">
+                     <button type="submit" class="btn btn-primary" name="" value="Seguir Comprando" ng-click="contratar()" style="background-color: grey;"> <i class="fa fa-cart-plus fa-lg " aria-hidden="true"></i> {{lang.seguir_comprando}}</button>
+                     </div>
+                    <!--  <div class="col text-center mb-2" ng-if="contentCarrito().length>0">
+                       <button type="submit" class="btn btn-primary" name="" value="FINALIZAR COMPRA" ng-click="guardarCompra()"><i class="fas fa-gift fa-lg" aria-hidden="true"></i> TENGO UN CUPÓN</button>
+                     </div> -->
+                     <div class="col text-center mb-2" ng-if="contentCarrito().length>0">
+                       <button type="submit" class="btn btn-primary" name="" value="FINALIZAR COMPRA" ng-click="guardarCompra()"><i class="far fa-credit-card"></i> {{lang.pago_tarjeta}}</button>
+                     </div>
+                     <!--  <div class="col text-center mb-2" ng-if="contentCarrito().length>0">
+                       <button type="submit" class="btn btn-primary" name="" value="FINALIZAR COMPRA" ng-click="guardarCompra()"><i class="fab fa-paypal"></i> PAGO CON PAYPAL</button>
+                     </div> -->
+
+
+                 </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

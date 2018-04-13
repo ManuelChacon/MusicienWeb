@@ -1,0 +1,29 @@
+<div class="col-12">
+<div class="ng-cloak" ng-init="init(tipoObjeto.IDTipoObjeto)" ng-controller="DemoCtrl as ctrl">
+  <ui-select ng-model="ctrl.person.selected" theme="select2" ng-disabled="ctrl.disabled" style="min-width: 300px;" title="Choose a person" ng-change="notificarCambio(ctrl.person.selected, tipoObjeto)">
+    <ui-select-match placeholder="{{tipoObjeto.DescripcionTipoObjeto}}">{{$select.selected.name}}</ui-select-match>
+    <ui-select-choices repeat="person in ctrl.people | propsFilter: {name: $select.search, age: $select.search}">
+      <div ng-bind-html="person.NombreObjeto | highlight: $select.search"></div>
+      <!--<small>
+        email: {{person.email}}
+        age: <span ng-bind-html="''+person.age | highlight: $select.search"></span>
+      </small>-->
+    </ui-select-choices>
+  </ui-select>
+</div>
+<div class="row">
+  <div class="col-12 mt-5">
+    <span>
+      <div class="badge badge-dark ml-2" ng-repeat="objeto in tipoObjeto.Objetos" style="padding: .05em .4em;">
+       <span style="font-size: 14px;">{{objeto.NombreObjeto}} </span>
+        
+        <button ng-click="eliminarObjeto(tipoObjeto, $index)" style="color:#fff;background-color:transparent; border:0;padding: 0; min-height:20px;" class="btn btn-secondary btn-sm ml-4" type="button" name="button" >  
+          <i class="fa fa-times-circle" aria-hidden="true"></i>
+        </button> 
+      
+      </div>
+    </span>
+  </div>
+  
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<table class="table table-striped">
+  <tr>
+    <th>Imagen</th>
+    <th>Usuario</th>
+    <th>Fecha alta</th>
+    <th class="text-center">Bloquear Usuario</th>
+    <th class="text-center">Asignar todos los Planes</th>
+    <th class="text-center">Subir usuario al Top</th>
+
+  </tr>
+  <tr ng-repeat="usuario in usuarios[pagina]">
+    <td>
+      <span ng-if="usuario" infinite-scroll="cargarImagen(usuario)" infinite-scroll-disabled="usuario.Cargado"></span>
+      <img class="img-circle img-responsive" style="width:60px; height:60px;" ng-src="{{usuario.DataContenidoMM}}" alt="">
+    </td>
+    <td ng-click="verUsuario(usuario.IDUsuario)" class="cursor"> <i class="fa fa-info-circle"></i> {{usuario.Nombre}}</td>
+    <td>{{transformarFecha(usuario.Creacion).Fecha}}</td>
+    <td class="text-center" ><i class="{{claseFijadaU(usuario.Bloqueado)}} cursor" ng-click="bloquearUsuario(usuario)"></td>
+    <td class="text-center"><i class="{{claseFijadaUVip(usuario.EsVip)}} cursor" ng-click="privilegiarUsuario(usuario)"></td>
+      <td class="text-center"><i class="{{claseFijadaUTop(usuario.EnTop)}} cursor" ng-click="hacerTopUsuario(usuario)"></td>
+  </tr>
+</table>
+<button class="btn btn-primary" type="submit" name="" value="<" ng-click="haciaAtras()"><i class="fa fa-arrow-circle-left"></i> Anterior</button>
+<button class="btn btn-primary" type="submit" name="" value=">" ng-click="haciaAdelante()">Siguiente <i class="fa fa-arrow-circle-right"></i></button>

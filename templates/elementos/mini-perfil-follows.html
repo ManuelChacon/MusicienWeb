@@ -1,0 +1,35 @@
+<span infinite-scroll="cargarMusico(usuario)" infinite-scroll-disabled="musico.Cargada"></span>
+  <div class="profile-card-mini">
+  <div class="row">
+    <div class="col-3">
+       <img ng-click="verPerfil(usuario)" ng-src="{{usuario.DataContenidoMM}}" alt="post-image" class="profile-photo">
+    </div>
+       
+    <div class="col-4">
+        <h6/><strong><a ng-click="verPerfil(usuario)" class="gray-dark" style="color:gray;">{{usuario.Nombre}}</a></strong></h6>    
+    </div>
+
+     <div class=" col-5 text-right">
+          <span ng-hide="condicionesSeguirFollowers(usuario)">
+                <input ng-click="SeguirDejarSeguirUsuarioFollower(usuario)" type="submit" class="{{claseSeguir(usuario)}}" value="{{valorSeguir(usuario)}}" />
+          </span>
+      </div>
+      
+    </div>
+    <div class="row text-center">
+      <div class="col-4">
+        <a ng-click="verPerfilPag(usuario, 3)" style="color:gray;" >{{usuario.Seguidores}}<br> {{lang.seguidores}}</a></div>
+      <div class="col-4"> 
+        <a  ng-click="verPerfilPag(usuario, 1)" style="color:gray;">{{usuario.NumPublicaciones}}<br> {{lang.publicaciones}}</a>
+      </div>
+      <div class="col-4"><a  ng-click="verPerfilPag(usuario, 4)" style="color:gray">
+        {{usuario.Siguiendo}}<br>{{lang.siguiendo}}
+      </a></div>
+    </div>
+  </div>
+
+   
+    
+    
+   
+

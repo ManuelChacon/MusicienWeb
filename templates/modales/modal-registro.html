@@ -1,0 +1,71 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel"> {{lang.inicio_sesion}}</h5>
+    <button type="button" class="close" ng-click="cancel()">
+      <span >&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="social-box">
+        <div class="row mb-1">
+               <div  ng-click="CerrarParaSocial('facebook')" class="col-md-12">
+                  <a class="btn facebook btn-block">
+                    <i class="fab fa-facebook-square"></i> {{lang.inicia_face}} 
+                  </a>
+        </div>
+        </div>
+        <div class="row mb-1">
+          <div ng-click="CerrarParaSocial('twitter')" class="col-md-12">
+                    <a class="btn twitter btn-block" >
+                      <i class="fab fa-twitter"></i> {{lang.inicia_twi}}
+                    </a>
+                </div>
+            </div>
+          <div class="row mb-1">
+          <div ng-click="CerrarParaSocial('instagram')" class="col-md-12">
+                    <a class="btn btn-instagram  instagram btn-block" >
+                     <i class="fab fa-instagram"></i> {{lang.inicia_inta}}
+                    </a>
+                </div>
+            </div>
+            
+      </div>
+      <div class="main">
+      <h6 class="text-center">{{lang.o_inicia_email}}</h6>
+       <div class="col-12 mb-2">
+          <input type="text " class="form-control" placeholder="Nombre de Usuario" autofocus ng-model="newusuario.Nombre">
+        </div>
+       <div class="col-12 mb-2">
+          <input type="text " class="form-control" placeholder="Email" autofocus ng-model="newusuario.Email">
+        </div>
+        <div class="col-12">
+           <input type="password" class="form-control" placeholder="Password" ng-model="newusuario.Contrasena">
+        </div>
+
+
+      <div class="col-xs-6 col-md-6 pull-right mt-4">
+          <button type="submit" class="btn btn-large btn-aqua pull-right" ng-click="registrarUsuario()">{{lang.enviar}}</button>
+      </div>
+
+      <span class="clearfix"></span>
+          </div>
+      <!-- <div class="login-footer">
+      <div class="row">
+                          <div class="col-xs-6 col-md-6">
+                              <div class="left-section">
+                  <a href="">Olvidaste tu contraseña?</a>
+                  <a href="">Sign up now</a>
+                </div>
+                          </div>
+                          <div class="col-xs-6 col-md-6 pull-right">
+                              <button type="submit" class="btn btn-large btn-danger pull-right">Login</button>
+                          </div>
+                      </div>
+
+      </div> -->
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+        </div> -->
+      </div>

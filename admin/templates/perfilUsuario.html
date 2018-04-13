@@ -1,0 +1,189 @@
+
+
+<!-- <i class="{{claseFijadaU(perfilUsuario.Bloqueado)}}" ng-click="bloquearUsuario(perfilUsuario)">
+</i>
+ <i class="{{claseFijadaUVip(usuario.EsVip)}} cursor" ng-click="privilegiarUsuario(usuario)"></i>-->
+<div class="x_panel"> 
+                  <div class="x_title">
+                    <h2>Información  <small>del Usuario</small></h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                      <div class="profile_img">
+                        <div id="crop-avatar">
+                          <!-- Current avatar -->
+                          <img class="img-responsive avatar-view" ng-src="{{perfilUsuario.DataContenidoMM}}" alt="Avatar" title="Change the avatar">
+                        </div>
+                      </div>
+                       <!--  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
+                                </i> <i class="fa fa-comments-o"></i> </button>
+                              <button type="button" class="btn btn-primary btn-xs">
+                                <i class="fa fa-user"> </i> View Profile
+                              </button> -->
+                      <h3>{{perfilUsuario.Nombre}}</h3>
+
+                      <ul class="list-unstyled user_data">
+                        <li><i class="fa fa-map-marker user-profile-icon"></i>{{perfilUsuario.Localizacion}}
+                        </li>
+
+                        <li>
+                          <i class="glyphicon glyphicon-link user-profile-icon"></i> {{perfilUsuario.Web}}
+                        </li>
+
+                        <li class="m-top-xs">
+                          <i class="fa fa-envelope user-profile-icon"></i> {{perfilUsuario.Email}}
+                         
+                        </li>
+                      </ul>
+                      <hr>
+
+                      
+
+                      <!-- start skills -->
+                      <h4>Información Personal</h4>
+                      <ul class="list-unstyled user_data">
+                        <li>
+                          <p>
+                            {{perfilUsuario.Descripcion}}
+                          </p>
+                        </li>
+                      </ul>
+                      <!-- end of skills -->
+
+                      <hr>
+                      <h4>Perfiles:</h4>
+                      <ul>
+                        <li ng-repeat="perfil in perfilUsuario.Categorias">{{perfil.Descripcion}}</li>
+                      </ul>
+                      <hr>
+                      <button type="button" class="btn btn-danger btn-xs" ng-click="bloquearUsuario(perfilUsuario)">
+                       <i class="{{claseFijadaU(perfilUsuario.Bloqueado)}}"></i> Bloquear Usuario </button>
+                      <button type="button" class="btn btn-primary btn-xs" ng-click="privilegiarUsuario(usuario)">
+                                <i class="{{claseFijadaUVip(usuario.EsVip)}}"> </i> Asignarle todos los planes
+                      </button> 
+
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+
+                      <div class="profile_title" style="margin-bottom: 30px; ">
+                        <div class="col-md-6">
+                          <h2>Planes y Promociones Contratados</h2>
+                        </div>
+                        <div class="col-md-6">
+                         
+                        </div>
+                      </div>
+                      <!-- start of user-activity-graph -->
+                      <div class="row">
+                      <div class="col-md-12">
+                        <h3>PLANES</h3>
+                      </div>
+                        <div class="col-md-4 col-sm-12 col-xs-12 tile-stats" ng-repeat="plan in planesu" >
+                          <div class="  ">
+                            <div class="col-sm-12">
+                              <h4 class=""><i>{{plan.NombrePlan}}</i></h4>
+                            </div>
+                            <div class="col-sm-12">
+                              <span ng-repeat="tarifa in plan.Tarifas">
+                               
+                                <ul class="list-unstyled">
+                                  <li><strong>Tipo:</strong>{{tarifa.NombrePeriodicidad}}</li>
+                                </ul>
+                               
+                                <ul class="list-unstyled">
+                                  <li><strong>Vigencia:</strong>{{plan.FechaFin}}</li>
+                                </ul>
+
+                                <strong>Características:</strong>
+                                <ul>
+                                  <li>{{plan.Titulo1}}</li>
+                                  <li>{{plan.Titulo2}}</li>
+                                  <li>{{plan.Titulo3}}</li>
+                                </ul>
+                              </span>
+                            </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h3>PROMOCIONES</h3>
+                        </div>
+                        <div class="col-md-4 col-sm-12 col-xs-12 tile-stats" ng-repeat="promo in promocionesu">
+                          <div class="col-sm-12">
+                            <h4 ><i>{{plan.NombrePlan}}</i></h4>
+                          </div>
+                          <div class="col-md-12">
+                            <span ng-repeat="tarifa in plan.Tarifas">
+                              <ul class="list-unstyled">
+                                  <li><strong>Tipo: </strong>{{tarifa.NombrePeriodicidad}}</li>
+                                </ul>
+                              <ul class="list-unstyled">
+                                  <li><strong>Vigencia: </strong>{{plan.FechaFin}}</li>
+                                </ul>
+                            </span>
+                          </div>
+                          <div class="col-6 " ng-repeat="promo in promocionesu">
+                              <div>
+                                  <div class="row">
+                                  <div class="col-md-12"><h6>{{promo.NombrePromocion}}</h6></div>
+                                  <div class="col-md-12">
+                                    <strong>Características:</strong>
+                                        <ul>
+                                          <li>{{promo.Titulo1}}</li>
+                                          <li>{{promo.Titulo2}}</li>
+                                          <li>{{promo.Titulo3}}</li>
+                                        </ul>
+                                    <strong>Planes:</strong>
+                                        <ul>
+                                          <li ng-repeat="plan in promo.Planes">{{plan.NombrePlan}}</li>
+                                        </ul>
+                                        <span ng-repeat="tarifa in promo.Tarifas">
+                                          <p>
+                                            <strong>Tipo:</strong>
+                                                                 {{tarifa.NombrePeriodicidad}}
+                                            </p>
+                                            <p>
+                                            <strong>Vigencia:</strong>
+                                              {{transformarFecha(promo.FechaFin).Fecha}}
+                                            </p>
+                                        </span>  
+                                    </div>
+                                  </div>
+                                </div>
+                                </div>
+                              </div>
+                      
+                        
+                          
+                            
+                            
+                          </div>
+                         
+                       
+                      
+      
+
+                 
+                      <!-- end of user-activity-graph -->
+
+            
+                </div>
+
+
+
+
+                
+
+
+  
+</div>
+                             
+
+ 
+
+
+   <!--  

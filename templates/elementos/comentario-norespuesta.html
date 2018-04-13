@@ -1,0 +1,15 @@
+<div class="post-comment row p-4">
+  <span infinite-scroll="cargarMultimediaComentario(comentario)" infinite-scroll-disabled="comentario.Cargada"></span>
+  <div class="">
+    <img ng-click="verPerfil(comentario.Usuario)" ng-src="{{comentario.Usuario.DataContenidoMM}}" alt="" class="profile-photo-sm" />
+  </div>
+  <div class="col">
+  
+    <p><a class="profile-link" ng-click="verPerfil(comentario.Usuario)">{{comentario.Usuario.Nombre}} </a> </p>
+    <p>{{comentario.Descripcion}}</p>
+    <!--<formulario-comentario ng-init="init(comentario.IDComentario)"></formulario-comentario>
+    <comentario ng-repeat="comentario in publicacion.Comentarios | filter:esComentarioHijoDe(comentario)">
+    </comentario>-->
+
+  </div>
+</div>

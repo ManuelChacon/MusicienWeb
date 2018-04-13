@@ -1,0 +1,208 @@
+<div id="page-contents" >
+    <div class="container-fluid ">
+      <!--<cabecera-perfil-usuario>
+      </cabecera-perfil-usuario>-->
+      <div class="row" >
+
+        <!-- Newsfeed Common Side Bar Left
+        ================================================= -->
+
+        <div class="col-md-2 {{clasecolumna()}}  d-none d-sm-block d-sm-none"  >
+
+
+          <mini-perfil class="d-none d-sm-none d-md-block d-lg-block  "></mini-perfil>
+          <div class="row mb-4">
+            <div class="col">
+              <div class="col-derecha">
+                <div class="col-12 pt-3">
+               <!--     <video controlsList="nodownload" class="post-video" controls> <source src="video/tuto.mp4" type="video/mp4"> </video> -->
+               <img class="img-fluid pb-3" src="img/cupon.png">
+                  
+                </div>
+              </div>
+            </div>
+          </div> 
+          <encuentra></encuentra>
+           <div class="row mb-4">
+            <div class="col">
+              <div class="col-derecha">
+                <div class="col-12 pt-3">
+                <div class="title text-center">
+                  <strong>{{lang.crear_perfiles}}</strong>
+                </div>
+                   <video controlsList="nodownload" class="post-video" controls> <source src="video/tuto.mp4" type="video/mp4"> </video>
+                   <p class="text-center" style="font-size: ">
+                     {{lang.perfiles_desc}}
+                   </p>
+                </div>
+              </div>
+            </div>
+          </div> 
+
+          <top-semanal ></top-semanal>
+
+          <top-musicos ></top-musicos>
+
+
+
+
+
+        <!--   <spotify-playlist class="d-none d-sm-block d-sm-none"></spotify-playlist> -->
+
+        </div>
+
+        <div class="col-md-5  ">
+          <!-- Post Create Box
+          ================================================= -->
+          <crear-post>
+          </crear-post>
+          <!-- Post Create Box End-->
+
+          <!-- Filtros
+          ================================================= -->
+          <div class="col-12 post-content p-3" ng-hide="usuario.Login ==true">
+           <video src="video/anuncio.mp4" controls  poster="video/poster.jpg">
+             {{lang.no_implementa}} <code>video</code>.
+            </video> 
+          </div>
+          <!-- <div class="col-12 post-content p-3" ng-hide="usuario.Login ==true">
+            <h6 class="text-center"><span style="color:black; cursor: pointer;" ng-click="contratar()">Mira nuestros planes y promociones,</span> contrata el plan o promoción que más se adecue a tus necesidades y aprovecha al máximo MUSICIEN</h6>
+          </div> -->
+          <div class="col-12 post-content p-1 text-center filtros-m" ng-hide="usuario.Login!==true" >
+              <div class="row" >
+
+                <div class="col separa border-left-0 border-top-0 border-bottom-0" >
+                   <button  type="button" name="button" class="reset-btn" data-toggle="tooltip" data-placement="top" title="Fijar selección">
+                  <i class="{{checkClassPubFav('F')}}" ng-click="CambiarPubFavorito('F')"></i>
+                </button>
+                <span  ng-click="PublicacionesLeerSeguidos()"  class="{{checkClassPref('F')}}"> {{lang.ver_sigues}}</span>
+                </div>
+
+                <div class="col">
+                  <button id="example" type="button" name="button" class="reset-btn-todo" data-toggle="tooltip" data-placement="top" title="Fijar selección">
+                  <i class="{{checkClassPubFav('T')}}" ng-click="CambiarPubFavorito('T')"></i>
+                </button>
+                <span  ng-click="PublicacionesLeerTodas()" class="{{checkClassPref('T')}}"> {{lang.ver_todo}}</span>
+                </div>
+
+                <div class="col separa border-right-0 border-top-0 border-bottom-0">
+                <!-- <button class="reset-btn" ng-click="ActivarFiltros()">
+                     <i class="ion ion-funnel" class="nav-item" ></i>
+                </button> -->
+                <span  ng-click="ActivarFiltros()" class="filtros-btn">  {{lang.busqueda_avanzada}}</span>
+                </div>
+              </div>
+              <script>
+               $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+              })
+              </script>
+          </div>
+
+           <div style="background-color: #fff; border-radius: 4px;" class="">
+          <filtros-busqueda class="" ng-hide="!mostrarFiltros">
+
+          </filtros-busqueda>
+          </div>
+          <div ng-if="PublicacionesMostradas=='B'" class="row justify-content-center" style="margin-bottom: -18px;">
+            <div class="col-md-12 text-center">
+              <ul  class="list-inline menu-filtro">
+                <li><a ng-click="changeTabNum(1)" class="{{estaActive(1)}}"> <img src="img/publica1.png"> <strong>{{lang.publicaciones}}</strong></a></li>
+                <li><a ng-click="changeTabNum(2)" class="{{estaActive(2)}}"> <img src="img/usuario.png"><strong>{{lang.usuarios}}</strong></a></li>
+              </ul>
+            </div>
+
+          </div>
+        <!-- INICIO PAGINA FILTROS -->
+        <!-- {{active}} -->
+           <uib-tabset active="active" type="pills">
+              <uib-tab index="1">
+                <span ng-if="publicaciones.length<1">
+                 <div class="post-content p-3"><h5 class="text-center py-5">{{lang.no_hay_publi}}</h5> </div></span>
+                <div ng-repeat="publicacion in publicaciones"><!-- CAPA FILTRO  PUBLICACIONES -->
+                    <div class="post-content" style="background-color:{{publicacion.Usuario.Color}}">
+                    
+                      <publicidad-entre ng-if="esPubli(publicacion)">
+                      </publicidad-entre>
+                      <publicacion  ng-if="!esPubli(publicacion)">
+                      </publicacion>
+                     <div class="row " ng-if="!esPubli(publicacion)">
+                      <div class="col-12 p-4">
+                         <formulario-comentario ng-init="init(0)"></formulario-comentario>
+                      </div>
+
+                      </div>
+                      <div class="">
+                        <comentario-norespuesta ng-repeat="comentario in publicacion.Comentarios | filter:esComentarioBase | limitTo:3">
+
+                        </comentario-norespuesta>
+                        <input ng-if="publicacion.ConComentarios" ng-click="verComentariosPublicacion(publicacion)" class="form-control" type="submit" name="" value="Ver mĂĄs comentarios">
+                      </div>
+                    </div>
+               </div> <!-- CAPA FILTRO PUBLICACIONES -->
+               <button type="text" class="btn-block btn-lg" name="" value="Ver más" ng-click="vermaspublis()" style="background: white; color:orange;">Ver más</button>
+              </uib-tab>
+              <uib-tab index="2">
+                <div class="post-content p-3"><span ng-if="usuariosFiltr.length<1"><h5 class="text-center py-5">{{lang.no_hay_usuarios}}</h5></span>
+                  <div  ng-repeat="usuario in usuariosFiltr">
+                   <!-- CAPA FILTRO PERFILES -->
+                    <mini-perfil-follows  >
+
+                    </mini-perfil-follows>
+                   </div>
+                </div>
+                 <!--FIN CAPA FILTROS PERFILES -->
+              </uib-tab>
+           </uib-tabset>
+
+         <!--  FIN PAGINA FILTROS -->
+
+          <!-- Post Content
+          ================================================= -->
+
+
+          <!-- Post Content
+          ================================================= -->
+        </div>
+
+        <!-- Newsfeed Common Side Bar Right
+        ================================================= -->
+        <div class="col-md-2 {{clasecolumna()}}  d-block d-sm-none mt-3"  >
+
+          <mini-perfil class="d-none d-sm-block d-sm-none"></mini-perfil>
+
+          <encuentra></encuentra>
+
+          <top-semanal ></top-semanal>
+
+          <top-musicos ></top-musicos>
+
+         
+
+        </div>
+
+
+       <div class="col-md-3" >
+        <div >
+           <publicidaduno ng-init="init(2)" ></publicidaduno>
+           <planes ></planes>
+           <div style="margin-top: 20px;">
+             <spotify-playlist ></spotify-playlist>
+           </div>
+           
+           <sugerencias-can ></sugerencias-can>
+           
+
+        </div>
+
+
+
+        </div>
+        <div class="col-md-2" style="" >
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
