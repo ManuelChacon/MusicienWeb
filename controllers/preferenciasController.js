@@ -1,4 +1,4 @@
-musicien.controller('preferencias', function ($scope, $location, Llamada, $window, $anchorScroll, $routeParams) {
+musicien.controller('preferencias', function ($scope, $location, Llamada, $window, $anchorScroll, $routeParams, $http) {
   if ($scope.checkLoginStatus()) {
     if (NotNullNotUndefinedNotEmpty($routeParams.Perfiles)) {
       $location.hash('perfiles');
@@ -25,6 +25,20 @@ musicien.controller('preferencias', function ($scope, $location, Llamada, $windo
   } else {
     $scope.cargaInicial();
     $scope.cargarCategorias();
+  }
+  $scope.cargarLocalizaciones = function () {
+      console.log("Holi")
+      if ($scope.usuario.Localizacion.length > 4) {
+          Llamada.http.get("CiudadesLeer?cadena=" + $scope.usuario.Localizacion)
+              .then(function (respuesta) {
+                  console.log(respuesta.data);
+                  $scope.localidades = respuesta.data.predictionField;
+              })
+      }
+  }
+  $scope.cambiarLocalizacion = function (val) {
+      $scope.usuario.Localizacion = val;
+      $scope.localidades = [];
   }
   $scope.sinFormulario = false;
   $scope.selectPerfil = function(index) {

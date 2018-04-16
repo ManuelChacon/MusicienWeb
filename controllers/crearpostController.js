@@ -343,7 +343,7 @@ musicien.controller('crearpost', function ($scope, $location, Llamada, $window, 
               propiedad.Valor = resplit[0];
               console.log(propiedad.Valor);
           } else {
-              alert("Hola");
+              //alert("Hola");
               if (propiedad.newFB.indexOf("facebook") > -1) {
                   resplit = propiedad.newFB.split("%%%%%ELIMINAR%%%");
                   console.log(resplit);
