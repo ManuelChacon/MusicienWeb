@@ -122,11 +122,29 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
       return 0;
     }
   }
-  $scope.esPubli = function(publi) {
-    return publi.TipoPubli.Modelo == 2;
+  $scope.esPubli = function (publi) {
+      if (NotNullNotUndefinedNotEmpty(publi)) {
+          if (NotNullNotUndefinedNotEmpty(publi.TipoPubli)) {
+
+              return publi.TipoPubli.Modelo == 2;
+          } else {
+              return false;
+          }
+      } else {
+          return false;
+      }
   }
-  $scope.esCompraVenta = function(publi) {
-    return publi.TipoPubli.Modelo == 1;
+  $scope.esCompraVenta = function (publi) {
+      if (NotNullNotUndefinedNotEmpty(publi)) {
+          if (NotNullNotUndefinedNotEmpty(publi.TipoPubli)) {
+
+              return publi.TipoPubli.Modelo == 1;
+          } else {
+              return false;
+          }
+      } else {
+          return false;
+      }
   }
   $scope.PlayListCargada = false;
   marcarPlaylistCargada = function() {
@@ -1015,6 +1033,28 @@ $scope.calcularReTiempo = function(algo) {
       }
 
     }
+    $scope.DenunciarPublicacion = function (publi) {
+        console.log(publi);
+        var msj = prompt("Indica el motivo de la denuncia:");
+        var dn = {
+            TipoObjeto: "P",
+            NombreObjeto: publi.Titulo,
+            Usuario: publi.Usuario.Nombre,
+            IDUsuario: getIDUsuario(),
+            IDObjeto: publi.IDPublicacion,
+            Texto: msj,
+        }
+        Llamada.http.post("DenunciaCrear", dn)
+            .then(function (respuesta) {
+                console.log(respuesta)
+                if (respuesta.ID > 0) {
+                    mensajeExito(respuesta.Resultado)
+                } else {
+                    anadirErrores(respuesta.Resultado)
+                }
+                
+            })
+    }
     $scope.BloquearUsuarioPorID = function(IDUsuario) {
       var deferred = $q.defer();
       if (!$scope.checkLoginStatus()) {
@@ -1410,6 +1450,23 @@ $scope.calcularReTiempo = function(algo) {
         }
       }
     }
+  $scope.cargarFacebook = function (propiedad, publicacion) {
+      propiedad.PlaylistCargado = true;
+      if (NotNullNotUndefinedNotEmpty(propiedad.Valor)) {
+          var tipo = "";
+          var url = propiedad.Valor;
+          propiedad.TipoPlaylist = tipo;
+          propiedad.URLPlaylist = url;
+          soundcloud = document.createElement("iframe");
+          soundcloud.width = "100%";
+          soundcloud.height = "620";
+          soundcloud.scrolling = "yes";
+          soundcloud.frameborder = "yes";
+          soundcloud.allow = "encrypted-media";
+          soundcloud.src = url;
+          document.getElementById("playlist" + publicacion.IDPublicacion + "propi" + propiedad.IDPropiedad + "re" + publicacion.IDRePublicacion).appendChild(soundcloud);
+      }
+  }
     $scope.cargarMultimediaFiltro = function(filtro){
       filtro.Cargada = true;
       Llamada.http.getArrayByte(filtro.ContenidoMM, "A")

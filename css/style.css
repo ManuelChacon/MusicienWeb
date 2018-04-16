@@ -3574,8 +3574,13 @@ background-image:url('../img/unckeched.png');
 }
 /*Todo esto son cosas del modal que manuel ha cambiado forzosamente*/
 
-@media (min-width: 576px){
-.modal-dialog {
+.pluginSkinLight > div {
+    width: 100% !important;
+}
+
+
+@media (min-width: 576px) {
+    .modal-dialog {
     
     margin: 4% auto;
 }

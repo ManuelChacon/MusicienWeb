@@ -65,6 +65,9 @@ musicien.controller('crearpost', function ($scope, $location, Llamada, $window, 
     if (index < $scope.publicacion.TipoPubli.Propiedades.length) {
       if (NotNullNotUndefinedNotEmpty($scope.publicacion.TipoPubli.Propiedades[index].newLista)) {
         $scope.previsualizarLista($scope.publicacion.TipoPubli.Propiedades[index]);
+        }
+      if (NotNullNotUndefinedNotEmpty($scope.publicacion.TipoPubli.Propiedades[index].newFB)) {
+          $scope.previsualizarFB($scope.publicacion.TipoPubli.Propiedades[index]);
       }
       if (NotNullNotUndefinedNotEmpty($scope.publicacion.TipoPubli.Propiedades[index].ValorFecha)) {
         $scope.publicacion.TipoPubli.Propiedades[index].Valor = TransformarFechaParaServicio($scope.publicacion.TipoPubli.Propiedades[index].ValorFecha, "23:59:00");
@@ -204,6 +207,10 @@ musicien.controller('crearpost', function ($scope, $location, Llamada, $window, 
           $scope.publicacion.TipoPubli.Propiedades[index].Valor = $scope.obtenerImagenInput(esto.files[0]);
           $scope.publicacion.TipoPubli.Propiedades[index].newFile = esto.files;
           $scope.publicacion.TipoPubli.Propiedades[index].fileName = esto.files[0].name;
+          if ($scope.publicacion.TipoPubli.Propiedades[index].TipoValor == "V") {
+              console.log("Estoy subiendo un video, aqui tengo que sacar la captura!");
+              ObtenerImagenDeVideo(esto.files[0], index);
+          }
         } else {
           $scope.publicacion.TipoPubli.Propiedades[index].newContenidoMM = [];
           for (r = 0; r < esto.files.length; r++) {
@@ -217,6 +224,61 @@ musicien.controller('crearpost', function ($scope, $location, Llamada, $window, 
     } else {
       anadirErrores($scope.lang.no_permitido_error);
     }
+
+  }
+  ObtenerImagenDeVideo = function(file, index) {
+      var fileReader = new FileReader();
+      fileReader.onload = function () {
+          var blob = new Blob([fileReader.result], { type: file.type });
+          var url = URL.createObjectURL(blob);
+          var video = document.createElement('video');
+          var timeupdate = function () {
+              if (snapImage()) {
+                  video.removeEventListener('timeupdate', timeupdate);
+                  video.pause();
+              }
+          };
+          video.addEventListener('loadeddata', function () {
+              if (snapImage()) {
+                  video.removeEventListener('timeupdate', timeupdate);
+              }
+          });
+          var snapImage = function () {
+              var canvas = document.createElement('canvas');
+              canvas.width = video.videoWidth;
+              canvas.height = video.videoHeight;
+              canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+              var image = canvas.toDataURL();
+              var success = image.length > 100000;
+              if (success) {
+                  var img = document.createElement('img');
+                  img.src = image;
+                  document.getElementsByTagName('div')[0].appendChild(img);
+                  URL.revokeObjectURL(url);
+                  var file = dataURLtoFile(image, 'a.png');
+                  var fd = new FormData();
+                  fd.append("capturavideo", file);
+                  console.log(fd);
+                  Llamada.http.postFile(fd, "I")
+                      .then(function (respuesta) {
+                          console.log("La he subido, mírala");
+                          console.log(respuesta)
+                          $scope.publicacion.ContenidoMM = respuesta.Archivo;
+                          $scope.publicacion.TipoPubli.Propiedades[index].NombrePropiedad = respuesta.Archivo;
+                          console.log($scope.publicacion);
+                      })
+              }
+              return success;
+          };
+          video.addEventListener('timeupdate', timeupdate);
+          video.preload = 'metadata';
+          video.src = url;
+          // Load video in Safari / IE11
+          video.muted = true;
+          video.playsInline = true;
+          video.play();
+      };
+      fileReader.readAsArrayBuffer(file);
 
   }
   tipoPermitido = function(TipoValor) {
@@ -259,6 +321,44 @@ musicien.controller('crearpost', function ($scope, $location, Llamada, $window, 
     } else {
       return "img/cargando.gif";
     }
+  }
+  $scope.previsualizarFB = function (propiedad) {
+      var noerrors = true;
+      try {
+          console.log(propiedad.newFB);
+          //while (propiedad.newFB.indexOf("%3A") > -1) {
+          //    propiedad.newFB = propiedad.newFB.replace("%3A", ":");
+          //}
+          //while (propiedad.newFB.indexOf("%2F") > -1) {
+          //    propiedad.newFB = propiedad.newFB.replace("%2F", "/");
+          //}
+          propiedad.newFB = propiedad.newFB.replace("&", "%%%%%ELIMINAR%%%");
+          console.log(propiedad.newFB);
+          b = StringToXMLDom(propiedad.newFB);
+          console.log(b);
+          if (NotNullNotUndefinedNotEmpty(b.childNodes[0].attributes.src)) {
+
+              res = b.childNodes[0].attributes.src.value;
+              resplit = res.split("%%%%%ELIMINAR%%%");
+              propiedad.Valor = resplit[0];
+              console.log(propiedad.Valor);
+          } else {
+              alert("Hola");
+              if (propiedad.newFB.indexOf("facebook") > -1) {
+                  resplit = propiedad.newFB.split("%%%%%ELIMINAR%%%");
+                  console.log(resplit);
+                  propiedad.Valor = "https://www.facebook.com/plugins/post.php?href=" + resplit[0];
+              } else {
+                  anadirErrores("URL no válida");
+              }
+          }
+          console.log(b);
+      } catch (ex) {
+          anadirErrores("URL no válida");
+          console.log(ex);
+          noerrors = false;
+      }
+      return noerrors;
   }
   $scope.previsualizarLista = function(propiedad) {
     var noerrors = true;

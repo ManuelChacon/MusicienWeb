@@ -164,7 +164,13 @@ musicien.controller('chat', function ($scope, $location, Llamada, $window, $q, c
             //alert("He ido a por mensajse");
             console.log(respuesta);
             room.Messages = respuesta.data;
-
+            for (i = 0; i < room.Messages.length; i++) {
+                if (room.Messages[i].IDUsuario == getIDUsuario()) {
+                    room.Messages[i].Clase = "msgpropio";
+                } else {
+                    room.Messages[i].Clase = "msgotro";
+                }
+            }
               conversaciones.push(room);
           })
         //console.log(conversaciones);
@@ -393,6 +399,13 @@ musicien.controller('chat', function ($scope, $location, Llamada, $window, $q, c
         console.log(respuesta);
         if (respuesta.data.length < 1) {
           anadirErrores("no hay más mensajes que mostrar");
+        }
+        for (i = 0; i < respuesta.data.length; i++) {
+            if (respuesta.data[i].IDUsuario == getIDUsuario()) {
+                respuesta.data[i].Clase = "msgpropio";
+            } else {
+                respuesta.data[i].Clase = "msgotro";
+            }
         }
         chat.Messages = chat.Messages.concat(respuesta.data);
         console.log(chat);
