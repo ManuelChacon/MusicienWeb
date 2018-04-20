@@ -1,4 +1,4 @@
-musicien.controller('preferencias', function ($scope, $location, Llamada, $window, $anchorScroll, $routeParams, $http) {
+musicien.controller('preferencias2', function ($scope, $location, Llamada, $window, $anchorScroll, $routeParams, $http) {
   if ($scope.checkLoginStatus()) {
     if (NotNullNotUndefinedNotEmpty($routeParams.Perfiles)) {
       $location.hash('perfiles');

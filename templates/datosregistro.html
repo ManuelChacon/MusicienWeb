@@ -85,3 +85,228 @@
 
 	
 </div>
+<div class="form-group mb-5">
+    <label for="exampleFormControlInput1">{{lang.nombre_usuario}}</label>
+    <input type="text" class="form-control" id="" placeholder="{{usuario.Nombre}}" ng-model="usuario.Nombre">
+    <small id="passwordHelpBlock" class="form-text text-muted">
+        {{lang.tu_nombre_de}} <strong>{{usuario.Nombre}}</strong>
+    </small>
+</div>
+<div class="row mb-5">
+    <div class="col-6">
+        <div class="form-group">
+            <label for="exampleFormControlFile1">{{lang.sube_una_imagen_para}}</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile1" onchange="previsualizarFoto()">
+        </div>
+    </div>
+    <div class="col-6">
+        <!--   {{inputSeleccionada()}} -->
+        <img alt="" id="img-contenedor" class="profile-photo-md pull-left m-1 " ng-click="cambiarPorInput()" ng-class="inputSeleccionada()">
+        <!-- {{actualSeleccionada()}} -->
+        <img ng-src="{{usuario.DataContenidoMM}}" alt="post-image" class="profile-photo-md pull-left m-1" ng-class="actualSeleccionada()" ng-click="cambiarPorActual()">
+        <!-- {{defaultSeleccionada}} -->
+        <img src="img/defaultprofile.png" alt="post-image" class="profile-photo-md pull-left m-1" ng-class="defaultSeleccionada()" ng-click="cambiarPorDefault()">
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-6">
+        <div class="form-group">
+            <label for="exampleFormControlFile2">{{lang.sube_imagen_fondo}}</label>
+            <input type="file" class="form-control-file" id="exampleFormControlFile2" onchange="previsualizarFondo()">
+        </div>
+    </div>
+    <div class="col-6">
+        <!--  {{inputFondoSeleccionada()}} -->
+        <img alt="" id="imgfondo-contenedor" class="profile-photo-md pull-left m-1 " ng-click="cambiarFondoPorInput()" ng-class="inputFondoSeleccionada()">
+        <!--  {{actualFondoSeleccionada()}} -->
+        <img ng-if="usuario.ContenidoMMBanner" ng-src="{{usuario.DataContenidoMMBanner}}" alt="post-image" class="profile-photo-md pull-left m-1" ng-class="actualFondoSeleccionada()" ng-click="cambiarFondoPorActual()">
+        <!--  <img src="img/conecta.png" alt="" class="profile-photo-md pull-left m-1">
+        -->
+        <img src="img/img_defecto.jpg" alt="post-image" class="profile-photo-md pull-left m-1" ng-class="defaultFondoSeleccionada()" ng-click="cambiarPorFondoDefault()">
+    </div>
+</div>
+<div class="row pt-2">
+    <div class="col-6 offset-6 text-right">
+        <img ng-if="guardandocambios" src="img/loader.gif" alt="" width="100px">
+        <button type="button" class="btn btn-sm btn-primary" ng-click="guardarCambiosUsuario()">{{lang.guardar_cambios}}</button>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+                        <div class="col-6">
+                        <div class="ng-cloak" ng-controller="DemoCtrl as ctrl">
+
+
+
+
+
+                        </div>
+
+                        <div id="perfiles" ng-repeat="tipoObjeto in usuario.TiposObjeto">
+                          <span ng-hide="!esTipoObjeto('T',tipoObjeto)">
+                           <!--  {{tipoObjeto.NombreTipoObjeto}} -->
+                          <!-- <div class="badge badge-dark ml-2" ng-repeat="objeto in tipoObjeto.Objetos">
+                            {{objeto.NombreObjeto}} -
+                          </div> -->
+                          </span>
+                          <!-- <span ng-hide="!esTipoObjeto('P',tipoObjeto)">
+                            {{tipoObjeto.NombreTipoObjeto}}
+                            <div ng-repeat="objeto in tipoObjeto.Objetos">
+                              {{objeto.NombreObjeto}}
+                            </div>
+                          </span> -->
+
+                        </div>
+
+
+
+                      </div>
+
+
+
+
+
+
+                      </div>
+
+                      <div class="row pt-2">
+                        <div class="col-6 offset-6 text-right">
+                          <img ng-if="guardandocambios" src="img/loader.gif" alt="" width="100px">
+                          <button type="" class="btn btn-sm btn-primary" ng-click="guardarCambiosUsuario()">{{lang.guardar_cambios}}</button>
+                        </div>
+                      </div>
+
+                      <hr>
+
+              </ng-form>
+               <div class="row">
+                <div class="col text-center mb-2">
+                  <h2>{{lang.mis_perfiles}}</h2>
+                  <small>{{lang.selecciona_uno}}</small>
+                </div>
+              </div>
+               <div class="row justify-content-center pt-3">
+
+
+
+                 <div ng-click="selectPerfil($index)" class="col-2 rol p-2 m-1 text-center " ng-repeat="perfil in usuario.Categorias">
+
+                     <img ng-src="{{perfil.DataContenidoMM}}" alt="" class="img-fluid d-block mx-auto ico-perfil" style="width: 40px;">
+                     <!--<span ng-repeat="propiedad in perfil.Propiedades"> {{propiedad.Valor}}</span>-->
+                     <a class='mostrar-rol'><small>{{perfil.Descripcion}}</small></a>
+
+                </div>
+
+
+                <div ng-click="anadirPerfil()" class="col-2 rol p-2 m-1 text-center ">
+                   <img src="img/anadir.png" alt="" class="img-fluid d-block mx-auto" style="width: 40px;">
+                  <small>{{lang.nuevo_perfil}}</small>
+                </div>
+
+              </div>
+               <!-- PANELES X ROL -->
+              <div id="perfil" ng-hide="!selectedPerfil">
+                <h2 class="mt-2">{{selectedPerfil.Descripcion}}</h2>
+                <div class="row">
+                  <div class="col-12">
+                  <span ng-repeat="propiedad in selectedPerfil.Propiedades">
+                      <div class="form-group">
+                        {{propiedad.NombrePropiedad}}
+                        <campo-propiedad>
+                        </campo-propiedad>
+                      <!--<label for="exampleFormControlTextarea1">{{propiedad.NombrePropiedad}}</label>
+                      <input type="text" name="" value="" class="form-control" ng-model="propiedad.Valor">-->
+                    </div>
+
+                  </span>
+                  </div>
+                </div>
+
+                <div class="mb-5">
+                  <formulario-objeto ng-repeat="tipoObjeto in selectedPerfil.Objetos" class="mb-5">
+
+                  </formulario-objeto>
+                </div>
+
+               <div class="col-12 mt-5  text-right">
+                 <button type="button" class="btn btn-secondary btn-lg" ng-click="actualizarPerfil()">{{lang.guardar}} </button>
+                 <button type="button" class="btn btn-secondary btn-lg" ng-click="eliminarPerfil()">{{lang.eliminar}} </button>
+               </div>
+               </div>
+               <hr>
+                <div id="perfil" ng-hide="!selectingPerfil" >
+                 <h4>{{lang.seleciona_nuevo_tipo_p}}</h4>
+                 <span class="row justify-content-center">
+                   <div ng-click="selectNewPerfil($index)" class="col-2 rol p-2 m-1 text-center " ng-repeat="perfil in perfilesdisp">
+                       <img ng-src="{{perfil.DataContenidoMM}}" alt="" class="img-fluid d-block mx-auto ico-perfil" style="width: 24px;">
+                       <a class='mostrar-rol'><small>{{perfil.Descripcion}}</small></a>
+                  </div>
+                 </span>
+                  <div class="col-12  text-right my-3">
+                    <button type="button" class="btn btn-secondary btn-lg" ng-click="cancelNewPerfil()">{{lang.cancelar}} </button>
+                  </div>
+                </div>
+
+
+
+
+
+
+<small>{{lang.estos_datos_muestran}}</small>
+<ng-form name="">
+    <form class="mt-3">
+        <!--<div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEmail4">Nombre</label>
+            <input type="text" class="form-control" id="inputEmail4" placeholder="Nombre">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">Apellidos</label>
+            <input type="text" class="form-control" id="inputPassword4" placeholder="Apellidos">
+          </div>
+        </div>-->
+
+        <div class="form-group">
+            <label for="inputAddress2">{{lang.escribe_algo_ti}}</label>
+            <textarea name="name" rows="8" cols="80" ng-model="usuario.Descripcion">
+                      </textarea>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress2">{{lang.localizacion}}</label>
+            <input type="text" class="form-control" id="inputAddress4" placeholder="" ng-change="cargarLocalizaciones()" ng-model="usuario.Localizacion">
+            <ul>
+                <li ng-repeat="localizacion in localidades" ng-click="cambiarLocalizacion(localizacion.descriptionField)">
+                    <a class="cursor">
+
+                        {{localizacion.descriptionField}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="form-group">
+            <label for="inputAddress2">Web</label>
+            <input type="text" class="form-control" id="inputAddress5" placeholder="" ng-model="usuario.Web">
+        </div>
+        <div class="form-group">
+            <label for="inputAddress2">{{lang.telefono}}</label>
+            <input type="text" class="form-control" id="inputAddress6" placeholder="" ng-model="usuario.Telefono">
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox"> {{lang.acepto_politica}} MUSICIEN
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 offset-6 text-right">
+                <img ng-if="guardandocambios" src="img/loader.gif" alt="">
+                <button type="button" class="btn btn-sm btn-primary" ng-click="guardarCambiosUsuario()">{{lang.guardar_cambios}}</button>
+            </div>
+        </div>
+
+    </form>
+</ng-form>
