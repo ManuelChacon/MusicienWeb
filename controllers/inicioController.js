@@ -15,7 +15,7 @@ musicien.controller('inicio', function ($scope, $location, $routeParams,Redes, L
         if (respuesta.data.ID > 0) {
           mensajeExito("Bienvenido a Musicien.");
           mensajeExito("Tu cuenta ha sido validada con éxito. Ahora puedes iniciar sesión para empezar a disfrutar de Musicien.");
-          $location.path("/new");
+          $location.path("/preferencias");
         } else {
           anadirErrores(respuesta.data.Resultado);
         }
@@ -103,10 +103,11 @@ musicien.controller('inicio', function ($scope, $location, $routeParams,Redes, L
       return "btn btn-default";
     }
   }
-  $scope.checkClassPubFav = function(letra) {
+  $scope.checkClassPubFav = function (letra) {
     if (NotNullNotUndefinedNotEmpty($scope.usuario)) {
       if ($scope.usuario.PreferenciaPublInicial == letra) {
-        return "fa fa-lock";
+          return "fa fa-lock";
+          alert("Si en " + letra)
       } else {
         return "fa fa-unlock";
       }

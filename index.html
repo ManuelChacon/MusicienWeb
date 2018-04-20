@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es" ng-app="musicien">
   <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -395,7 +395,7 @@
        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
      <span class="navbar-toggler-icon"></span>
          </button>
-   <a class="navbar-brand" href="#">
+   <a class="navbar-brand" >
       <img src="img/logo.png" alt=""> MUSICIEN
    </a>
      <div id="navbarNav" ng-controller="modalesRegistroLogin" class="hidden-xs-down">
@@ -403,7 +403,7 @@
 
           <li class="nav-item "> <a class="nav-link" ng-click="puedohacer()">{{lang.que_hacer}}</a> </li>
           <li class="nav-item"> <a ng-click="descubre()" class="nav-link">{{lang.top_musicien}} Musicien</a> </li>
-          <li class="nav-item "> <a class="nav-link" ng-click="inicio()">{{lang.ir_a_musicien}} Musicien</a> </li>
+          <li class="nav-item " ng-if="botonEntrar||checkLoginStatus()"> <a class="nav-link" ng-click="inicio()">{{lang.ir_a_musicien}} Musicien</a> </li>
           <li ng-if="!checkLoginStatus()" class="nav-item"> <a class="nav-link" ng-click="openModalRegistro()">{{lang.registrarse}}</a> </li>
           <li ng-if="!checkLoginStatus()" class="nav-item active"> <a class="nav-link" ng-click="openModalInicioSesion()">{{lang.inicio_sesion}} </a> </li>
           <li class="nav-item"> <a class="nav-link" ng-click="contacto()">{{lang.contacto}}</a> </li>

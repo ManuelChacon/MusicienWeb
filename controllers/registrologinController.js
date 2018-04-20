@@ -153,7 +153,8 @@ musicien.controller('RegistroLogin', function ($scope, $location, Llamada, $wind
         .then(function(respuesta) {
           console.log(respuesta);
           if (respuesta.IDUsuario > 0) {
-
+              console.log("Aqui está el login");
+              console.log(respuesta);
             $location.path("/home");
             $uibModalInstance.close('ok');
           } else {

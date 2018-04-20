@@ -4,11 +4,11 @@
           <div class="col-12 mt-5">
           <img class="d-block mx-auto pb-5" src="img/logo.png">
             <img class="d-block mx-auto" src="img/musicien_slogan.png">
-            <div class="col-12">
-               <button type="" class="btn btn-primary mt-5 p-3" ng-click="inicio()"><span style="text-transform: uppercase;">{{lang.ir_a_musicien}} MUSICIEN</span> </button>
+            <div class="col-12" ng-if="botonEntrar||checkLoginStatus()">
+               <button ng-if=""type="button" class="btn btn-primary mt-5 p-3" ng-click="inicio()"><span style="text-transform: uppercase;">{{lang.ir_a_musicien}} MUSICIEN</span> </button>
             </div>
             <div class="col-12">
-               <button type="" class="btn btn-primary mt-5 p-3" ng-click="openModalInicioSesion()"><span style="text-transform: uppercase;">{{lang.inicio_sesion}}</span> </button>
+               <button type="button" class="btn btn-primary mt-5 p-3" ng-click="openModalInicioSesion()"><span style="text-transform: uppercase;">{{lang.inicio_sesion}}</span> </button>
             </div>
             <div class="col-12">
              <h5>------ o ------</h5> 
@@ -41,8 +41,8 @@
         <div class="col main-slider mt-5">
            
            <h2>{{lang.bienvenido_a_musicien}}<span class="text-colorN">MUSICIEN</span></h2>
-           <h3 class="text-colorB">{{lang.que_hacer}}</h3>
-            <button type="" class="btn btn-primary mt-5 p-3" ng-click="inicio()"><i class="fa fa-eye fa-lg" aria-hidden="true"></i> {{lang.echa_un_vistazo}} MUSICIEN</button>    
+           <h3 ng-if="botonEntrar||checkLoginStatus()" class="text-colorB">{{lang.que_hacer}}</h3>
+            <button ng-if="botonEntrar||checkLoginStatus()" class="btn btn-primary mt-5 p-3" ng-click="inicio()"><i class="fa fa-eye fa-lg" aria-hidden="true"></i> {{lang.echa_un_vistazo}} MUSICIEN</button>    
         </div>
           
         </div>

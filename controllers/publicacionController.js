@@ -1,5 +1,6 @@
 musicien.controller('publicacion', function ($scope, $routeParams, Llamada, Redes, $sce) {
-  var idusuario = "";
+    var idusuario = "";
+    modificandoEn(false);
   if ($scope.usuario !== null && $scope.usuario !== undefined) {
     idusuario = getIDUsuario();
   }
