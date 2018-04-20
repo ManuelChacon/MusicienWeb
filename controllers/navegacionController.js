@@ -602,6 +602,7 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $rou
                 if (!found) {
                     $scope.usuario.Categorias.push(cat);
                 }
+                $scope.cantidadPerfiles = $scope.usuario.Categorias.length;
             })
     }
     $scope.eliminarCatUsuario = function (cat) {

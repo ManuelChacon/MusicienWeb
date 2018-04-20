@@ -1,4 +1,16 @@
 musicien.controller('preferencias2', function ($scope, $location, Llamada, $window, $anchorScroll, $routeParams, $http) {
+    $scope.activePill = 1;
+    $scope.numPags = 3;
+
+    $scope.terceraTabActivada = false;
+    $scope.cambioAcepto = function (esto) {
+        console.log(this);
+        $scope.terceraTabActivada = this.terceraTabActivada;
+    }
+    $scope.progreso = function () {
+        var res = parseInt(($scope.activePill * 100) / $scope.numPags);
+        return res + "%";
+    }
   if ($scope.checkLoginStatus()) {
     if (NotNullNotUndefinedNotEmpty($routeParams.Perfiles)) {
       $location.hash('perfiles');
@@ -212,6 +224,42 @@ musicien.controller('preferencias2', function ($scope, $location, Llamada, $wind
             });
         }
       })
+  };
+  $scope.puedoAcabar = function () {
+      if (NotNullNotUndefinedNotEmpty($scope.usuario)) {
+          if (NotNullNotUndefinedNotEmpty($scope.usuario.Categorias)) {
+              if ($scope.usuario.Categorias.length > 0) {
+                  return true;
+              } else {
+                  return false;
+              }
+          } else {
+              return false;
+          }
+      } else {
+          return false;
+      }
+  }
+
+  $scope.cambioPill = function () {
+      switch (parseInt($scope.activePill)) {
+          case 1:
+              $scope.activePill++;
+              mensajeExito("Datos guardados con éxito");
+              break;
+          case 2:
+              if ($scope.terceraTabActivada === true) {
+                  mensajeExito("Datos guardados con éxito");
+                  $scope.activePill++;
+              } else {
+                  anadirErrores("Debes aceptar los términos de Musicien para continuar");
+              }
+              break;
+          default:
+              $scope.activePill++;
+              mensajeExito("Datos guardados con éxito");
+              break;
+      }
   }
 $scope.guardandocambios = false;
   $scope.guardarCambiosUsuario = function() {
@@ -232,8 +280,8 @@ $scope.guardandocambios = false;
                   $scope.usuario.DataContenidoMMBanner = document.getElementById("imgfondo-contenedor").src;
                   Llamada.http.post("UsuariosModificar", $scope.usuario)
                     .then(function(respuesta) {
-                      mensajeExito("Datos guardados con éxito");
-                      $scope.guardandocambios = false;
+                        $scope.guardandocambios = false;
+                        $scope.cambioPill();
                     })
                 })
 
@@ -241,8 +289,8 @@ $scope.guardandocambios = false;
             } else {
               Llamada.http.post("UsuariosModificar", $scope.usuario)
                 .then(function(respuesta) {
-                  mensajeExito("Datos guardados con éxito");
-                  $scope.guardandocambios = false;
+                    $scope.guardandocambios = false;
+                    $scope.cambioPill();
                 })
             }
           })
@@ -257,8 +305,8 @@ $scope.guardandocambios = false;
               $scope.usuario.DataContenidoMMBanner = document.getElementById("imgfondo-contenedor").src;
               Llamada.http.post("UsuariosModificar", $scope.usuario)
                 .then(function(respuesta) {
-                  mensajeExito("Datos guardados con éxito");
-                  $scope.guardandocambios = false;
+                    $scope.guardandocambios = false;
+                    $scope.cambioPill();
                 })
             })
 
@@ -266,16 +314,18 @@ $scope.guardandocambios = false;
         } else {
           Llamada.http.post("UsuariosModificar", $scope.usuario)
             .then(function(respuesta) {
-              mensajeExito("Datos guardados con éxito");
               $scope.guardandocambios = false;
+              $scope.cambioPill();
+              
             })
         }
       }
     } else {
       Llamada.http.post("UsuariosModificar", $scope.usuario)
         .then(function(respuesta) {
-          mensajeExito("Datos guardados con éxito");
+          
           $scope.guardandocambios = false;
+          $scope.cambioPill();
         })
     }
   }
