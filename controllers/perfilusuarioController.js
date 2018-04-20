@@ -233,4 +233,5 @@ musicien.controller('perfilusuario', function ($scope, $location, Llamada, $wind
       }
 
     }
+    comprobarPermisos()
 });

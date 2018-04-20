@@ -8,7 +8,6 @@ musicien.controller('publicacion', function ($scope, $routeParams, Llamada, Rede
     .then(function(respuesta) {
 
       $scope.publicacion = respuesta.data;
-      console.log($scope.publicacion);
       buttonwhatsapp = Redes.Sociales.Whatsapp.ObtenerBoton($scope.publicacion.Titulo, $scope.publicacion.IDPublicacion);
 
       Redes.Sociales.Twitter.ObtenerBoton($scope.publicacion.Titulo, $scope.publicacion.IDPublicacion);
@@ -125,4 +124,5 @@ musicien.controller('formulariocomentario', function ($scope, $routeParams, Llam
       return true;
     }
   }
+  comprobarPermisos();
 });

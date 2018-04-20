@@ -133,8 +133,18 @@ musicien.factory('Redes', function($http, $q, configuracionGlobal, $location, Ll
        }
        Llamada.http.get(cadena)
         .then(function(respuesta) {
-          sessionStorage.setItem("musicienLogin", JSON.stringify({IDUsuario: respuesta.data.ID }));
-          $location.path("/new");
+            sessionStorage.setItem("musicienLogin", JSON.stringify({ IDUsuario: respuesta.data.ID }));
+            console.log("RespuestaSocial!");
+            if (!respuesta.data.Otros.VisiblesSinPerfil) {
+                if (respuesta.data.Otros.CantidadPerfiles > 0) {
+                    $location.path("/new");
+                } else {
+                    $location.path("/datosregistro")
+                }
+            } else {
+                $location.path("/new");
+            }
+          
         })
       };
   return {

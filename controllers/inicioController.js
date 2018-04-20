@@ -10,12 +10,10 @@ musicien.controller('inicio', function ($scope, $location, $routeParams,Redes, L
   if ($routeParams.guidverif !== undefined && $routeParams.guidverif !== null) {
     Llamada.http.get("UsuariosVerificar?guid=" + $routeParams.guidverif)
       .then(function(respuesta) {
-        console.log(respuesta);
-        console.log(respuesta);
         if (respuesta.data.ID > 0) {
           mensajeExito("Bienvenido a Musicien.");
           mensajeExito("Tu cuenta ha sido validada con éxito. Ahora puedes iniciar sesión para empezar a disfrutar de Musicien.");
-          $location.path("/preferencias");
+          $location.path("/");
         } else {
           anadirErrores(respuesta.data.Resultado);
         }
@@ -35,8 +33,6 @@ musicien.controller('inicio', function ($scope, $location, $routeParams,Redes, L
             for (i = 0; i < $scope.publicaciones.length; i++) {
               if ($scope.publicaciones[i].IDPublicacion == respuesta.data.IDPublicacion) {
                 $scope.publicaciones[i].ConComentarios = true;
-                console.log($scope.publicaciones[i])
-                console.log(respuesta.data.Comentarios);
                 if (NotNullNotUndefinedNotEmpty($scope.publicaciones[i].Comentarios)) {
                   $scope.publicaciones[i].Comentarios.splice(0,$scope.publicaciones[i].Comentarios.length)
                 } else {
@@ -45,7 +41,6 @@ musicien.controller('inicio', function ($scope, $location, $routeParams,Redes, L
                 for (h = 0; h < respuesta.data.Comentarios.length; h++) {
                   $scope.publicaciones[i].Comentarios.push(respuesta.data.Comentarios[h]);
                 }
-                console.log($scope.publicaciones[i])
               }
             }
           });
@@ -64,7 +59,6 @@ musicien.controller('inicio', function ($scope, $location, $routeParams,Redes, L
     PonerLoadingTrue()
     Llamada.http.get("UsuarioSigueUsuarioSeguir?IDUsuarioSeguidor=" + getIDUsuario() + "&IDUsuarioSeguido=" + usuario.IDUsuario)
       .then(function(respuesta) {
-        console.log(respuesta);
         ActualizarSeguidorPublicaciones(usuario.IDUsuario, respuesta.data.ID);
 
       })
@@ -73,7 +67,6 @@ musicien.controller('inicio', function ($scope, $location, $routeParams,Redes, L
     PonerLoadingTrue()
     Llamada.http.get("UsuarioSigueUsuarioDejarDeSeguir?IDUsuarioSigueUsuario=" + usuario.IDUsuarioSigueUsuario)
       .then(function(respuesta) {
-        console.log(respuesta);
         ActualizarSeguidorPublicaciones(usuario.IDUsuario, 0);
       })
   }
@@ -129,5 +122,7 @@ musicien.controller('inicio', function ($scope, $location, $routeParams,Redes, L
       if (parseInt(num) == parseInt($scope.active)) {
         return "f-active";
       }
-    }
+  }
+comprobarPermisos()
+    
 });

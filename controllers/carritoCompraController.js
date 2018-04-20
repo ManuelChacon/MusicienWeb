@@ -280,6 +280,7 @@ musicien.controller('verCarrito', function ($scope, $location, Llamada, $window,
         articulo.DataContenidoMM = respuesta.data;
       })
   }
+  comprobarPermisos();
 });
 
 musicien.controller('promocionarPublicacion', function ($scope, $location, Llamada, $window, $sce, $timeout, configuracionGlobal, Carrito) {

@@ -3,7 +3,8 @@ musicien.controller('notificaciones', function ($scope, $location, Llamada, $win
 		.then(function(respuesta) {
 			console.log(respuesta);
 			$scope.notificacionesPendientes = respuesta.data;
-		})
+        })
+    comprobarPermisos()
 });
 
 musicien.controller('planes', function ($scope, $location, Llamada, $window, $sce, $timeout, configuracionGlobal) {
@@ -149,7 +150,8 @@ musicien.controller('verplanes', function ($scope, $location, Llamada, $window, 
 						anadirErrores(respuesta.data.Resultado);
 					}
 				})
-		}
+        }
+        comprobarPermisos()
 });
 
 musicien.controller('spotifyController', function ($scope, $sce, $location, Llamada, $window, $sce, $timeout, configuracionGlobal) {
@@ -189,7 +191,8 @@ musicien.controller('verperfiles', function ($scope, $location, Llamada, $window
 						$scope.perfiles[respuesta.posi].DataContenidoMM = respuesta.data;
 					})
 			}
-		})
+        })
+    comprobarPermisos()
 
 });
 musicien.controller('verusuariosperfil', function ($scope, $location, Llamada, $window, $sce, $timeout, configuracionGlobal, $routeParams) {

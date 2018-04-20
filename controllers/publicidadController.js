@@ -1,7 +1,5 @@
 musicien.controller('publicidad', function ($scope, $location, Llamada, $window, $sce, $timeout, configuracionGlobal) {
-  console.log("Holiii")
   $scope.init = function(val) {
-    console.log("En la publiciadd con " + val);
     Llamada.http.get("PublicacionesLeerPorIDPosicionPublicidad?IDPosicionPublicidad=" + val + "&IDUsuarioLector=" + getIDUsuario())
       .then(function(respuesta) {
         console.log(respuesta.data);

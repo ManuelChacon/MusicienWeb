@@ -27,7 +27,6 @@ musicien.controller('modalesRegistroLogin', function ($scope, $uibModal, $log, $
           $scope.cargaInicial();
         }
       }, function () {
-        console.log("dismissed");
       });
   };
   $scope.openModalInicioSesion = function (size, parentSelector) {
@@ -123,19 +122,13 @@ musicien.controller('RegistroLogin', function ($scope, $location, Llamada, $wind
   if (NotNullNotUndefinedNotEmpty(parametrosModal(null))) {
     $scope.lang = parametrosModal(null).Idioma;
   }
-  //alert("HOLIII");
-  console.log($scope.lang);
   if (credenciales !== null) {
-    console.log("Hay credenciales");
-    console.log(credenciales);
     $scope.oldusuario = credenciales
   }
   $scope.registrarUsuario = function() {
-    console.log($scope.newusuario);
     if (NotNullNotUndefinedNotEmpty($scope.newusuario.Email) && NotNullNotUndefinedNotEmpty($scope.newusuario.Contrasena) && NotNullNotUndefinedNotEmpty($scope.newusuario.Nombre)) {
       Llamada.http.post("UsuariosCrear", $scope.newusuario)
         .then(function(respuesta) {
-          console.log(respuesta);
           if (respuesta.ID > 0) {
             mensajeExito("El registro se ha completado con éxito, verifica tu correo para validar tu cuenta y empezar a utilizar Musicien.")
             //$scope.LoginUsuario($scope.newusuario.Email, $scope.newusuario.Contrasena);
@@ -151,20 +144,16 @@ musicien.controller('RegistroLogin', function ($scope, $location, Llamada, $wind
     if (NotNullNotUndefinedNotEmpty(email) && NotNullNotUndefinedNotEmpty(contrasena)) {
       Llamada.http.getAuthGetToken(email, contrasena)
         .then(function(respuesta) {
-          console.log(respuesta);
           if (respuesta.IDUsuario > 0) {
-              console.log("Aqui está el login");
-              console.log(respuesta);
-              if (respuesta.data.Sitio.VisiblesSinPerfil) {
-                  
+              if (respuesta.Sitio.VisiblesSinPerfil === true) {
+                  $location.path("/home");
               } else {
-                  if (respuesta.data.Sitio.CantidadPerfiles < 1) {
+                  if (respuesta.Sitio.CantidadPerfiles < 1) {
                       $location.path("/datosregistro");
                   } else {
                       $location.path("/home");
                   }
               }
-            
             $uibModalInstance.close('ok');
           } else {
             anadirErrores(respuesta.Nombre);
@@ -197,10 +186,8 @@ musicien.controller('RegistroLogin', function ($scope, $location, Llamada, $wind
 
 musicien.controller('previsualizar', function($scope, $http, $location, $q, $uibModalInstance,Publicacion, Llamada) {
   $scope.publicacion = Publicacion.Modal.get()
-  console.log($scope.publicacion)
   $scope.publicacion.DataContenidoMM = $scope.publicacion.ContenidoMM;
   $scope.publicacion.DataContenidoMMAlt = $scope.publicacion.ContenidoMMAlt;
-  console.log("ESTOY AQUI COÑOOO")
 
   $scope.ok = function() {
     $uibModalInstance.close("hola");

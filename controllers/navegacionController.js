@@ -1,4 +1,4 @@
-musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $http, Carrito, $window, $sce, Redes, $timeout, configuracionGlobal, oneSignal, $anchorScroll, Lightbox) {
+musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $routeParams, $http, Carrito, $window, $sce, Redes, $timeout, configuracionGlobal, oneSignal, $anchorScroll, Lightbox) {
     $scope.canOcultada = false;
     $scope.jsonpillado = false;
     $scope.IDIdioma = 1;
@@ -7,7 +7,6 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
         $scope.IDIdioma = id;
         $http.get("idioma" + id + ".json")
             .then(function (respuesta) {
-                console.log(respuesta);
                 $scope.lang = respuesta.data;
             })
     }
@@ -29,13 +28,11 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
         Llamada.http.get("IdiomasLeer")
             .then(function (respuesta) {
                 var userLanguage = navigator.language || navigator.userLanguage;
-                console.log(userLanguage);
                 $scope.idiomas = respuesta.data;
                 var idiomaencontrado = false;
                 for (i = 0; i < $scope.idiomas.length; i++) {
                     if ($scope.idiomas[i].IDIdioma == parseInt(lang)) {
                         idiomaencontrado = true;
-                        console.log("Encuentro mi idioma aqui");
                         $scope.idiomaactivo = $scope.idiomas[i].NombreIdioma;
                         $scope.flagidiomaactivo = $scope.iconode($scope.idiomas[i].Icono);
                         if ($scope.jsonpillado !== true) {
@@ -43,15 +40,12 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
                             //localStorage.setItem("musicienLang", "" + $scope.IDIdioma);
                         }
                     } else {
-                        console.log(userLanguage.indexOf($scope.idiomas[i].browser_string) > -1);
                         if (userLanguage.indexOf($scope.idiomas[i].browser_string) > -1) {
                             idiomaencontrado = true;
-                            //console.log("Encuentro mi idioma pero no lo tengo asignado");
                             if ($scope.IDIdioma != $scope.idiomas[i].IDIdioma) {
                                 langu = $scope.idiomas[i].IDIdioma;
                                 localStorage.setItem("musicienLang", "" + langu);
                                 //ObtenerJSONIdioma(lang);
-                                //console.log("Necesito recargar!");
                                 location.reload();
                             } else {
                                 $scope.idiomaactivo = $scope.idiomas[i].NombreIdioma;
@@ -62,7 +56,6 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
                     }
                 }
                 if (!idiomaencontrado) {
-                    //console.log("Mi idioma no lo encontré");
                     langu = "2";
                     localStorage.setItem("musicienLang", "2");
                     location.reload();
@@ -145,7 +138,6 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
 
     comprobarLogin = function () {
         var usuario = JSON.parse(sessionStorage.getItem("musicienLogin"));
-        console.log(usuario);
         if (NotNullNotUndefinedNotEmpty(usuario)) {
             $scope.usuario = usuario;
             Carrito.compra.inicializarCarrito();
@@ -247,7 +239,6 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
                     if (res > -1) {
                       $scope.TopMusicos[i].Valoracion = respuesta.data.Valoracion;
                     }*/
-                    console.log(respuesta)
                 })
         }
     }
@@ -319,9 +310,7 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
                             $scope.active = 1;
                             Llamada.http.get("PublicacionesLeer?IDUsuarioLector=" + getIDUsuario() + "&IDInicio=&tamPag=5&IDIdioma=" + getIdioma() + "&restricciones=true")
                                 .then(function (respuesta) {
-                                    console.log("MIra aqui");
                                     $scope.publicaciones = respuesta.data.Publicaciones;
-                                    console.log($scope.publicaciones)
                                     for (i = 0; i < $scope.publicaciones.length; i++) {
                                         $scope.publicaciones[i].Comentarios = [];
                                     }
@@ -334,7 +323,6 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
                                 .then(function (respuesta) {
 
                                     $scope.publicaciones = respuesta.data;
-                                    console.log($scope.publicaciones)
                                     for (i = 0; i < $scope.publicaciones.length; i++) {
                                         $scope.publicaciones[i].Comentarios = [];
                                     }
@@ -360,9 +348,7 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
                             $scope.active = 1;
                             Llamada.http.get("PublicacionesLeer?IDUsuarioLector=" + getIDUsuario() + "&IDInicio=&tamPag=5&IDIdioma=" + getIdioma() + "&restricciones=true")
                                 .then(function (respuesta) {
-                                    console.log("MIra aqui");
                                     $scope.publicaciones = respuesta.data.Publicaciones;
-                                    console.log($scope.publicaciones)
                                     for (i = 0; i < $scope.publicaciones.length; i++) {
                                         $scope.publicaciones[i].Comentarios = [];
                                     }
@@ -465,7 +451,6 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
 
     }
     $scope.cargarTopMultimedia = function (publicacion) {
-        console.log("Cargando del top")
         if (publicacion !== null && publicacion !== undefined) {
             publicacion.Cargada = true;
             Llamada.http.getArrayByte(publicacion.ContenidoMM, "I")
@@ -533,11 +518,8 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
         $location.path("/preferencias");
     }
     $scope.meInteresa = function (publicacion) {
-        console.log("Ma interesao");
-        console.log(publicacion);
         Llamada.http.get("PublicacionesInteresarsePor?IDPublicacion=" + publicacion.IDPublicacion + "&IDUsuario=" + getIDUsuario())
             .then(function (respuesta) {
-                console.log(respuesta);
                 if (respuesta.data.ID > 0) {
                     mensajeExito(respuesta.data.Resultado);
                 } else {
@@ -1011,10 +993,8 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
         if (user.BloqueoUsuario < 1) {
             $scope.BloquearUsuarioPorID(user.IDUsuario)
                 .then(function (respuesta) {
-                    console.log("holi");
                     user.SoyBloqueador = 1;
                     user.BloqueoUsuario = respuesta;
-                    console.log(user);
                 })
         } else {
             if (user.SoyBloqueador > 0) {
@@ -1029,7 +1009,6 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
 
     }
     $scope.DenunciarPublicacion = function (publi) {
-        console.log(publi);
         var msj = prompt("Indica el motivo de la denuncia:");
         var dn = {
             TipoObjeto: "P",
@@ -1041,7 +1020,6 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
         }
         Llamada.http.post("DenunciaCrear", dn)
             .then(function (respuesta) {
-                console.log(respuesta)
                 if (respuesta.ID > 0) {
                     mensajeExito(respuesta.Resultado)
                 } else {
@@ -1161,7 +1139,6 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
         $location.path("/home");
         var a = new FiltrosBusqueda();
         a.Cadena = document.getElementById("textobusqueda").value;
-        console.log(a);
         Llamada.http.get("CategoriasLeer?IDIdioma=" + getIdioma())
             .then(function (respuesta) {
                 var TemCats = respuesta.data;
@@ -1262,7 +1239,6 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
         }
     }
     $scope.clickNotificacion = function (accion, index, subobj) {
-        console.log(accion);
         $scope.usuario.Notificaciones.Notific.splice(index, 1);
         if (accion.IDAccionUsuario > 0) {
             Llamada.http.get("AccionesUsuarioMarcarSuscripcionLeida?IDAccionUsuario=" + accion.IDAccionUsuario + "&IDUsuario=" + getIDUsuario() + "&Leida=true")
@@ -1272,7 +1248,6 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
         } else if (accion.IDPublicacionInteresUsuario > 0) {
             Llamada.http.get("PublicacionesInteresUsuarioMarcarLeido?IDPublicacionInteresUsuario=" + accion.IDPublicacionInteresUsuario + "&Leido=1")
                 .then(function (respuesta) {
-                    console.log(respuesta);
                     if (subobj > 0) {
                         var a = { IDPublicacion: accion.IDCosa, Titulo: 'publicacion' }
                         $scope.verPublicacion(a);
@@ -1283,15 +1258,13 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
                     }
                     $scope.usuario.Notificaciones.Cantidad = $scope.usuario.Notificaciones.Cantidad - 1;
                 })
-
-            console.log("Es de compra/venta")
+            
         } else {
             anadirErrores($scope.lang.error_general);
         }
 
     }
     $scope.vermaspublis = function () {
-        console.log("Ver más");
         var idinicio = $scope.publicaciones[$scope.publicaciones.length - 1].IDPublicacion;
         switch ($scope.PublicacionesMostradas) {
             case "B":
@@ -1307,7 +1280,6 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
                         for (i = 0; i < respuesta.data.length; i++) {
                             $scope.publicacionesrecibidas[i].Comentarios = [];
                         }
-                        console.log(respuesta.data);
                         $scope.publicaciones = $scope.publicaciones.concat($scope.publicacionesrecibidas);
                     })
 
@@ -1322,7 +1294,6 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
                         for (i = 0; i < respuesta.data.length; i++) {
                             respuesta.data[i].Comentarios = [];
                         }
-                        console.log(respuesta.data);
                         $scope.publicaciones = $scope.publicaciones.concat(respuesta.data);
                     })
                 break;
@@ -1336,7 +1307,6 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
                         for (i = 0; i < respuesta.data.length; i++) {
                             $scope.publicacionesrecibidas[i].Comentarios = [];
                         }
-                        console.log(respuesta.data);
                         $scope.publicaciones = $scope.publicaciones.concat($scope.publicacionesrecibidas);
                     })
         }
@@ -1491,18 +1461,43 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $htt
     };
     $scope.VisiblesSinPerfil = true;
     comprobarPermisosIniciales = function (idUsuario) {
+        
         Llamada.http.get("SitioLeer?idUsuario=" + idUsuario)
             .then(function (respuesta) {
-                console.log("Mira los datos que me llegan:");
-                console.log(respuesta.data);
-                if (respuesta.data.VisiblesSinLogin === false && respuesta.data.IDUsuario < 1) {
-                    $location.path("/");
-                    
+                if ($location.path().indexOf("auth") > -1 || $location.path().indexOf("verif") > -1) {
+
+                } else {
+                    if (respuesta.data.VisiblesSinLogin === false && respuesta.data.IDUsuario < 1) {
+
+                        $location.path("/");
+
+                    }
                 }
+                $scope.VisiblesSinLogin = respuesta.data.VisiblesSinLogin;
                 $scope.botonEntrar = respuesta.data.VisiblesSinLogin;
                 $scope.VisiblesSinPerfil = respuesta.data.VisiblesSinPerfil;
                 $scope.cantidadPerfiles = respuesta.data.CantidadPerfiles;
             })
+        
+    }
+    
+    comprobarPermisos = function () {
+        if (NotNullNotUndefinedNotEmpty($scope.botonEntrar)) {
+            if ($scope.VisiblesSinLogin === false && getIDUsuario() < 1) {
+                $location.path("/");
+                mensajeExito("Inicia sesión para empezar a disfrutar de Musicien.");
+            } else {
+                
+                if ($scope.VisiblesSinPerfil === false && $scope.cantidadPerfiles < 1) {
+                    $location.path("/datosregistro");
+
+                    mensajeExito("Completa tu perfil para empezar a disfrutar de Musicien.");
+                }
+            }
+            
+        } else {
+            comprobarPermisosIniciales(getIDUsuario());
+        }
     }
     $scope.VisibilidadSinPerfiles = function () {
         if ($scope.VisiblesSinPerfil !== true) {

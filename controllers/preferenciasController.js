@@ -597,4 +597,5 @@ $scope.anularPromo = function(promo, index) {
       }
     })
   }
+  comprobarPermisos();
 });
