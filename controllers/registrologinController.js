@@ -155,7 +155,16 @@ musicien.controller('RegistroLogin', function ($scope, $location, Llamada, $wind
           if (respuesta.IDUsuario > 0) {
               console.log("Aqui está el login");
               console.log(respuesta);
-            $location.path("/home");
+              if (respuesta.data.Sitio.VisiblesSinPerfil) {
+                  
+              } else {
+                  if (respuesta.data.Sitio.CantidadPerfiles < 1) {
+                      $location.path("/datosregistro");
+                  } else {
+                      $location.path("/home");
+                  }
+              }
+            
             $uibModalInstance.close('ok');
           } else {
             anadirErrores(respuesta.Nombre);
