@@ -1505,13 +1505,10 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $rou
             } else {
                 
                 if ($scope.VisiblesSinPerfil === false) {
-                    if ($scope.cantidadPerfiles < 1) {
+                    if ($scope.cantidadPerfiles < 1 && getIDUsuario() > 0) {
                         $location.path("/datosregistro");
                         mensajeExito("Completa tu perfil para empezar a disfrutar de Musicien.");
-                    }
-                    
-
-                    
+                    } 
                 }
             }
             

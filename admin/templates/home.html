@@ -1,4 +1,10 @@
  <!-- top tiles -->
+<div>
+    <input type="checkbox" ng-model="estadisticas.Sitio.VisiblesSinLogin" />Se puede entrar a Musicien sin registrarse <br />
+    <input type="checkbox" ng-model="estadisticas.Sitio.VisiblesSinPerfil" />Se puede ver contenido de Musicien sin crearse un perfil
+    <br />
+    <input type="submit" class="btn btn-primary" ng-click="guardarCambiosMusicien()" value="Guardar Cambios"/>
+</div>
           <div class="row tile_count" ng-if="estadisticas">
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count cursor"  ng-click="cambioPagina(1)" >
               <span class="count_top"><i class="fa fa-user"></i> Total de Usuarios</span>
@@ -55,6 +61,7 @@
               </div>
             </div>
           </div>
+          
           <div class="">
             <uib-tabset active="active" type="pills">
               <uib-tab index="1" classes="tab-usuarios">

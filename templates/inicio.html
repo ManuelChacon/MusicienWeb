@@ -68,34 +68,35 @@
           <!-- <div class="col-12 post-content p-3" ng-hide="usuario.Login ==true">
             <h6 class="text-center"><span style="color:black; cursor: pointer;" ng-click="contratar()">Mira nuestros planes y promociones,</span> contrata el plan o promoción que más se adecue a tus necesidades y aprovecha al máximo MUSICIEN</h6>
           </div> -->
-          <div class="col-12 post-content p-1 text-center filtros-m" ng-hide="usuario.Login!==true" ng-if="VisibilidadSinPerfiles()" >
-              <div class="row" >
+          <div class="col-12 post-content p-1 text-center filtros-m" ng-hide="usuario.Login!==true">
+              <!-- ng-if="VisibilidadSinPerfiles()"-->
+              <div class="row">
 
-                <div class="col separa border-left-0 border-top-0 border-bottom-0" >
-                   <button ng-click="CambiarPubFavorito('F')" type="button" name="button" class="reset-btn" data-toggle="tooltip" data-placement="top" title="Fijar selección">
-                  <i class="{{checkClassPubFav('F')}}" ></i>
-                </button>
-                <span  ng-click="PublicacionesLeerSeguidos()"  class="{{checkClassPref('F')}}"> {{lang.ver_sigues}}</span>
-                </div>
+                  <div class="col separa border-left-0 border-top-0 border-bottom-0">
+                      <button ng-click="CambiarPubFavorito('F')" type="button" name="button" class="reset-btn" data-toggle="tooltip" data-placement="top" title="Fijar selección">
+                          <i class="{{checkClassPubFav('F')}}"></i>
+                      </button>
+                      <span ng-click="PublicacionesLeerSeguidos()" class="{{checkClassPref('F')}}"> {{lang.ver_sigues}}</span>
+                  </div>
 
-                <div class="col">
-                  <button ng-click="CambiarPubFavorito('T')" id="example" type="button" name="button" class="reset-btn-todo" data-toggle="tooltip" data-placement="top" title="Fijar selección">
-                  <i class="{{checkClassPubFav('T')}}" ></i>
-                </button>
-                <span  ng-click="PublicacionesLeerTodas()" class="{{checkClassPref('T')}}"> {{lang.ver_todo}}</span>
-                </div>
+                  <div class="col">
+                      <button ng-click="CambiarPubFavorito('T')" id="example" type="button" name="button" class="reset-btn-todo" data-toggle="tooltip" data-placement="top" title="Fijar selección">
+                          <i class="{{checkClassPubFav('T')}}"></i>
+                      </button>
+                      <span ng-click="PublicacionesLeerTodas()" class="{{checkClassPref('T')}}"> {{lang.ver_todo}}</span>
+                  </div>
 
-                <div class="col separa border-right-0 border-top-0 border-bottom-0">
-                <!-- <button class="reset-btn" ng-click="ActivarFiltros()">
-                     <i class="ion ion-funnel" class="nav-item" ></i>
-                </button> -->
-                <span  ng-click="ActivarFiltros()" class="filtros-btn">  {{lang.busqueda_avanzada}}</span>
-                </div>
+                  <div class="col separa border-right-0 border-top-0 border-bottom-0">
+                      <!-- <button class="reset-btn" ng-click="ActivarFiltros()">
+                 <i class="ion ion-funnel" class="nav-item" ></i>
+            </button> -->
+                      <span ng-click="ActivarFiltros()" class="filtros-btn">  {{lang.busqueda_avanzada}}</span>
+                  </div>
               </div>
               <script>
-               $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-              })
+                  $(function () {
+                      $('[data-toggle="tooltip"]').tooltip()
+                  })
               </script>
           </div>
 
@@ -115,45 +116,49 @@
           </div>
         <!-- INICIO PAGINA FILTROS -->
         <!-- {{active}} -->
-           <uib-tabset active="active" type="pills" ng-hide="!VisibilidadSinPerfiles()">
+          <uib-tabset active="active" type="pills">
+              <!-- ng-hide="!VisibilidadSinPerfiles()"-->
               <uib-tab index="1">
-                <span ng-if="publicaciones.length<1">
-                 <div class="post-content p-3"><h5 class="text-center py-5">{{lang.no_hay_publi}}</h5> </div></span>
-                <div ng-repeat="publicacion in publicaciones"><!-- CAPA FILTRO  PUBLICACIONES -->
-                    <div class="post-content" style="background-color:{{publicacion.Usuario.Color}}">
-                    
-                      <publicidad-entre ng-if="esPubli(publicacion)">
-                      </publicidad-entre>
-                      <publicacion  ng-if="!esPubli(publicacion)">
-                      </publicacion>
-                     <div class="row " ng-if="!esPubli(publicacion)">
-                      <div class="col-12 p-4">
-                         <formulario-comentario ng-init="init(0)"></formulario-comentario>
-                      </div>
+                  <span ng-if="publicaciones.length<1">
+                      <div class="post-content p-3"><h5 class="text-center py-5">{{lang.no_hay_publi}}</h5> </div>
+                  </span>
+                  <div ng-repeat="publicacion in publicaciones">
+                      <!-- CAPA FILTRO  PUBLICACIONES -->
+                      <div class="post-content" style="background-color:{{publicacion.Usuario.Color}}">
 
-                      </div>
-                      <div class="">
-                        <comentario-norespuesta ng-repeat="comentario in publicacion.Comentarios | filter:esComentarioBase | limitTo:3">
+                          <publicidad-entre ng-if="esPubli(publicacion)">
+                          </publicidad-entre>
+                          <publicacion ng-if="!esPubli(publicacion)">
+                          </publicacion>
+                          <div class="row " ng-if="!esPubli(publicacion)">
+                              <div class="col-12 p-4">
+                                  <formulario-comentario ng-init="init(0)"></formulario-comentario>
+                              </div>
 
-                        </comentario-norespuesta>
-                        <input ng-if="publicacion.ConComentarios" ng-click="verComentariosPublicacion(publicacion)" class="form-control" type="submit" name="" value="Ver mĂĄs comentarios">
+                          </div>
+                          <div class="">
+                              <comentario-norespuesta ng-repeat="comentario in publicacion.Comentarios | filter:esComentarioBase | limitTo:3">
+
+                              </comentario-norespuesta>
+                              <input ng-if="publicacion.ConComentarios" ng-click="verComentariosPublicacion(publicacion)" class="form-control" type="submit" name="" value="Ver mĂĄs comentarios">
+                          </div>
                       </div>
-                    </div>
-               </div> <!-- CAPA FILTRO PUBLICACIONES -->
-               <button type="text" class="btn-block btn-lg" name="" value="Ver más" ng-click="vermaspublis()" style="background: white; color:orange;">Ver más</button>
+                  </div> <!-- CAPA FILTRO PUBLICACIONES -->
+                  <button type="text" class="btn-block btn-lg" name="" value="Ver más" ng-click="vermaspublis()" style="background: white; color:orange;">Ver más</button>
               </uib-tab>
               <uib-tab index="2">
-                <div class="post-content p-3"><span ng-if="usuariosFiltr.length<1"><h5 class="text-center py-5">{{lang.no_hay_usuarios}}</h5></span>
-                  <div  ng-repeat="usuario in usuariosFiltr">
-                   <!-- CAPA FILTRO PERFILES -->
-                    <mini-perfil-follows  >
+                  <div class="post-content p-3">
+                      <span ng-if="usuariosFiltr.length<1"><h5 class="text-center py-5">{{lang.no_hay_usuarios}}</h5></span>
+                      <div ng-repeat="usuario in usuariosFiltr">
+                          <!-- CAPA FILTRO PERFILES -->
+                          <mini-perfil-follows>
 
-                    </mini-perfil-follows>
-                   </div>
-                </div>
-                 <!--FIN CAPA FILTROS PERFILES -->
+                          </mini-perfil-follows>
+                      </div>
+                  </div>
+                  <!--FIN CAPA FILTROS PERFILES -->
               </uib-tab>
-           </uib-tabset>
+          </uib-tabset>
 
          <!--  FIN PAGINA FILTROS -->
 

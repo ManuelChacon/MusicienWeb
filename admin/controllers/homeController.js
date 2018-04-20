@@ -345,6 +345,13 @@ musicien.controller('home', function ($scope, Llamada) {
 
     }
   }
+  $scope.guardarCambiosMusicien = function () {
+      Llamada.http.post("SitioModificar", $scope.estadisticas.Sitio)
+          .then(function (respuesta) {
+              console.log(respuesta.data);
+              mensajeExito("Cambios guardados exitosamente");
+          })
+  }
 });
 musicien.controller('porcentaje', function ($scope, Llamada) {
   $scope.init = function(cifra1, cifra2) {
