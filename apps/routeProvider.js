@@ -10,7 +10,7 @@ musicien.config(['$routeProvider', function ($routeProvider) {
   })
   .when('/datosregistro', {
     templateUrl:'templates/datosregistro.html',
-    controller:'inicio'
+    controller:'preferencias2'
   })
   .when('/perfil/:IDUsuario/:Nombre', {
     templateUrl:'templates/perfil.html',
