@@ -143,17 +143,11 @@ musicien.controller('RegistroLogin', function ($scope, $location, Llamada, $wind
   $scope.LoginUsuario = function(email, contrasena) {
     if (NotNullNotUndefinedNotEmpty(email) && NotNullNotUndefinedNotEmpty(contrasena)) {
       Llamada.http.getAuthGetToken(email, contrasena)
-        .then(function(respuesta) {
-          if (respuesta.IDUsuario > 0) {
-              if (respuesta.Sitio.VisiblesSinPerfil === true) {
-                  $location.path("/home");
-              } else {
-                  if (respuesta.Sitio.CantidadPerfiles < 1) {
-                      $location.path("/datosregistro");
-                  } else {
-                      $location.path("/home");
-                  }
-              }
+          .then(function (respuesta) {
+              
+            if (respuesta.IDUsuario > 0) {
+                ColocarSitio(respuesta.Sitio);
+              
             $uibModalInstance.close('ok');
           } else {
             anadirErrores(respuesta.Nombre);

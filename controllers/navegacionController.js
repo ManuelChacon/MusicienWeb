@@ -1460,6 +1460,21 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $rou
         Lightbox.openModal(Imagenes, index);
     };
     $scope.VisiblesSinPerfil = true;
+    ColocarSitio = function (Sitio) {
+        $scope.VisiblesSinLogin = Sitio.VisiblesSinLogin;
+        $scope.botonEntrar = Sitio.VisiblesSinLogin;
+        $scope.VisiblesSinPerfil = Sitio.VisiblesSinPerfil;
+        $scope.cantidadPerfiles = Sitio.CantidadPerfiles;
+        if (Sitio.VisiblesSinPerfil === true) {
+            $location.path("/home");
+        } else {
+            if (Sitio.CantidadPerfiles < 1) {
+                $location.path("/datosregistro");
+            } else {
+                $location.path("/home");
+            }
+        }
+    }
     comprobarPermisosIniciales = function (idUsuario) {
         
         Llamada.http.get("SitioLeer?idUsuario=" + idUsuario)
@@ -1484,14 +1499,18 @@ musicien.controller('navegacion', function ($q, $scope, $location, Llamada, $rou
     comprobarPermisos = function () {
         if (NotNullNotUndefinedNotEmpty($scope.botonEntrar)) {
             if ($scope.VisiblesSinLogin === false && getIDUsuario() < 1) {
-                $location.path("/");
+                
                 mensajeExito("Inicia sesión para empezar a disfrutar de Musicien.");
             } else {
                 
-                if ($scope.VisiblesSinPerfil === false && $scope.cantidadPerfiles < 1) {
-                    $location.path("/datosregistro");
+                if ($scope.VisiblesSinPerfil === false) {
+                    if ($scope.cantidadPerfiles < 1) {
+                        $location.path("/datosregistro");
+                        mensajeExito("Completa tu perfil para empezar a disfrutar de Musicien.");
+                    }
+                    
 
-                    mensajeExito("Completa tu perfil para empezar a disfrutar de Musicien.");
+                    
                 }
             }
             
