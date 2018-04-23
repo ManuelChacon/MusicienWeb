@@ -15,6 +15,24 @@ musicien.controller('landing', function ($scope, $location, Llamada, $window) {
         }
       })
   }
+  $scope.newusuario = {}
+  $scope.registrarUsuario2 = function() {
+    if (NotNullNotUndefinedNotEmpty($scope.newusuario.Email) && NotNullNotUndefinedNotEmpty($scope.newusuario.Contrasena) && NotNullNotUndefinedNotEmpty($scope.newusuario.Nombre)) {
+      Llamada.http.post("UsuariosCrear", $scope.newusuario)
+        .then(function(respuesta) {
+          if (respuesta.ID > 0) {
+            mensajeExito("El registro se ha completado con éxito, verifica tu correo para validar tu cuenta y empezar a utilizar Musicien.")
+            $scope.newusuario = {}
+            //$scope.LoginUsuario($scope.newusuario.Email, $scope.newusuario.Contrasena);
+          } else {
+            anadirErrores(respuesta.Resultado);
+          }
+          $scope.newusuario = {}
+        })
+    } else {
+      anadirErrores($scope.lang.rellenar_todo_error);
+    }
+  }
   $scope.LoginUsuario = function(email, contrasena) {
     Llamada.http.getAuthGetToken(email, contrasena)
       .then(function(respuesta) {

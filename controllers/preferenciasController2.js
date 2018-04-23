@@ -1,4 +1,4 @@
-musicien.controller('preferencias2', function ($scope, $location, Llamada, $window, $anchorScroll, $routeParams, $http) {
+musicien.controller('preferencias2', function ($scope, $location, Llamada, $window, $anchorScroll, $routeParams, $http, $timeout) {
     $scope.activePill = 1;
     $scope.numPags = 3;
 
@@ -19,6 +19,20 @@ musicien.controller('preferencias2', function ($scope, $location, Llamada, $wind
   } else {
     $location.path("/home");
   }
+  $scope.mostrardesplegable = false;
+  fnocultar2 = function () {
+        $scope.mostrardesplegable = false;
+    }
+    $scope.focofuera = function () {
+        $timeout(fnocultar2, 1000);
+    };
+    $scope.entrafoco = function () {
+        if (NotNullNotUndefinedNotEmpty($scope.resultadobusqueda)) {
+            $scope.mostrardesplegable = true;
+        }
+    }
+
+
   $scope.cargarCategorias = function() {
     Llamada.http.get("UsuariosCategoriasLeerPorIDUsuario?IDUsuario=" + getIDUsuario() + "&IDIdioma=" + getIdioma())
       .then(function(respuesta) {
@@ -45,6 +59,7 @@ musicien.controller('preferencias2', function ($scope, $location, Llamada, $wind
               .then(function (respuesta) {
                   console.log(respuesta.data);
                   $scope.localidades = respuesta.data.predictionField;
+                  $scope.mostrardesplegable = true;
               })
       }
   }

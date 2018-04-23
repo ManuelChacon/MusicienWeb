@@ -73,6 +73,36 @@ musicien.controller('modalesRegistroLogin', function ($scope, $uibModal, $log, $
       appendTo: parentElem,
 
     });
+
+    modalInstance.result.then(function (objdevuelto) {
+        if (NotNullNotUndefinedNotEmpty(objdevuelto)) {
+          if (NotNullNotUndefinedNotEmpty(objdevuelto.LoginSocial)) {
+            $scope.LoginSocial(objdevuelto.LoginSocial);
+          } else {
+            $scope.cargaInicial();
+          }
+        } else {
+          alert("He salido")
+
+        }
+      });
+  };
+  $scope.openModalPolitica = function (size, parentSelector) {
+
+          //$scope.tareasAdicionalesCambioPag()
+    var parentElem = parentSelector ?
+    angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+    var modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: 'templates/modales/politica-privacidad.html',
+      controller: 'RegistroLogin',
+      size: size,
+      appendTo: parentElem,
+
+    });
+
     modalInstance.result.then(function (objdevuelto) {
         if (NotNullNotUndefinedNotEmpty(objdevuelto)) {
           if (NotNullNotUndefinedNotEmpty(objdevuelto.LoginSocial)) {

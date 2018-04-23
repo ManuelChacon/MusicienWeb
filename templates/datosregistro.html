@@ -1,40 +1,19 @@
 <div class="container">
-    <div class="row">
-        <div class="col-12">
-            <span class="step-title"> Paso {{activePill}} de {{numPags}} </span>
+    <div class="row post-content">
+        <div class="col-12 text-center mt-2">
+            <img src="img/logo.png" />
+            <h3>{{lang.bienvenid_inicio}}</h3>
+            <p>{{lang.text1_bienve}}<br /> {{lang.text2_bienve}}<br>
+            <strong>{{lang.text3_bienve}}</strong></p>
         </div>
         <div class="col-12">
-            <!-- INICIO BOTONES PASO A PASO -->
-            <div class="page-bar" style="position: initial;">
-                <!--<ul class="page-breadcrumb">
-                    <li>
-                        {{objetoBusqueda.NombreTipoVehiculo}}
-                        <i class="fa fa-circle"></i>
-                    </li>
-                    <li ng-if="!objetoBusqueda.tabs[3]">
-                        <span>{{objetoBusqueda.marca.descripcionSeccion}}</span>
-                        <i class="fa fa-circle"></i>
-                    </li>
-                    <li ng-if="!objetoBusqueda.tabs[4]">
-                        <span>{{objetoBusqueda.modelo.descripcionFamilia}}</span>
-                        <i class="fa fa-circle"></i>
-                    </li>
-                    <li ng-if="!objetoBusqueda.tabs[5]">
-                        <span>{{objetoBusqueda.carroceria.descripcion}}</span>
-                        <i class="fa fa-circle"></i>
-                    </li>
-                    <li ng-if="!objetoBusqueda.tabs[6]">
-                        <span>{{objetoBusqueda.ano.valor}}</span>
-                    </li>
-                </ul>-->
-
-            </div>
-            <!-- FIN BOTONES PASO A PASO -->
+            <h1> <span class="step-title"> {{lang.paso}} {{activePill}} {{lang.de}} {{numPags}} </span></h1>
+           
         </div>
         <div class="col-12">
             <!-- BARRA DE PROGRESO -->
-            <div id="bar" class="progress progress-striped mt-3">
-                <div class="progress-bar progress-bar-striped" role="progressbar" style="width: {{progreso()}} ;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+            <div id="bar" class="progress mt-3">
+                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{progreso()}} ;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                     {{progreso()}}
                 </div>
             </div>
@@ -42,16 +21,17 @@
         </div>
 
         <!-- INICIO TABS -->
-        <div class="col-12">
-            <uib-tabset active="activePill" type="pills" class="form-wizard">
+        <div class="col-12 mt-3">
+            <uib-tabset active="activePill" type="pills" class="form-wizard" justified ="true">
                 <!-- TAB CREACION DE PERFILES -->
                 <uib-tab index="1" disable="">
                     <uib-tab-heading>
                         <span class="step">
-                            <span class="number"> 1 </span>
-                            <span class="desc">
-                                <i class="fa fa-check"></i>Datos de tu cuenta
+                         <span class="desc">
+                                <i class="fas fa-user-circle fa-2x "></i> 
+                                <span class="number">  </span><br>  {{lang.tab1_datosdetu}}
                             </span>
+                            
                         </span>
                     </uib-tab-heading>
                     <div class="">
@@ -96,10 +76,10 @@
                                     <img src="img/img_defecto.jpg" alt="post-image" class="profile-photo-md pull-left m-1" ng-class="defaultFondoSeleccionada()" ng-click="cambiarPorFondoDefault()">
                                 </div>
                             </div>
-                            <div class="row pt-2">
+                            <div class="row pt-2 pb-5">
                                 <div class="col-6 offset-6 text-right">
                                     <img ng-if="guardandocambios" src="img/loader.gif" alt="" width="100px">
-                                    <button type="button" class="btn btn-sm btn-primary" ng-click="guardarCambiosUsuario()">{{lang.guardar_cambios}}</button>
+                                    <button type="button" class="btn btn-sm btn-primary" ng-click="guardarCambiosUsuario()">{{lang.siguiente}}</button>
                                 </div>
                             </div>
                         </div>
@@ -112,36 +92,29 @@
                 <uib-tab tabindex="2" disable="">
                     <uib-tab-heading>
                         <span class="step">
-                            <span class="number"> 2 </span>
+                            
                             <span class="desc">
-                                <i class="fa fa-check"></i>Más información
+                               <i class="fas fa-info-circle fa-2x"></i><span class="number">  </span><br> {{lang.tab2_masinfo}}
                             </span>
                         </span>
                     </uib-tab-heading>
-                    <small>{{lang.estos_datos_muestran}}</small>
                     <ng-form name="">
-                        <form class="mt-3">
-                            <!--<div class="form-row">
-                              <div class="form-group col-md-6">
-                                <label for="inputEmail4">Nombre</label>
-                                <input type="text" class="form-control" id="inputEmail4" placeholder="Nombre">
-                              </div>
-                              <div class="form-group col-md-6">
-                                <label for="inputPassword4">Apellidos</label>
-                                <input type="text" class="form-control" id="inputPassword4" placeholder="Apellidos">
-                              </div>
-                            </div>-->
-
+                    <div class="row p-2">
+                        <div class="col-12">
+                            <small>{{lang.estos_datos_muestran}}</small>
                             <div class="form-group">
                                 <label for="inputAddress2">{{lang.escribe_algo_ti}}</label>
                                 <textarea name="name" rows="8" cols="80" ng-model="usuario.Descripcion">
                       </textarea>
                             </div>
+
+                        </div>
+                        <div class="col-6">
                             <div class="form-group">
                                 <label for="inputAddress2">{{lang.localizacion}}</label>
-                                <input type="text" class="form-control" id="inputAddress4" placeholder="" ng-change="cargarLocalizaciones()" ng-model="usuario.Localizacion">
-                                <ul>
-                                    <li ng-repeat="localizacion in localidades" ng-click="cambiarLocalizacion(localizacion.descriptionField)">
+                                <input type="text" class="form-control" ng-blur="focofuera()" ng-focus="entrafoco()" id="inputAddress4" placeholder="" ng-change="cargarLocalizaciones()" ng-model="usuario.Localizacion" autocomplete="cualquier-cosa" >
+                                <ul class="ciudades">
+                                    <li ng-repeat="localizacion in localidades" ng-if="mostrardesplegable" ng-click="cambiarLocalizacion(localizacion.descriptionField)">
                                         <a class="cursor">
 
                                             {{localizacion.descriptionField}}
@@ -149,45 +122,54 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="form-group">
-                                <label for="inputAddress2">Web</label>
-                                <input type="text" class="form-control" id="inputAddress5" placeholder="" ng-model="usuario.Web">
-                            </div>
+                        </div>
+                        <div class="col-6">
                             <div class="form-group">
                                 <label for="inputAddress2">{{lang.telefono}}</label>
                                 <input type="text" class="form-control" id="inputAddress6" placeholder="" ng-model="usuario.Telefono">
                             </div>
+                        </div>
+                        <div class="col-12">
+                              
                             <div class="form-group">
+                                <label for="inputAddress2">Web</label>
+                                <input type="text" class="form-control" id="inputAddress5" placeholder="" ng-model="usuario.Web">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                             <div class="form-group">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" id="terceraTabActivada" ng-change="cambioAcepto(this)" ng-model="terceraTabActivada"> {{lang.acepto_politica}} MUSICIEN
+                                        <input class="form-check-input" type="checkbox" id="terceraTabActivada" ng-change="cambioAcepto(this)" ng-model="terceraTabActivada">{{lang.acepto_politica}} MUSICIEN  <br><small>({{lang.tienes_politica}}<a ng-controller="modalesRegistroLogin" ng-click="openModalPolitica('lg')"><strong>{{lang.leer_politica}} )</strong></a></small>
                                     </label>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-6 offset-6 text-right">
-                                    <img ng-if="guardandocambios" src="img/loader.gif" alt="">
-                                    <button type="button" class="btn btn-sm btn-primary" ng-click="guardarCambiosUsuario()">{{lang.guardar_cambios}}</button>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="col-6 offset-6 text-right pt-3 pb-5">
+                            <img ng-if="guardandocambios" src="img/loader.gif" alt="">
+                            <button type="button" class="btn btn-sm btn-primary" ng-click="guardarCambiosUsuario()">{{lang.siguiente}}</button>
+                        </div>
+                        
 
-                        </form>
+                    </div>
                     </ng-form>
+                    
+
                 </uib-tab>
                 <!--  FIN DATOS PERSONALES -->
                 <uib-tab tabindex="3" disable="!terceraTabActivada">
                     <uib-tab-heading>
-                        <span class="step">
-                            <span class="number"> 3 </span>
+                        <span class="step" >
+                            <span class="number"> </span>
                             <span class="desc">
-                                <i class="fa fa-check"></i>Perfiles
+                                <i class="fas fa-address-card fa-2x"></i> <br>{{lang.perfiles}}
                             </span>
                         </span>
                     </uib-tab-heading>
                     <div class="row">
                         <div class="col text-center mb-2">
-                            <h2>{{lang.mis_perfiles}}</h2>
-                            <small>{{lang.selecciona_uno}}</small>
+                            <h2>{{lang.mis_perfiles_ini}}</h2>
+                            <small><strong>{{lang.selecciona_uno_ini}}</strong></small>
                         </div>
                     </div>
                     <div class="row justify-content-center pt-3">
@@ -249,9 +231,10 @@
                         </span>
                         <div class="col-12  text-right my-3">
                             <button type="button" class="btn btn-secondary btn-lg" ng-click="cancelNewPerfil()">{{lang.cancelar}} </button>
+                            <button type="button" class="btn btn-primary btn-lg" ng-if="puedoAcabar()" ng-click="inicio()">¡Ir a Musicien!</button>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary btn-lg" ng-if="puedoAcabar()" ng-click="inicio()">Finalizar</button>
+                    
                 </uib-tab>
 
             </uib-tabset>
