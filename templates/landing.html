@@ -4,9 +4,9 @@
           <div class="col-12 mt-5">
           <img class="d-block mx-auto pb-5" src="img/logo.png">
             <img class="d-block mx-auto" src="img/musicien_slogan.png">
-            <div class="col-12" ng-if="botonEntrar||checkLoginStatus()">
-               <button ng-if=""type="button" class="btn btn-primary mt-5 p-3" ng-click="inicio()"><span style="text-transform: uppercase;">{{lang.ir_a_musicien}} MUSICIEN</span> </button>
-            </div>
+           <!--  <div class="col-12" ng-if="botonEntrar||checkLoginStatus()">
+               <button ng-if="" type="button" class="btn btn-primary mt-5 p-3" ng-click="inicio()"><span style="text-transform: uppercase;">{{lang.ir_a_musicien}} MUSICIEN</span> </button>
+            </div> -->
             <div class="col-12">
                <button type="button" class="btn btn-primary mt-5 p-3" ng-click="openModalInicioSesion()"><span style="text-transform: uppercase;">{{lang.inicio_sesion}}</span> </button>
             </div>
@@ -25,12 +25,75 @@
       </ul> 
 
 <slide-wrapper id="slide-landing" style="margin-top: -81px;">
+    <!--CAPA LOGIN VISTA-->
+    <div class="wrapper-login text-center ">
+       <div class="row">
+         <div class="col-6 offset-3 text-center form-inicio pb-3" >
+           <div class="row">
+             <div class="col-12 pb-1">
+                 <span class="text-registros">{{lang.texto_registrate}}</span>
+             </div>
+             <div class="col-6">
+              <div  ng-click="CerrarParaSocial('facebook')" class="col-12 mb-1 px-4">
+                  <a class="btn facebook btn-block ">
+                    <i class="fab fa-facebook-square"></i> {{lang.inicia_face}}
+                  </a>
+              </div>
+              <div ng-click="CerrarParaSocial('twitter')" class="col-12 mb-1 px-4">
+                    <a class="btn twitter btn-block" >
+                      <i class="fab fa-twitter"></i> {{lang.inicia_twi}}
+                    </a>
+                </div>
+                <div ng-click="CerrarParaSocial('instagram')" class="col-12 mb-1 px-4">
+                    <a class="btn btn-instagram  instagram btn-block"  ng-click="close()">
+                     <i class="fab fa-instagram"></i> {{lang.inicia_inta}}
+                    </a>
+                </div>
+
+             </div>
+             <div class="col-6" style="border-left: 1px solid #fff;">
+               <div class="col-12 mb-2">
+                <div class="input-group input-group-sm">
+                  <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                  <input type="text " class="form-control form-control-sm" placeholder="{{lang.nombre_usuario}}" autofocus ng-model="newusuario.Nombre">
+                </div>
+                  
+                </div>
+                <div class="col-12 mb-2">
+                 <div class="input-group input-group-sm">
+                  <span class="input-group-addon"><i class="fas fa-at"></i></span>
+                  <input type="text " class="form-control form-control-sm" placeholder="Email" autofocus ng-model="newusuario.Email">
+                </div>
+                 
+                </div>
+                 <div class="col-12">
+                 <div class="input-group input-group-sm">
+                  <span class="input-group-addon"><i class="fas fa-key"></i></span>
+                 <input type="password" class="form-control form-control-sm" placeholder="Password" ng-model="newusuario.Contrasena">
+                </div>
+                   
+                </div>
+                <div class="row">
+                  <div class="col-7 text-registros text-left" ng-controller="modalesRegistroLogin" ng-click="openModalInicioSesion()"><small style="cursor:pointer;"><strong>Si ya estás registrado haz clic aquí</strong></small></div>
+                  <div class="col-5 mt-1">
+                   <button type="submit" class="btn btn-sm btn-aqua pull-right" ng-click="registrarUsuario2()">{{lang.enviar}}</button>
+                </div>
+                </div>
+                
+                
+             </div>
+           </div>
+         </div>
+
+       </div>
+    </div>
+    <!--/CAPA LOGIN VISTA-->
     <ul class="slide text-center pt-5" style="" ng-controller="modalesRegistroLogin">
         <li class="" style="background-image: url('img/slider-02.jpg');background-size: cover; width: 100%;padding-bottom: 81px; background-attachment: fixed;">
         <div class="row align-items-center" style="height: 100vh;" >
           <div class="col-12 mt-5">
             <img class="d-block mx-auto" src="img/musicien_slogan.png">
-            <button type="" class="btn btn-primary mt-5 p-3" ng-click="openModalInicioSesion()"><i class="ion-person"></i> {{lang.inicia_sesion_en}} MUSICIEN</button>      
+           <!--  <button  class="btn btn-primary mt-5 p-3" ng-click="openModalInicioSesion()"><i class="ion-person"></i> {{lang.inicia_sesion_en}} MUSICIEN</button> -->      
           </diV>
           
         </div>
@@ -336,3 +399,4 @@
             </div>
             <div class="clear"></div>
 </section>
+

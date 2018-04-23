@@ -104,7 +104,7 @@
 	"editar_perfil":"Editar Perfil",
 	"datos_personales":"Datos Personales",
 	"mis_suscripciones":"Mis Suscripciones",
-	"{{nombre_usuario}}":"Nombre de Usuario",
+	"nombre_usuario":"Nombre de Usuario",
 	"tu_nombre_de":"Tu nombre de Usuario es",
 	"sube_una_imagen_para":"Sube una imagen para tu perfil",
 	"sube_imagen_fondo":"Sube una imagen para tu fondo de perfil",
@@ -272,5 +272,21 @@
 	"usuario_desbloqueado": "El usuario ha sido desbloqueado",
 	"bloquear_inicio_sesion": "Debes iniciar sesión para bloquear a un usuario",
 	"usuario_bloqueado_exito": "El usuario ha sido bloqueado.",
-	"no_bloquearte": "No puedes bloquearte a ti mismo"
+	"no_bloquearte": "No puedes bloquearte a ti mismo",
+	"siguiente": "siguiente",
+	"tienes_politica":"Tienes que aceptar la política de privacidad de Musicien para poder continuar.",
+	"leer_politica":"Puedes leerla haciendo click aquí.", 
+	"mis_perfiles_ini":"Create un Perfil",
+	"selecciona_uno_ini":"Haz click en nuevo perfil y selecciona una de las opciones que te proponemos. Más adelante podrás añadir nuevos perfiles desde Preferencias - Editar Perfil",
+	"bienvenid_inicio":"Bienvenid@ a Musicien",
+	"text1_bienve":"Antes de poder disfrutar todo el contenido que te ofrecemos, te pedimos unos datos para saber algo más de ti.",
+	"text2_bienve":"Queremos insistir en que nunca compartiremos estos datos con nadie.",
+	"text3_bienve":"Este proceso sólo lo deberás hacer una sola vez y podrás modificar estos datos cuando quieras.",
+	"tab1_datosdetu":"Datos de tu Cuenta",
+	"paso":"Paso",
+	"tab2_masinfo":"Más información",
+	"boton_politica":"Política de Privacidad",
+	"texto_registrate":"Regístrate con redes o con tu email, es gratis."
+
+
 }
