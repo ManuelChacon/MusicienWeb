@@ -3645,3 +3645,7 @@ box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     background-color: red;
     color: white;
 }
+
+div#perfil-user>.nav-pills>li.active>a, div#perfil-user>.nav-pills>li.active>a:focus, div#perfil-user>.nav-pills>li.active>a:hover {
+  background-color: transparent;
+}

@@ -92,7 +92,7 @@
 	"ultimas_acciones":"Latest actions",
 	"le_ha_gustado":" Liked a post",
 	"publicaciones":"Posts",
-	"informaacion":"Information",
+	"informacion":"Information",
 	"seguidores":"Followers",
 	"informacion_personal":"Personal information",
 	"localizacion":"Location",
@@ -286,5 +286,6 @@
 	"paso":"Paso",
 	"tab2_masinfo":"Más información",
 	"boton_politica":"Política de Privacidad",
-	"texto_registrate":"Regístrate con redes o con tu email, es gratis."
+	"texto_registrate":"Regístrate con redes o con tu email, es gratis.",
+	"modificar":"Edit"
 }

@@ -35,8 +35,8 @@
     <div class="col-md-6"><!--  COLUMNA CONTENIDOS -->
 
 
-    <uib-tabset active="active" type="pills">
-      <uib-tab index="1">
+    <uib-tabset active="active" type="pills" id="perfil-user" >
+      <uib-tab index="1" classes="tab-perso">
         <span ng-if="perfilUsuario.BloqueoUsuario<1">
           <span ng-if="perfilUsuario.Publicaciones.length<1">
                <div class="post-content p-3"><h5 class="text-center py-5">{{lang.no_hay_publi}}</h5> </div></span>

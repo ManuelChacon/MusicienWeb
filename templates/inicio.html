@@ -116,9 +116,9 @@
           </div>
         <!-- INICIO PAGINA FILTROS -->
         <!-- {{active}} -->
-          <uib-tabset active="active" type="pills">
+          <uib-tabset active="active" type="pills" id="perfil-user">
               <!-- ng-hide="!VisibilidadSinPerfiles()"-->
-              <uib-tab index="1">
+              <uib-tab index="1" classes="tab-filtros">
                   <span ng-if="publicaciones.length<1">
                       <div class="post-content p-3"><h5 class="text-center py-5">{{lang.no_hay_publi}}</h5> </div>
                   </span>
@@ -140,11 +140,11 @@
                               <comentario-norespuesta ng-repeat="comentario in publicacion.Comentarios | filter:esComentarioBase | limitTo:3">
 
                               </comentario-norespuesta>
-                              <input ng-if="publicacion.ConComentarios" ng-click="verComentariosPublicacion(publicacion)" class="form-control" type="submit" name="" value="Ver mĂĄs comentarios">
+                              <input ng-if="publicacion.ConComentarios" ng-click="verComentariosPublicacion(publicacion)" class="form-control" type="submit" name="" value="{{lang.ver_mas_comenta}}">
                           </div>
                       </div>
                   </div> <!-- CAPA FILTRO PUBLICACIONES -->
-                  <button type="text" class="btn-block btn-lg" name="" value="Ver más" ng-click="vermaspublis()" style="background: white; color:orange;">Ver más</button>
+                  <button type="text" class="btn-block btn-lg" name="" value="Ver más" ng-click="vermaspublis()" style="background: white; color:orange;">{{lang.ver_mas_comenta}}</button>
               </uib-tab>
               <uib-tab index="2">
                   <div class="post-content p-3">
