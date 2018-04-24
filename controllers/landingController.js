@@ -43,6 +43,13 @@ musicien.controller('landing', function ($scope, $location, Llamada, $window) {
         }
       })
   }
+
+  $scope.CerrarParaSocial = function (red) {
+
+      $scope.LoginSocial(red);
+  }
+
+
   $scope.iniciarSesUsuario = function() {
     var credenciales = { Email: $scope.oldusuario.Email, Contrasena: $scope.oldusuario.Contrasena }
     localStorage.setItem("musicienCreds", JSON.stringify(credenciales));
